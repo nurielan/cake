@@ -13,16 +13,19 @@ class m130524_201442_init extends Migration
         }
 
         $this->createTable('{{%user}}', [
-            'id' => $this->primaryKey(),
-            'username' => $this->string()->notNull()->unique(),
+            'id' => 'INT UNSIGNED PRIMARY KEY AUTO_INCREMENT',
+            'username' => $this->string(64)->notNull()->unique(),
             'auth_key' => $this->string(32)->notNull(),
             'password_hash' => $this->string()->notNull(),
             'password_reset_token' => $this->string()->unique(),
-            'email' => $this->string()->notNull()->unique(),
+            'email' => $this->string(64)->notNull()->unique(),
+
+            'image' => $this->string(64),
+            'role' => 'TINYINT(1) DEFAULT 0',
 
             'status' => $this->smallInteger()->notNull()->defaultValue(10),
-            'created_at' => $this->integer()->notNull(),
-            'updated_at' => $this->integer()->notNull(),
+            'created_at' => $this->dateTime(),
+            'updated_at' => $this->timestamp(),
         ], $tableOptions);
     }
 
