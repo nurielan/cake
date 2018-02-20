@@ -14,20 +14,24 @@ class m180219_070558_create_user_address_table extends Migration
     {
         $this->createTable('user_address', [
             'id' => 'INT UNSIGNED PRIMARY KEY AUTO_INCREMENT',
-            'user_id' => 'INT UNSIGNED',
+            'no' => $this->string(64)->unique(),
+            'user_no' => $this->string(64),
             'title' => $this->string(64)->notNull(),
             'name' => $this->string(64)->notNull(),
             'address' => $this->text()->notNull(),
             'subdistrict' => $this->string(64)->notNull(),
+            'subdistrict_no' => $this->string(24),
             'district' => $this->string(64)->notNull(),
+            'district_no' => $this->string(24),
             'province' => $this->string(64)->notNull(),
+            'province_no' => $this->string(24),
             'postal_code' => $this->string(24)->notNull(),
             'phone_number' => $this->string(24)->notNull()->unique(),
             'created_at' => $this->dateTime(),
             'updated_at' => $this->timestamp()
         ]);
 
-        $this->createIndex('i-user_address-user_id', 'user_address', 'user_id', false);
+        $this->createIndex('i-user_address-user_no', 'user_address', 'user_no', false);
     }
 
     /**

@@ -3,18 +3,20 @@
 use yii\db\Migration;
 
 /**
- * Handles the creation of table `product_brand`.
+ * Handles the creation of table `blog_item`.
  */
-class m180219_073422_create_product_brand_table extends Migration
+class m180220_034554_create_blog_item_table extends Migration
 {
     /**
      * @inheritdoc
      */
     public function up()
     {
-        $this->createTable('product_brand', [
+        $this->createTable('blog_item', [
             'id' => 'INT UNSIGNED PRIMARY KEY AUTO_INCREMENT',
             'no' => $this->string(64)->unique(),
+            'blog_category_no' => $this->string(64),
+            'blog_tag_no' => $this->string(64),
             'name' => $this->string(64)->notNull(),
             'alias' => $this->string(64),
             'image1' => $this->string(64),
@@ -22,11 +24,12 @@ class m180219_073422_create_product_brand_table extends Migration
             'image3' => $this->string(64),
             'description' => $this->text(),
             'status' => 'TINYINT(1) DEFAULT 0',
-            'discount' => $this->smallInteger(3)->defaultValue(0),
-            'discount_price' => $this->money(18, 2)->defaultValue(0),
             'created_at' => $this->dateTime(),
             'updated_at' => $this->timestamp()
         ]);
+
+        $this->createIndex('i-blog_item-blog_category_no', 'blog_item', 'blog_category_no', false);
+        $this->createIndex('i-blog_item-blog_tag_no', 'blog_item', 'blog_tag_no', false);
     }
 
     /**
@@ -34,6 +37,6 @@ class m180219_073422_create_product_brand_table extends Migration
      */
     public function down()
     {
-        $this->dropTable('product_brand');
+        $this->dropTable('blog_item');
     }
 }

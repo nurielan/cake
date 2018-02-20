@@ -14,6 +14,7 @@ class m130524_201442_init extends Migration
 
         $this->createTable('{{%user}}', [
             'id' => 'INT UNSIGNED PRIMARY KEY AUTO_INCREMENT',
+            'no' => $this->string(64)->unique(),
             'username' => $this->string(64)->notNull()->unique(),
             'auth_key' => $this->string(32)->notNull(),
             'password_hash' => $this->string()->notNull(),
