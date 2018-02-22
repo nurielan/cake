@@ -12,5 +12,15 @@ return [
             'masuk' => 'login',
             'keluar' => 'logout'
         ]
+    ],
+    'main/backend' => [
+        'class' => GUR::className(),
+        'prefix' => 'dasbor',
+        'routePrefix' => 'main/backend',
+        'rules' => [
+            'beranda' => 'index',
+            'masuk' => 'login',
+            'keluar' => 'logout'
+        ]
     ]
 ];
