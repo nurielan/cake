@@ -8,19 +8,20 @@ class RbacController extends \yii\console\Controller
     public function init()
     {
         $auth = \Yii::$app->authManager;
+        $auth->removeAll();
 
         // Permission
 
         $createPost = $auth->createPermission('createPost');
-        $createPost->description = Yii::t('common', 'Create a post');
+        //$createPost->description = \Yii::t('common', 'Create a post');
         $auth->add($createPost);
 
         $updatePost = $auth->createPermission('updatePost');
-        $updatePost->description = Yii::t('common', 'Update a post');
+        //$updatePost->description = \Yii::t('common', 'Update a post');
         $auth->add($updatePost);
 
         $deletePost = $auth->createPermission('deletePost');
-        $deletePost->description = Yii::t('common', 'Delete a post');
+        //$deletePost->description = \Yii::t('common', 'Delete a post');
         $auth->add($deletePost);
 
         // Role

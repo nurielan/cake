@@ -43,7 +43,9 @@ return [
             'showScriptName' => false,
             'rules' => require 'routes.php',
         ],
-        'defaultRoute' => 'main/backend'
+        'defaultRoute' => 'main/backend',
+        'language' => 'id-ID',
+        'sourceLanguage' => "en-US"
     ],
     'params' => $params,
 ];
