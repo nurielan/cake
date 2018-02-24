@@ -14,5 +14,8 @@ return [
     'Username' => 'Nama Pengguna',
     'Password' => 'Kata Sandi',
     'Remember Me' => 'Ingat Saya',
-    'Incorrect username or password.' => 'Kata pengguna atau kata sandi salah.'
+    'Username or E-Mail' => 'Kata Pengguna atau E-Mail',
+    'Incorrect username or password.' => 'Kata pengguna atau kata sandi salah.',
+    'Sign in to start your session' => 'Log masuk untuk memulai sesi anda',
+    'I forgot my password' => 'Saya lupa kata sandi-nya'
 ];

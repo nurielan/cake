@@ -18,8 +18,8 @@ return [
         ],
         'user' => [
             'identityClass' => 'common\models\User',
-            'enableAutoLogin' => true,
-            'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
+            'enableAutoLogin' => false,
+            'identityCookie' => ['name' => '_identity-backend-cake', 'httpOnly' => true],
         ],
         'session' => [
             // this is the name of the session cookie used for login on the backend
@@ -45,7 +45,7 @@ return [
         ],
     ],
     'params' => $params,
-    'defaultRoute' => 'main/backend',
+    //'defaultRoute' => 'main/backend',
     'language' => 'id-ID',
     //'sourceLanguage' => "en-US"
 ];
