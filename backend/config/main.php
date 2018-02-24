@@ -14,7 +14,7 @@ return [
     'modules' => [],
     'components' => [
         'request' => [
-            'csrfParam' => '_csrf-backend',
+            'csrfParam' => '_csrf-backend-cake',
         ],
         'user' => [
             'identityClass' => 'common\models\User',
@@ -23,7 +23,8 @@ return [
         ],
         'session' => [
             // this is the name of the session cookie used for login on the backend
-            'name' => 'advanced-backend',
+            'class' => 'yii\web\DbSession',
+            'name' => 'advanced-backend-cake',
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -37,14 +38,14 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'rules' => [
-            ],
+            'rules' => require 'routes.php',
         ],
-        */
+        'defaultRoute' => 'main/backend',
+        'language' => 'id-ID',
+        'sourceLanguage' => "en-US"
     ],
     'params' => $params,
 ];

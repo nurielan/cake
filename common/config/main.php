@@ -7,7 +7,25 @@ return [
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'components' => [
         'cache' => [
-            'class' => 'yii\caching\FileCache',
+            'class' => 'yii\caching\DbCache',
         ],
+        'authManager' => [
+            'class' => 'yii\rbac\PhpManager',
+        ],
+        'i18n' => [
+            'translations' => [
+                'yii' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    //'sourceLanguage' => 'en-US',
+                    'basePath' => '@common/i18n'
+                ],
+                'common' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    //'sourceLanguage' => 'en-US',
+                    'basePath' => '@common/i18n'
+                ],
+                'on missingTranslation' => ['common\components\TranslationEventHandler', 'handleMissingTranslation']
+            ]
+        ]
     ],
 ];
