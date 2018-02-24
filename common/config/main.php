@@ -11,21 +11,22 @@ return [
         ],
         'authManager' => [
             'class' => 'yii\rbac\PhpManager',
+            'defaultRoles' => ['superadmin', 'admin', 'customer']
         ],
         'i18n' => [
             'translations' => [
-                'yii' => [
+                'yii*' => [
                     'class' => 'yii\i18n\PhpMessageSource',
                     //'sourceLanguage' => 'en-US',
-                    'basePath' => '@common/i18n'
+                    'basePath' => '@common/config/i18n',
                 ],
-                'common' => [
+                'common*' => [
                     'class' => 'yii\i18n\PhpMessageSource',
                     //'sourceLanguage' => 'en-US',
-                    'basePath' => '@common/i18n'
+                    'basePath' => '@common/config/i18n',
                 ],
                 'on missingTranslation' => ['common\components\TranslationEventHandler', 'handleMissingTranslation']
             ]
-        ]
+        ],
     ],
 ];

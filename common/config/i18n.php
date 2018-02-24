@@ -16,7 +16,7 @@ return [
     'sourcePath' => '@yii',
     'messagePath' => '@common/config/i18n',
     'languages' => [
-        'id',
+        'id-ID',
     ],
     'translator' => 'Yii::t',
     'sort' => false,

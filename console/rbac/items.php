@@ -11,14 +11,21 @@ return [
     ],
     'customer' => [
         'type' => 1,
+        'ruleName' => 'userGroup',
     ],
     'admin' => [
         'type' => 1,
+        'ruleName' => 'userGroup',
+        'children' => [
+            'customer',
+        ],
     ],
     'superadmin' => [
         'type' => 1,
+        'ruleName' => 'userGroup',
         'children' => [
             'admin',
+            'customer',
         ],
     ],
 ];
