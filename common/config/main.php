@@ -11,6 +11,9 @@ return [
         ],
         'authManager' => [
             'class' => 'yii\rbac\PhpManager',
+            'assignmentFile' => '@console/rbac/assignments.php',
+            'itemFile' => '@console/rbac/items.php',
+            'ruleFile' => '@console/rbac/rules.php',
             'defaultRoles' => ['superadmin', 'admin', 'customer']
         ],
         'i18n' => [

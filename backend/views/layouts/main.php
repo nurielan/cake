@@ -6,7 +6,6 @@
 
 use backend\assets\AdminLteAsset;
 use yii\helpers\Html;
-use yii\widgets\Breadcrumbs;
 use common\widgets\Alert;
 
 AdminLteAsset::register($this);
@@ -27,27 +26,25 @@ AdminLteAsset::register($this);
 
 <!-- Site wrapper -->
 <div class="wrapper">
-    <?= $this->render('header')?>
+    <?= $this->render('main-header')?>
 
     <!-- =============================================== -->
 
-    <?= $this->render('aside') ?>
+    <?= $this->render('main-sidebar') ?>
 
     <!-- =============================================== -->
-</div>
 
-<div class="wrap">
-    <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-            'homeLink' => [
-                'label' => Yii::t('common', 'Home'),
-                'url' => Yii::$app->homeUrl
-            ]
-        ]) ?>
-        <?= Alert::widget() ?>
-        <?= $content ?>
-    </div>
+    <?= Alert::widget() ?>
+
+    <?= $content ?>
+
+    <!-- =============================================== -->
+
+    <?= $this->render('main-footer') ?>
+
+    <!-- =============================================== -->
+
+    <?= $this->render('control-sidebar') ?>
 </div>
 
 <?php $this->endBody() ?>

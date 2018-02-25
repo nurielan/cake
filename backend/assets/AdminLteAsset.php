@@ -31,7 +31,8 @@ class AdminLteAsset extends AssetBundle
             'condition' => 'lte IE9'
         ],
         'jquery-slimscroll/jquery.slimscroll.min.js',
-        'fastclick/lib/fastclick.js'
+        'fastclick/lib/fastclick.js',
+        'dist/js/adminlte.min.js'
     ];
     public $depends = [
         'backend\assets\AppAsset'

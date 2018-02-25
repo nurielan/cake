@@ -1,14 +1,16 @@
 <?php
+
 use yii\helpers\Url;
+
 ?>
 
 <header class="main-header">
     <!-- Logo -->
-    <a href="../../index2.html" class="logo">
+    <a href="<?= Yii::$app->homeUrl ?>" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>A</b>LT</span>
+        <span class="logo-mini"><b>A</b>CB</span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>Admin</b>LTE</span>
+        <span class="logo-lg"><b>Admin</b> <?= strtoupper(Yii::$app->name) ?></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -33,9 +35,9 @@ use yii\helpers\Url;
                                 <li><!-- start message -->
                                     <a href="#">
                                         <div class="pull-left">
-                                            <img src="<?= Url::to('@web/assets/adminlte/dist/img/user2-160x160.jpg') ?>"
+                                            <img src="<?= Yii::$app->myLibrary->getUserImage(Yii::$app->user->identity) ?>"
                                                  class="img-circle"
-                                                 alt="User Image">
+                                                 alt="<?= Yii::$app->user->identity->userDetail->fullname . ' (' . Yii::$app->user->identity->username . ')' ?>">
                                         </div>
                                         <h4>
                                             Support Team
@@ -108,19 +110,19 @@ use yii\helpers\Url;
                 <!-- User Account: style can be found in dropdown.less -->
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="<?= Url::to('@web/assets/adminlte/dist/img/user2-160x160.jpg') ?>" class="user-image"
-                             alt="User Image">
-                        <span class="hidden-xs">Alexander Pierce</span>
+                        <img src="<?= Yii::$app->myLibrary->getUserImage(Yii::$app->user->identity) ?>" class="user-image"
+                             alt="<?= Yii::$app->user->identity->userDetail->fullname . ' (' . Yii::$app->user->identity->username . ')' ?>">
+                        <span class="hidden-xs"><?= Yii::$app->user->identity->userDetail->fullname . ' (' . Yii::$app->user->identity->username . ')' ?></span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header">
-                            <img src="<?= Url::to('@web/assets/adminlte/dist/img/user2-160x160.jpg') ?>"
-                                 class="img-circle" alt="User Image">
+                            <img src="<?= Yii::$app->myLibrary->getUserImage(Yii::$app->user->identity) ?>"
+                                 class="img-circle" alt="<?= Yii::$app->user->identity->userDetail->fullname . ' (' . Yii::$app->user->identity->username . ')' ?>">
 
                             <p>
-                                Alexander Pierce - Web Developer
-                                <small>Member since Nov. 2012</small>
+                                <?= Yii::$app->user->identity->userDetail->fullname . ' (' . Yii::$app->user->identity->username . ')' ?>
+                                <small> <?= Yii::t('common', 'Member since') .' '. date('M. Y', strtotime(Yii::$app->user->identity->created_at)) ?></small>
                             </p>
                         </li>
                         <!-- Menu Body -->
@@ -140,10 +142,10 @@ use yii\helpers\Url;
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                <a href="#" class="btn btn-default btn-flat"><?= Yii::t('common', 'Profile') ?></a>
                             </div>
                             <div class="pull-right">
-                                <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                <a href="<?= Url::toRoute(['site/logout']) ?>" class="btn btn-default btn-flat" data-method="POST"><?= Yii::t('common', 'Logout') ?></a>
                             </div>
                         </li>
                     </ul>

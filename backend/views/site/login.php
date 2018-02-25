@@ -1,19 +1,38 @@
 <?php
 
-/* @var $this yii\web\View */
+/* @var $this \yii\web\View */
+
+/* @var $content string */
+
 /* @var $form yii\bootstrap\ActiveForm */
 
 /* @var $model \common\models\LoginForm */
 
+use backend\assets\AdminLteAsset;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
+AdminLteAsset::register($this);
+
 $this->title = Yii::t('common', 'Login');
-$this->params['breadcrumbs'][] = $this->title;
 ?>
+<?php $this->beginPage() ?>
+<!DOCTYPE html>
+<html lang="<?= Yii::$app->language ?>">
+<head>
+    <meta charset="<?= Yii::$app->charset ?>">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <?= Html::csrfMetaTags() ?>
+    <title><?= Html::encode($this->title) ?></title>
+    <?php $this->head() ?>
+</head>
+<body class="hold-transition skin-blue layout-boxed sidebar-mini">
+<?php $this->beginBody() ?>
+
 <div class="login-box">
     <div class="login-logo">
-        <a href="<?= Yii::$app->homeUrl ?>"><b>Admin</b>CAKE</a>
+        <a href="<?= Yii::$app->homeUrl ?>"><b>Admin</b> <?= strtoupper(Yii::$app->name) ?></a>
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
@@ -48,3 +67,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <!-- /.login-box-body -->
 </div>
 <!-- /.login-box -->
+
+<?php $this->endBody() ?>
+</body>
+</html>
+<?php $this->endPage() ?>

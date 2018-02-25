@@ -13,11 +13,11 @@ class UserGroupRule extends \yii\rbac\Rule {
             $group = \Yii::$app->user->identity->role;
 
             if ($item->name === 'superadmin') {
-                return $group === 1 || $group === 2 || $group === 3;
+                return $group === 1 || $group === 2 || $group === 6;
             } elseif ($item->name === 'admin') {
-                return $group === 2 || $group === 3;
+                return $group === 2 || $group === 6;
             } elseif ($item->name === 'customer') {
-                return $group === 3;
+                return $group === 6;
             }
         }
 

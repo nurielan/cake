@@ -43,9 +43,13 @@ return [
             'showScriptName' => false,
             'rules' => require 'routes.php',
         ],
+        'myLibrary' => [
+            'class' => 'common\libraries\MyLibrary'
+        ]
     ],
     'params' => $params,
     //'defaultRoute' => 'main/backend',
     'language' => 'id-ID',
-    //'sourceLanguage' => "en-US"
+    //'sourceLanguage' => "en-US",
+    'name' => 'Cake & Bread'
 ];
