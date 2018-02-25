@@ -12,6 +12,7 @@ class LoginForm extends Model
     public $username;
     public $password;
     public $rememberMe = true;
+    public $role;
 
     private $_user;
 
@@ -70,7 +71,7 @@ class LoginForm extends Model
     protected function getUser()
     {
         if ($this->_user === null) {
-            $this->_user = User::findByUsername($this->username);
+            $this->_user = User::find()->where(['or', ['username' => $this->username], ['email' => $this->username]])->andWhere(['or', ['role' => [1, 2]]])->one();
         }
 
         return $this->_user;

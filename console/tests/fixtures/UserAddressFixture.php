@@ -6,5 +6,5 @@ use yii\test\ActiveFixture;
 
 class UserAddressFixture extends ActiveFixture
 {
-    public $modelClass = 'common\models\main\UserAddress';
+    public $modelClass = 'common\models\UserAddress';
 }

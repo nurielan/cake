@@ -1,6 +1,6 @@
 <?php
 
-namespace common\models\main;
+namespace common\models;
 
 use Yii;
 
@@ -32,10 +32,10 @@ class UserDetail extends \yii\db\ActiveRecord
     {
         return [
             [['fullname'], 'required'],
-            [['gender'], 'integer'],
             [['description'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
             [['user_no', 'fullname'], 'string', 'max' => 64],
+            [['gender'], 'string', 'max' => 1],
             [['user_no'], 'unique'],
         ];
     }
@@ -54,5 +54,10 @@ class UserDetail extends \yii\db\ActiveRecord
             'created_at' => Yii::t('common', 'Created At'),
             'updated_at' => Yii::t('common', 'Updated At'),
         ];
+    }
+
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['no' => 'user_no']);
     }
 }
