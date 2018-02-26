@@ -11,10 +11,10 @@ use yii\web\View;
 class AdminLteAsset extends AssetBundle
 {
     public $basePath = '@webroot';
-    public $baseUrl = '@web/assets/adminlte';
+    public $baseUrl = '@web/adminlte';
     public $css = [
-        'font-awesome/css/font-awesome.min.css',
-        'Ionicons/css/ionicons.min.css',
+        'bower_components/font-awesome/css/font-awesome.min.css',
+        'bower_components/Ionicons/css/ionicons.min.css',
         'dist/css/AdminLTE.min.css',
         'dist/css/skins/_all-skins.min.css',
         'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic'
@@ -30,8 +30,8 @@ class AdminLteAsset extends AssetBundle
             'position' => View::POS_HEAD,
             'condition' => 'lte IE9'
         ],
-        'jquery-slimscroll/jquery.slimscroll.min.js',
-        'fastclick/lib/fastclick.js',
+        'bower_components/jquery-slimscroll/jquery.slimscroll.min.js',
+        'bower_components/fastclick/lib/fastclick.js',
         'dist/js/adminlte.min.js'
     ];
     public $depends = [

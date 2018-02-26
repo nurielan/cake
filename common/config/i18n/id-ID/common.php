@@ -22,5 +22,18 @@ return [
     'Member since' => 'Member sejak',
     'Profile' => 'Profil',
     'We could not find the page you were looking for.' => 'Kami tidak bisa menemukan halaman yang anda cari.',
-    'Meanwhile, you may <a href="{link}">return to dashboard</a> or try using the search form.' => 'Sementara, anda bisa <a href="{link}">kembali ke beranda</a> atau mencoba menggunakan form pencarian.'
+    'Meanwhile, you may <a href="{link}">return to dashboard</a> or try using the search form.' => 'Sementara, anda bisa <a href="{link}">kembali ke beranda</a> atau mencoba menggunakan form pencarian.',
+    'User Profile' => 'Profil Pengguna',
+    'About Me' => 'Tentang Saya',
+    'Gender' => 'Jenis Kelamin',
+    'Description' => 'Deskripsi',
+    'Address' => 'Alamat',
+    'Male' => 'Laki-laki',
+    'Female' => 'Perempuan',
+    'Settings' => 'Pengaturan',
+    'Fullname' => 'Nama Lengkap',
+    'Password Repeat' => 'Ulangi Kata Sandi',
+    'New Password' => 'Kata Sandi Baru',
+    'Select one' => 'Pilih salah satu',
+    'Incorrect Password'
 ];

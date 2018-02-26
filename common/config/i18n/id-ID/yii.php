@@ -98,7 +98,7 @@ return [
     '{attribute} must not be an IPv6 address.' => '{attribute} tidak boleh berupa alamat IPv6.',
     '{attribute} must not be equal to "{compareValueOrAttribute}".' => '{attribute} tidak boleh sama dengan "{compareValueOrAttribute}".',
     '{attribute} should contain at least {min, number} {min, plural, one{character} other{characters}}.' => '{attribute} harus berisi setidaknya {min, number} {min, plural, one{character} other{characters}}.',
-    '{attribute} should contain at most {max, number} {max, plural, one{character} other{characters}}.' => '{attribute} harus berisi paling banyak {maks, number} {max, plural, one{character} other{character}} lainnya',
+    '{attribute} should contain at most {max, number} {max, plural, one{character} other{characters}}.' => '{attribute} harus berisi paling banyak {max, number} {max, plural, one{character} other{character}} lainnya',
     '{attribute} should contain {length, number} {length, plural, one{character} other{characters}}.' => '{attribute} harus berisi {length, number} {length, plural, one{character} other{characters}}.',
     '{delta, plural, =1{1 day} other{# days}}' => '',
     '{delta, plural, =1{1 hour} other{# hours}}' => '',

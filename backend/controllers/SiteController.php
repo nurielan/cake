@@ -1,6 +1,8 @@
 <?php
 namespace backend\controllers;
 
+use common\models\ProfilePasswordForm;
+use common\models\ProfileSettingsForm;
 use Yii;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -26,7 +28,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => ['logout', 'index', 'profile'],
                         'allow' => true,
                         'roles' => ['superadmin', 'admin'],
                     ],
@@ -96,5 +98,30 @@ class SiteController extends Controller
         Yii::$app->user->logout();
 
         return $this->goHome();
+    }
+
+    public function actionProfile()
+    {
+        $modelPSF = new ProfileSettingsForm;
+        $modelPSF->username = Yii::$app->user->identity->username;
+        $modelPSF->email = Yii::$app->user->identity->email;
+        $modelPSF->fullname = Yii::$app->user->identity->userDetail->fullname;
+        $modelPSF->gender = Yii::$app->user->identity->userDetail->gender;
+        $modelPSF->description = Yii::$app->user->identity->userDetail->description;
+
+        $modelPPF = new ProfilePasswordForm;
+
+        if ($modelPSF->load(Yii::$app->request->post())) {
+
+        }
+
+        if ($modelPPF->load(Yii::$app->request->post())) {
+
+        }
+
+        return $this->render('profile', [
+            'modelPSF' => $modelPSF,
+            'modelPPF' => $modelPPF
+        ]);
     }
 }

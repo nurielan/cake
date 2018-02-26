@@ -10,7 +10,8 @@ return [
         'rules' => [
             'beranda' => 'index',
             'masuk' => 'login',
-            'keluar' => 'logout'
+            'keluar' => 'logout',
+            'profil' => 'profile'
         ]
     ],
 ];
