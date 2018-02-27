@@ -1,6 +1,6 @@
 <?php
 
-namespace common\models;
+namespace backend\models;
 
 use Yii;
 
@@ -15,7 +15,7 @@ class ProfileSettingsForm extends \yii\base\Model {
             [['username', 'email', 'fullname', 'gender', 'description'], 'required'],
             [['username', 'email', 'fullname'], 'string', 'min' => 4, 'max' => 64],
             ['gender', 'number'],
-            ['email', 'email']
+            ['email', 'email'],
         ];
     }
 

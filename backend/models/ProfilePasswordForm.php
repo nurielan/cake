@@ -1,6 +1,6 @@
 <?php
 
-namespace common\models;
+namespace backend\models;
 
 use Yii;
 
@@ -15,7 +15,7 @@ class ProfilePasswordForm extends \yii\base\Model
             [['password_hash', 'password_hash2', 'password_hash3'], 'required'],
             [['password_hash', 'password_hash2', 'password_hash3'], 'string', 'min' => 4, 'max' => 64],
             ['password_hash2', 'compare', 'compareAttribute' => 'password_hash'],
-            ['password', 'validatePassword']
+            ['password_hash', 'validatePassword']
         ];
     }
 
@@ -31,10 +31,11 @@ class ProfilePasswordForm extends \yii\base\Model
     public function validatePassword($attribute, $params)
     {
         if (!$this->hasErrors()) {
-            $user = $this->getUser();
-            if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError($attribute, Yii::t('common', 'Incorrect password.'));
+            if (!Yii::$app->security->validatePassword($this->password_hash2, Yii::$app->user->identity->password_hash)) {
+                $this->addError($attribute, Yii::t('common', 'Incorrect Password'));
             }
         }
+
+        return false;
     }
 }

@@ -1,8 +1,9 @@
 <?php
 namespace backend\controllers;
 
-use common\models\ProfilePasswordForm;
-use common\models\ProfileSettingsForm;
+use backend\models\ProfilePasswordForm;
+use backend\models\ProfileSettingsForm;
+use common\models\User;
 use Yii;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -111,12 +112,30 @@ class SiteController extends Controller
 
         $modelPPF = new ProfilePasswordForm;
 
-        if ($modelPSF->load(Yii::$app->request->post())) {
+        //Yii::$app->session->setFlash('tab', 'settings');
 
+        if ($modelPSF->load(Yii::$app->request->post()) && $modelPSF->validate()) {
+            Yii::$app->session->setFlash('alert-settings', [
+                'status' => 'success',
+                'message' => Yii::t('common', 'You have successfully changed the settings')
+            ]);
+            Yii::$app->session->setFlash('tab', 'settings');
+        } else {
+            //Yii::$app->session->setFlash('tab', 'settings');
         }
 
-        if ($modelPPF->load(Yii::$app->request->post())) {
+        if ($modelPPF->load(Yii::$app->request->post()) && $modelPPF->validate()) {
+            $user = User::find(['no' => Yii::$app->user->identity->no])->one();
+            $user->password_hash = Yii::$app->security->generatePasswordHash($modelPPF->password_hash3);
+            //$user->update();
 
+            Yii::$app->session->setFlash('alert-password', [
+                'status' => 'success',
+                'message' => Yii::t('common', 'You have successfully changed the password')
+            ]);
+            Yii::$app->session->setFlash('tab', 'password');
+        } else {
+            //Yii::$app->session->setFlash('tab', 'password');
         }
 
         return $this->render('profile', [

@@ -35,5 +35,7 @@ return [
     'Password Repeat' => 'Ulangi Kata Sandi',
     'New Password' => 'Kata Sandi Baru',
     'Select one' => 'Pilih salah satu',
-    'Incorrect Password'
+    'Incorrect Password' => 'Kata Sandi salah',
+    'You have successfully changed the password' => 'Anda telah berhasil mengubah kata sandi',
+    'You have successfully changed the settings' => 'Anda telah berhasil mengubah pengaturan'
 ];
