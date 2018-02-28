@@ -1,9 +1,13 @@
 <?php
 namespace backend\controllers;
 
+use backend\models\ProfileAddressForm;
+use backend\models\ProfileConfigAddressForm;
 use backend\models\ProfilePasswordForm;
 use backend\models\ProfileSettingsForm;
 use common\models\User;
+use common\models\UserAddress;
+use common\models\UserConfig;
 use Yii;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -111,17 +115,14 @@ class SiteController extends Controller
         $modelPSF->description = Yii::$app->user->identity->userDetail->description;
 
         $modelPPF = new ProfilePasswordForm;
-
-        //Yii::$app->session->setFlash('tab', 'settings');
+        $modelPAF = new ProfileAddressForm;
+        $modelPCAF = new ProfileConfigAddressForm;
 
         if ($modelPSF->load(Yii::$app->request->post()) && $modelPSF->validate()) {
             Yii::$app->session->setFlash('alert-settings', [
                 'status' => 'success',
                 'message' => Yii::t('common', 'You have successfully changed the settings')
             ]);
-            Yii::$app->session->setFlash('tab', 'settings');
-        } else {
-            //Yii::$app->session->setFlash('tab', 'settings');
         }
 
         if ($modelPPF->load(Yii::$app->request->post()) && $modelPPF->validate()) {
@@ -129,18 +130,55 @@ class SiteController extends Controller
             $user->password_hash = Yii::$app->security->generatePasswordHash($modelPPF->password_hash3);
             //$user->update();
 
+            $modelPPF->password_hash = '';
+            $modelPPF->password_hash2 = '';
+            $modelPPF->password_hash3 = '';
+
             Yii::$app->session->setFlash('alert-password', [
                 'status' => 'success',
                 'message' => Yii::t('common', 'You have successfully changed the password')
             ]);
-            Yii::$app->session->setFlash('tab', 'password');
-        } else {
-            //Yii::$app->session->setFlash('tab', 'password');
+        }
+
+        $userAddress = UserAddress::find()->all();
+
+        if ($modelPAF->load(Yii::$app->request->post()) && $modelPAF->validate()) {
+            $address = new UserAddress;
+            $address->user_no = Yii::$app->user->identity->no;
+            $address->title = $modelPAF->title;
+            $address->name = $modelPAF->title;
+            $address->address = $modelPAF->title;
+            $address->subdistrict = $modelPAF->title;
+            $address->district = $modelPAF->title;
+            $address->province = $modelPAF->title;
+            $address->postal_code = $modelPAF->title;
+            $address->phone_number = $modelPAF->title;
+            //$address->save();
+
+            Yii::$app->session->setFlash('alert-address', [
+                'status' => 'success',
+                'message' => Yii::t('common', 'You have successfully changed the password')
+            ]);
+        }
+
+        if ($modelPCAF->load(Yii::$app->request->post()) && $modelPCAF->validate()) {
+            $config = new UserConfig;
+            $config->user_no = Yii::$app->user->identity->no;
+            $config->primary_address = $modelPCAF->primary_address;
+            $config->save();
+
+            Yii::$app->session->setFlash('alert-config-address', [
+                'status' => 'success',
+                'message' => Yii::t('common', 'You have successfully changed the password')
+            ]);
         }
 
         return $this->render('profile', [
             'modelPSF' => $modelPSF,
-            'modelPPF' => $modelPPF
+            'modelPPF' => $modelPPF,
+            'userAddress' => $userAddress,
+            'modelPAF' => $modelPAF,
+            'modelPCAF' => $modelPCAF
         ]);
     }
 }

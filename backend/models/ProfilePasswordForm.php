@@ -14,7 +14,7 @@ class ProfilePasswordForm extends \yii\base\Model
         return [
             [['password_hash', 'password_hash2', 'password_hash3'], 'required'],
             [['password_hash', 'password_hash2', 'password_hash3'], 'string', 'min' => 4, 'max' => 64],
-            ['password_hash2', 'compare', 'compareAttribute' => 'password_hash'],
+            ['password_hash3', 'compare', 'compareAttribute' => 'password_hash2'],
             ['password_hash', 'validatePassword']
         ];
     }
@@ -23,15 +23,15 @@ class ProfilePasswordForm extends \yii\base\Model
     {
         return [
             'password_hash' => Yii::t('common', 'Password'),
-            'password_hash2' => Yii::t('common', 'Password Repeat'),
-            'password_hash3' => Yii::t('common', 'New Password'),
+            'password_hash2' => Yii::t('common', 'New Password'),
+            'password_hash3' => Yii::t('common', 'Repeat New Password'),
         ];
     }
 
     public function validatePassword($attribute, $params)
     {
         if (!$this->hasErrors()) {
-            if (!Yii::$app->security->validatePassword($this->password_hash2, Yii::$app->user->identity->password_hash)) {
+            if (!Yii::$app->security->validatePassword($this->password_hash, Yii::$app->user->identity->password_hash)) {
                 $this->addError($attribute, Yii::t('common', 'Incorrect Password'));
             }
         }

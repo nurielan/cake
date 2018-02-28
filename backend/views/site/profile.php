@@ -4,7 +4,7 @@
 
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
-use yii\bootstrap\Alert;
+use yii\helpers\ArrayHelper;
 
 $this->title = Yii::t('common', 'Profile');
 $this->params['breadcrumbs'][] = $this->title;
@@ -82,25 +82,12 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="col-md-9">
                 <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs">
-                        <li<?= Yii::$app->session->getFlash('tab') == 'settings' ? ' class="active"' : '' ?>><a href="#settings" data-toggle="tab"><?= Yii::t('common', 'Settings') ?></a></li>
-                        <li<?= Yii::$app->session->getFlash('tab') == 'password' ? ' class="active"' : '' ?>><a href="#password" data-toggle="tab"><?= Yii::t('common', 'Password') ?></a></li>
-                        <li<?= Yii::$app->session->getFlash('tab') == 'address' ? ' class="active"' : '' ?>><a href="#address" data-toggle="tab"><?= Yii::t('common', 'Address') ?></a></li>
+                        <li class="active"><a href="#settings" data-toggle="tab"><?= Yii::t('common', 'Settings') ?></a></li>
+                        <li><a href="#password" data-toggle="tab"><?= Yii::t('common', 'Password') ?></a></li>
+                        <li><a href="#address" data-toggle="tab"><?= Yii::t('common', 'Address') ?></a></li>
                     </ul>
                     <div class="tab-content">
-                        <div class="tab-pane<? Yii::$app->session->getFlash('tab') == 'settings' ? ' active' : '' ?>" id="settings">
-                            <?php
-                            if (Yii::$app->session->hasFlash('alert-settings')) {
-                                $flash = Yii::$app->session->hasFlash('alert-settings');
-
-                                echo Alert::widget([
-                                    'options' => [
-                                        'class' => 'alert-' . $flash['status']
-                                    ],
-                                    'body' => $flash['message'],
-                                    'closeButton' => true
-                                ]);
-                            }
-                            ?>
+                        <div class="tab-pane active" id="settings">
                             <?php $form = ActiveForm::begin(['class' => "form-horizontal"]); ?>
                             <?= $form->field($modelPSF, 'username')->textInput(['placeholder' => Yii::t('common', 'Name')]) ?>
                             <?= $form->field($modelPSF, 'email')->textInput(['placeholder' => Yii::t('common', 'E-Mail')]) ?>
@@ -119,33 +106,62 @@ $this->params['breadcrumbs'][] = $this->title;
                             <?php ActiveForm::end(); ?>
                         </div>
                         <!-- /.tab-pane -->
-                        <div class="tab-pane<? Yii::$app->session->getFlash('tab') == 'password' ? ' active' : '' ?>" id="password">
+                        <div class="tab-pane" id="password">
                             <?php
                             if (Yii::$app->session->hasFlash('alert-password')) {
-                                $flash = Yii::$app->session->hasFlash('alert-password');
-
-                                echo Alert::widget([
-                                    'options' => [
-                                        'class' => 'alert-' . $flash['status']
-                                    ],
-                                    'body' => $flash['message'],
-                                    'closeButton' => true
-                                ]);
+                                echo $this->render('@backend/views/layouts/alert.php', ['data' => Yii::$app->session->getFlash('alert-password')]);
                             }
                             ?>
                             <?php $form2 = ActiveForm::begin(['class' => "form-horizontal"]); ?>
-                            <?= $form2->field($modelPPF, 'password_hash')->textInput(['placeholder' => Yii::t('common', 'Password')]) ?>
-                            <?= $form2->field($modelPPF, 'password_hash2')->textInput(['placeholder' => Yii::t('common', 'Password Repeat')]) ?>
-                            <?= $form2->field($modelPPF, 'password_hash3')->textInput(['placeholder' => Yii::t('common', 'New Password')]) ?>
+                            <?= $form2->field($modelPPF, 'password_hash')->passwordInput(['placeholder' => Yii::t('common', 'Password'), 'class' => 'form-control reveal-password']) ?>
+                            <?= $form2->field($modelPPF, 'password_hash2')->passwordInput(['placeholder' => Yii::t('common', 'New Password'), 'class' => 'form-control reveal-password']) ?>
+                            <?= $form2->field($modelPPF, 'password_hash3')->passwordInput(['placeholder' => Yii::t('common', 'Repeat New Password'), 'class' => 'form-control reveal-password']) ?>
 
+                            <div class="form-group">
+                                <div class="checkbox">
+                                    <?= Html::checkbox('reveal-password', false, ['label' => Yii::t('common', 'Reveal Password')]) ?>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <?= Html::submitButton(Yii::t('common', 'Update'), ['class' => 'btn btn-danger']) ?>
                             </div>
                             <?php ActiveForm::end(); ?>
                         </div>
                         <!-- /.tab-pane -->
-                        <div class="tab-pane<? Yii::$app->session->getFlash('tab') == 'address' ? ' active' : '' ?>" id="address">
+                        <div class="tab-pane" id="address">
+                            <?php
+                            if (Yii::$app->session->hasFlash('alert-address')) {
+                                echo $this->render('@backend/views/layouts/alert.php', ['data' => Yii::$app->session->getFlash('alert-address')]);
+                            }
+                            ?>
+                            <?php $form3_1 = ActiveForm::begin(); ?>
+                            <?= $form->field($modelPCAF, 'primary_address')->dropDownList(ArrayHelper::map($userAddress, 'id', 'title', 'no'), [
+                                'prompt' => Yii::t('common', 'Select one')
+                            ]) ?>
+                            <div class="form-group">
+                                <?= Html::submitButton(Yii::t('common', 'Save'), ['class' => 'btn btn-danger']) ?>
+                            </div>
+                            <?php ActiveForm::end(); ?>
 
+                            <?php
+                            print_r($userAddress);
+                            ?>
+
+                            <hr>
+
+                            <?php $form3 = ActiveForm::begin(['class' => "form-horizontal"]); ?>
+                            <?= $form3->field($modelPAF, 'title')->textInput(['placeholder' => Yii::t('common', 'Title')]) ?>
+                            <?= $form3->field($modelPAF, 'name')->textInput(['placeholder' => Yii::t('common', 'Name')]) ?>
+                            <?= $form3->field($modelPAF, 'address')->textInput(['placeholder' => Yii::t('common', 'Address')]) ?>
+                            <?= $form3->field($modelPAF, 'subdistrict')->textInput(['placeholder' => Yii::t('common', 'Subdistrict')]) ?>
+                            <?= $form3->field($modelPAF, 'district')->textInput(['placeholder' => Yii::t('common', 'District')]) ?>
+                            <?= $form3->field($modelPAF, 'province')->textInput(['placeholder' => Yii::t('common', 'Province')]) ?>
+                            <?= $form3->field($modelPAF, 'postal_code')->textInput(['placeholder' => Yii::t('common', 'Postal Code')]) ?>
+                            <?= $form3->field($modelPAF, 'phone_number')->textInput(['placeholder' => Yii::t('common', 'Phone Number')]) ?>
+                            <div class="form-group">
+                                <?= Html::submitButton(Yii::t('common', 'Add or Update'), ['class' => 'btn btn-danger']) ?>
+                            </div>
+                            <?php ActiveForm::end(); ?>
                         </div>
                         <!-- /.tab-pane -->
                     </div>

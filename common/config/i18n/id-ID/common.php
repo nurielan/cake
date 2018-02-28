@@ -33,9 +33,21 @@ return [
     'Settings' => 'Pengaturan',
     'Fullname' => 'Nama Lengkap',
     'Password Repeat' => 'Ulangi Kata Sandi',
+    'Repeat New Password' => 'Ulangi Kata Sandi Baru',
     'New Password' => 'Kata Sandi Baru',
     'Select one' => 'Pilih salah satu',
     'Incorrect Password' => 'Kata Sandi salah',
     'You have successfully changed the password' => 'Anda telah berhasil mengubah kata sandi',
-    'You have successfully changed the settings' => 'Anda telah berhasil mengubah pengaturan'
+    'You have successfully changed the settings' => 'Anda telah berhasil mengubah pengaturan',
+    'Reveal Password' => 'Munculkan Kata Sandi',
+    'Update' => 'Ubah',
+    'Add or Update' => 'Tambah atau Ubah',
+    'Primary Address' => 'Alamat Utama',
+    'Name' => 'Nama',
+    'Subdistrict' => 'Kecamatan',
+    'District' => 'Kabupaten/Kota',
+    'Province' => 'Provinsi',
+    'Postal Code' => 'Kode Pos',
+    'Phone Number' => 'Nomor Telepon',
+    'Save' => 'Simpan'
 ];
