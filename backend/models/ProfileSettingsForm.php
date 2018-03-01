@@ -2,6 +2,7 @@
 
 namespace backend\models;
 
+use common\models\User;
 use Yii;
 
 class ProfileSettingsForm extends \yii\base\Model {
@@ -16,6 +17,12 @@ class ProfileSettingsForm extends \yii\base\Model {
             [['username', 'email', 'fullname'], 'string', 'min' => 4, 'max' => 64],
             ['gender', 'number'],
             ['email', 'email'],
+            ['username', 'unique', 'targetClass' => User::className(), 'when' => function($model) {
+                return $model->username != Yii::$app->user->identity->username;
+            }],
+            ['email', 'unique', 'targetClass' => User::className(), 'when' => function($model) {
+                return $model->email != Yii::$app->user->identity->email;
+            }]
         ];
     }
 

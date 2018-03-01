@@ -117,6 +117,14 @@ class SiteController extends Controller
         $modelPPF = new ProfilePasswordForm;
 
         $modelPAF = new ProfileAddressForm;
+        $modelPAF->title = Yii::$app->user->identity->userConfig->userAddress->title;
+        $modelPAF->name = Yii::$app->user->identity->userConfig->userAddress->name;
+        $modelPAF->address = Yii::$app->user->identity->userConfig->userAddress->address;
+        $modelPAF->subdistrict = Yii::$app->user->identity->userConfig->userAddress->subdistrict;
+        $modelPAF->district = Yii::$app->user->identity->userConfig->userAddress->district;
+        $modelPAF->province = Yii::$app->user->identity->userConfig->userAddress->province;
+        $modelPAF->postal_code = Yii::$app->user->identity->userConfig->userAddress->postal_code;
+        $modelPAF->phone_number = Yii::$app->user->identity->userConfig->userAddress->phone_number;
 
         $modelPCAF = new ProfileConfigAddressForm;
         $modelPCAF->primary_address = Yii::$app->user->identity->userConfig->userAddress->no;
@@ -124,7 +132,7 @@ class SiteController extends Controller
         if ($modelPSF->load(Yii::$app->request->post()) && $modelPSF->validate()) {
             $user = Yii::$app->user->identity;
             $user->username = $modelPSF->username;
-            $user->email = $modelPSF->username;
+            $user->email = $modelPSF->email;
             $user->update(false);
 
             $userDetail = Yii::$app->user->identity->userDetail;
@@ -158,13 +166,13 @@ class SiteController extends Controller
             $address = new UserAddress;
             $address->user_no = Yii::$app->user->identity->no;
             $address->title = $modelPAF->title;
-            $address->name = $modelPAF->title;
-            $address->address = $modelPAF->title;
-            $address->subdistrict = $modelPAF->title;
-            $address->district = $modelPAF->title;
-            $address->province = $modelPAF->title;
-            $address->postal_code = $modelPAF->title;
-            $address->phone_number = $modelPAF->title;
+            $address->name = $modelPAF->name;
+            $address->address = $modelPAF->address;
+            $address->subdistrict = $modelPAF->subdistrict;
+            $address->district = $modelPAF->district;
+            $address->province = $modelPAF->province;
+            $address->postal_code = $modelPAF->postal_code;
+            $address->phone_number = $modelPAF->phone_number;
             //$address->save();
 
             Yii::$app->session->setFlash('alert-address', [

@@ -88,6 +88,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="settings">
+                            <?php
+                            if (Yii::$app->session->hasFlash('alert-settings')) {
+                                echo $this->render('@backend/views/layouts/alert.php', ['data' => Yii::$app->session->getFlash('alert-settings')]);
+                            }
+                            ?>
                             <?php $form = ActiveForm::begin(['class' => "form-horizontal"]); ?>
                             <?= $form->field($modelPSF, 'username')->textInput(['placeholder' => Yii::t('common', 'Name')]) ?>
                             <?= $form->field($modelPSF, 'email')->textInput(['placeholder' => Yii::t('common', 'E-Mail')]) ?>
@@ -146,6 +151,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <hr>
 
                             <?php $form3 = ActiveForm::begin(['class' => "form-horizontal"]); ?>
+                            <?= $form3->field($modelPAF, 'editable_form')->checkbox() ?>
                             <?= $form3->field($modelPAF, 'title')->textInput(['placeholder' => Yii::t('common', 'Title')]) ?>
                             <?= $form3->field($modelPAF, 'name')->textInput(['placeholder' => Yii::t('common', 'Name')]) ?>
                             <?= $form3->field($modelPAF, 'address')->textInput(['placeholder' => Yii::t('common', 'Address')]) ?>
