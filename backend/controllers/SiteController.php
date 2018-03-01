@@ -115,10 +115,24 @@ class SiteController extends Controller
         $modelPSF->description = Yii::$app->user->identity->userDetail->description;
 
         $modelPPF = new ProfilePasswordForm;
+
         $modelPAF = new ProfileAddressForm;
+
         $modelPCAF = new ProfileConfigAddressForm;
+        $modelPCAF->primary_address = Yii::$app->user->identity->userConfig->userAddress->no;
 
         if ($modelPSF->load(Yii::$app->request->post()) && $modelPSF->validate()) {
+            $user = Yii::$app->user->identity;
+            $user->username = $modelPSF->username;
+            $user->email = $modelPSF->username;
+            $user->update(false);
+
+            $userDetail = Yii::$app->user->identity->userDetail;
+            $userDetail->fullname = $modelPSF->fullname;
+            $userDetail->gender = $modelPSF->gender;
+            $userDetail->description = $modelPSF->description;
+            $userDetail->update(false);
+
             Yii::$app->session->setFlash('alert-settings', [
                 'status' => 'success',
                 'message' => Yii::t('common', 'You have successfully changed the settings')
@@ -126,9 +140,9 @@ class SiteController extends Controller
         }
 
         if ($modelPPF->load(Yii::$app->request->post()) && $modelPPF->validate()) {
-            $user = User::find(['no' => Yii::$app->user->identity->no])->one();
+            $user = Yii::$app->user->identity;
             $user->password_hash = Yii::$app->security->generatePasswordHash($modelPPF->password_hash3);
-            //$user->update();
+            $user->update(false);
 
             $modelPPF->password_hash = '';
             $modelPPF->password_hash2 = '';
@@ -139,8 +153,6 @@ class SiteController extends Controller
                 'message' => Yii::t('common', 'You have successfully changed the password')
             ]);
         }
-
-        $userAddress = UserAddress::find()->all();
 
         if ($modelPAF->load(Yii::$app->request->post()) && $modelPAF->validate()) {
             $address = new UserAddress;
@@ -162,21 +174,19 @@ class SiteController extends Controller
         }
 
         if ($modelPCAF->load(Yii::$app->request->post()) && $modelPCAF->validate()) {
-            $config = new UserConfig;
-            $config->user_no = Yii::$app->user->identity->no;
+            $config = Yii::$app->user->identity->userConfig;
             $config->primary_address = $modelPCAF->primary_address;
-            $config->save();
+            $config->update(false);
 
             Yii::$app->session->setFlash('alert-config-address', [
                 'status' => 'success',
-                'message' => Yii::t('common', 'You have successfully changed the password')
+                'message' => Yii::t('common', 'You have successfully changed the primary address')
             ]);
         }
 
         return $this->render('profile', [
             'modelPSF' => $modelPSF,
             'modelPPF' => $modelPPF,
-            'userAddress' => $userAddress,
             'modelPAF' => $modelPAF,
             'modelPCAF' => $modelPCAF
         ]);

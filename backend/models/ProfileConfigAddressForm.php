@@ -11,7 +11,7 @@ class ProfileConfigAddressForm extends \yii\base\Model
     public function rules()
     {
         return [
-            [['primary_address'], 'required'],
+            [['primary_address'], 'required', 'enableClientValidation' => true],
             [['primary_address'], 'string', 'min' => 4, 'max' => 64]
         ];
     }

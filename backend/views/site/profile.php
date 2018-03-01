@@ -130,22 +130,18 @@ $this->params['breadcrumbs'][] = $this->title;
                         <!-- /.tab-pane -->
                         <div class="tab-pane" id="address">
                             <?php
-                            if (Yii::$app->session->hasFlash('alert-address')) {
-                                echo $this->render('@backend/views/layouts/alert.php', ['data' => Yii::$app->session->getFlash('alert-address')]);
+                            if (Yii::$app->session->hasFlash('alert-config-address')) {
+                                echo $this->render('@backend/views/layouts/alert.php', ['data' => Yii::$app->session->getFlash('alert-config-address')]);
                             }
                             ?>
                             <?php $form3_1 = ActiveForm::begin(); ?>
-                            <?= $form->field($modelPCAF, 'primary_address')->dropDownList(ArrayHelper::map($userAddress, 'id', 'title', 'no'), [
+                            <?= $form3_1->field($modelPCAF, 'primary_address')->dropDownList(ArrayHelper::map(\common\models\UserAddress::find()->all(), 'no', 'title'), [
                                 'prompt' => Yii::t('common', 'Select one')
                             ]) ?>
                             <div class="form-group">
                                 <?= Html::submitButton(Yii::t('common', 'Save'), ['class' => 'btn btn-danger']) ?>
                             </div>
                             <?php ActiveForm::end(); ?>
-
-                            <?php
-                            print_r($userAddress);
-                            ?>
 
                             <hr>
 

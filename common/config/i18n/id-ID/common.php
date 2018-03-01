@@ -49,5 +49,6 @@ return [
     'Province' => 'Provinsi',
     'Postal Code' => 'Kode Pos',
     'Phone Number' => 'Nomor Telepon',
-    'Save' => 'Simpan'
+    'Save' => 'Simpan',
+    'You have successfully changed the primary address' => 'Anda telah berhasil mengubah alamat utama',
 ];

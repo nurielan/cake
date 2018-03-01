@@ -79,4 +79,9 @@ class UserAddress extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::className(), ['no' => 'user_no']);
     }
+
+    public function getUserConfig()
+    {
+        return $this->hasOne(UserConfig::className(), ['primary_address' => 'no']);
+    }
 }
