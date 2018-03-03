@@ -20,7 +20,7 @@ return [
         'routePrefix' => 'rest-data',
         'rules' => [
             'user-address' => 'user-address',
-            'user-address/<noid:\d+>' => 'user-address'
+            'user-address/<noid>' => 'user-address'
         ]
     ],
 ];

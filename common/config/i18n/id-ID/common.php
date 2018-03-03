@@ -51,5 +51,8 @@ return [
     'Phone Number' => 'Nomor Telepon',
     'Save' => 'Simpan',
     'You have successfully changed the primary address' => 'Anda telah berhasil mengubah alamat utama',
-    'New Address' => 'Alamat Baru'
+    'New Address' => 'Alamat Baru',
+    'You have successfully changed the address' => 'Anda telah berhasil mengubah alamat',
+    'You have successfully add the new address' => 'Anda telah berhasil menambah alamat baru',
+    'Image' => 'Gambar/Foto'
 ];

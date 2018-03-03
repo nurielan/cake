@@ -14,6 +14,7 @@ class m180219_203710_create_product_package_table extends Migration
     {
         $this->createTable('product_package', [
             'id' => 'INT UNSIGNED PRIMARY KEY AUTO_INCREMENT',
+            'no' => $this->string(64),
             'name' => $this->string(64)->notNull(),
             'alias' => $this->string(64),
             'image1' => $this->string(64),
@@ -40,6 +41,7 @@ class m180219_203710_create_product_package_table extends Migration
             'product_item_8' => $this->string(64),
             'product_item_9' => $this->string(64),
             'product_item_10' => $this->string(64),
+            'custom' => 'TINYINT(1) DEFAULT 0',
             'created_at' => $this->dateTime(),
             'updated_at' => $this->timestamp()
         ]);
