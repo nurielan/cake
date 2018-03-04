@@ -47,6 +47,10 @@ AdminLteAsset::register($this);
     <?= $this->render('control-sidebar') ?>
 </div>
 
+<script type="text/javascript">
+    var baseUrl = '<?= Yii::$app->request->baseUrl ?>';
+</script>
+
 <?php $this->endBody() ?>
 </body>
 </html>

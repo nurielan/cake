@@ -21,7 +21,7 @@ class m180219_072047_create_user_config_table extends Migration
         ]);
 
         $this->createIndex('i-user_config-user_no', 'user_config', 'user_no', true);
-        $this->createIndex('i-user_config-primary_address', 'user_config', 'primary_address', true);
+        $this->createIndex('i-user_config-primary_address', 'user_config', 'primary_address', false);
     }
 
     /**

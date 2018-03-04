@@ -9,10 +9,10 @@ use yii\helpers\Url;
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="<?= Url::to('@web/assets/adminlte/dist/img/user2-160x160.jpg') ?>" class="img-circle" alt="User Image">
+                <img src="<?= Yii::$app->myLibrary->getUserImage(Yii::$app->user->identity) ?>" class="img-circle" alt="<?= Yii::$app->user->identity->userDetail->fullname . ' (' . Yii::$app->user->identity->username . ')' ?>">
             </div>
             <div class="pull-left info">
-                <p>Alexander Pierce</p>
+                <p><?= Yii::$app->user->identity->userDetail->fullname ?></p>
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>

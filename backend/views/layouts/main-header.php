@@ -125,24 +125,10 @@ use yii\helpers\Url;
                                 <small> <?= Yii::t('common', 'Member since') .' '. date('M. Y', strtotime(Yii::$app->user->identity->created_at)) ?></small>
                             </p>
                         </li>
-                        <!-- Menu Body -->
-                        <li class="user-body">
-                            <div class="row">
-                                <div class="col-xs-4 text-center">
-                                    <a href="#">Followers</a>
-                                </div>
-                                <div class="col-xs-4 text-center">
-                                    <a href="#">Sales</a>
-                                </div>
-                                <div class="col-xs-4 text-center">
-                                    <a href="#">Friends</a>
-                                </div>
-                            </div>
-                        </li>
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="#" class="btn btn-default btn-flat"><?= Yii::t('common', 'Profile') ?></a>
+                                <a href="<?= Url::toRoute(['site/profile']) ?>" class="btn btn-default btn-flat"><?= Yii::t('common', 'Profile') ?></a>
                             </div>
                             <div class="pull-right">
                                 <a href="<?= Url::toRoute(['site/logout']) ?>" class="btn btn-default btn-flat" data-method="POST"><?= Yii::t('common', 'Logout') ?></a>

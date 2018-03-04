@@ -10,7 +10,17 @@ return [
         'rules' => [
             'beranda' => 'index',
             'masuk' => 'login',
-            'keluar' => 'logout'
+            'keluar' => 'logout',
+            'profil' => 'profile'
+        ]
+    ],
+    'rest-data' => [
+        'class' => GUR::className(),
+        'prefix' => 'rest-data',
+        'routePrefix' => 'rest-data',
+        'rules' => [
+            'user-address' => 'user-address',
+            'user-address/<noid>' => 'user-address'
         ]
     ],
 ];

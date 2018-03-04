@@ -47,7 +47,10 @@ $this->title = Yii::t('common', 'Login');
         <div class="form-group has-feedback">
             <?= $form->field($model, 'password', [
                 'inputTemplate' => '{input}<span class="glyphicon glyphicon-lock form-control-feedback"></span>'
-            ])->passwordInput(['placeholder' => Yii::t('common', 'Password')]) ?>
+            ])->passwordInput(['placeholder' => Yii::t('common', 'Password'), 'class' => "form-control reveal-password"]) ?>
+            <div class="checkbox">
+                <?= Html::checkbox('reveal-password', false, ['label' => Yii::t('common', 'Reveal Password')]) ?>
+            </div>
         </div>
         <div class="row">
             <div class="col-xs-8">
