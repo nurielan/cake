@@ -1,5 +1,7 @@
 <?php
+
 use yii\helpers\Url;
+
 ?>
 
 <!-- Left side column. contains the sidebar -->
@@ -9,7 +11,8 @@ use yii\helpers\Url;
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="<?= Yii::$app->myLibrary->getUserImage(Yii::$app->user->identity) ?>" class="img-circle" alt="<?= Yii::$app->user->identity->userDetail->fullname . ' (' . Yii::$app->user->identity->username . ')' ?>">
+                <img src="<?= Yii::$app->myLibrary->getUserImage(Yii::$app->user->identity) ?>" class="img-circle"
+                     alt="<?= Yii::$app->user->identity->userDetail->fullname . ' (' . Yii::$app->user->identity->username . ')' ?>">
             </div>
             <div class="pull-left info">
                 <p><?= Yii::$app->user->identity->userDetail->fullname ?></p>
@@ -29,32 +32,41 @@ use yii\helpers\Url;
         <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
-            <li class="header">MAIN NAVIGATION</li>
-            <li class="treeview">
+            <li class="header"><?= Yii::t('common', 'MAIN NAVIGATION') ?></li>
+            <li class="<?= Yii::$app->controller->id != 'site' ?: 'active' ?>"><a href="<?= Url::toRoute(['site/index']) ?>"><i class="fa fa-dashboard"></i> <span><?= Yii::t('common', 'Dashboard') ?></span></a></li>
+            <li class="treeview <?= Yii::$app->controller->id == 'product-brand' || Yii::$app->controller->id == 'product-category' || Yii::$app->controller->id == 'product-item' ? 'active' : '' ?>">
                 <a href="#">
-                    <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                    <i class="fa fa-cubes"></i>
+                    <span><?= Yii::t('common', 'Product') ?></span>
                     <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="../../index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-                    <li><a href="../../index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
-                </ul>
-            </li>
-            <li class="treeview active">
-                <a href="#">
-                    <i class="fa fa-files-o"></i>
-                    <span>Layout Options</span>
-                    <span class="pull-right-container">
-              <span class="label label-primary pull-right">4</span>
-            </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="top-nav.html"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
-                    <li class="active"><a href="boxed.html"><i class="fa fa-circle-o"></i> Boxed</a></li>
-                    <li><a href="fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li>
-                    <li><a href="collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li>
+                    <li class="<?= Yii::$app->controller->id != 'product-brand' ?: 'active' ?>">
+                        <a href="<?= Url::toRoute(['product-brand/index']) ?>"><i class="fa fa-th"></i>
+                            <span><?= Yii::t('common', 'Brand') ?></span>
+                            <span class="pull-right-container">
+                              <span class="label label-success pull-right">4</span><span class="label label-danger pull-right">2</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="<?= Yii::$app->controller->id != 'product-category' ?: 'active' ?>">
+                        <a href="<?= Url::toRoute(['product-category/index']) ?>"><i class="fa fa-th-large"></i>
+                            <span><?= Yii::t('common', 'Category') ?></span>
+                            <span class="pull-right-container">
+                              <span class="label label-success pull-right">4</span><span class="label label-danger pull-right">2</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="<?= Yii::$app->controller->id != 'product-item' ?: 'active' ?>">
+                        <a href="<?= Url::toRoute(['product-item/index']) ?>"><i class="fa fa-square"></i>
+                            <span><?= Yii::t('common', 'Item') ?></span>
+                            <span class="pull-right-container">
+                              <span class="label label-success pull-right">4</span><span class="label label-danger pull-right">2</span>
+                            </span>
+                        </a>
+                    </li>
                 </ul>
             </li>
             <li>
