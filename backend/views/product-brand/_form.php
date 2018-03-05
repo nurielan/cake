@@ -17,14 +17,20 @@ use yii\widgets\ActiveForm;
     <div class="row">
         <div class="col-md-4">
             <img class="profile-user-img img-responsive img-circle"
-                 src="<?= Yii::$app->myLibrary->getUserImage(Yii::$app->user->identity) ?>"
-                 alt="<?= Yii::$app->user->identity->userDetail->fullname . ' (' . Yii::$app->user->identity->username . ')' ?>" id="image_thumb">
+                 src="<?= Yii::$app->myLibrary->getProductBrandImage($model, 1) ?>"
+                 alt="<?= $model->name . ' (' . $model->name . ')' ?>" id="image_thumb1">
             <?= $form->field($model, 'image1')->fileInput(['maxlength' => true]) ?>
         </div>
         <div class="col-md-4">
+            <img class="profile-user-img img-responsive img-circle"
+                 src="<?= Yii::$app->myLibrary->getProductBrandImage($model, 2) ?>"
+                 alt="<?= $model->name . ' (' . $model->name . ')' ?>" id="image_thumb2">
             <?= $form->field($model, 'image2')->fileInput(['maxlength' => true]) ?>
         </div>
         <div class="col-md-4">
+            <img class="profile-user-img img-responsive img-circle"
+                 src="<?= Yii::$app->myLibrary->getProductBrandImage($model, 3) ?>"
+                 alt="<?= $model->name . ' (' . $model->name . ')' ?>" id="image_thumb3">
             <?= $form->field($model, 'image3')->fileInput(['maxlength' => true]) ?>
         </div>
     </div>

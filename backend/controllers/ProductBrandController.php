@@ -5,6 +5,7 @@ namespace backend\controllers;
 use Yii;
 use common\models\ProductBrand;
 use common\models\ProductBrandSearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -20,6 +21,15 @@ class ProductBrandController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['superadmin', 'admin'],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -65,6 +75,9 @@ class ProductBrandController extends Controller
     public function actionCreate()
     {
         $model = new ProductBrand();
+        $model->no = Yii::$app->myLibrary->getAutoNoProductBrand();
+        $model->created_at = date('Y-m-d h:i:s');
+        $model->updated_at = date('Y-m-d h:i:s');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);

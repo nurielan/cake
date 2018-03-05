@@ -91,4 +91,15 @@ $(document).ready(function () {
     $('#input_image').change(function () {
         filePreview(this);
     });
+
+    function imagePreviews(input, no) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                //$('#image_thumb').remove();
+                $('#image_thumb' + no).attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
 });

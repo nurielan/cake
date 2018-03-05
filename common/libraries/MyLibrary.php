@@ -33,6 +33,24 @@ class MyLibrary {
         return $gender;
     }
 
+    public function getProductBrandImage($product_brand, $image_no) {
+        if (!$product_brand->image1 || !$product_brand->image2 || !$product_brand->image3) {
+            $path = Url::to('@web/adminlte/dist/img/no_image.png');
+        } else {
+            if ($image_no == 1) {
+                $image = $product_brand->image1;
+            } elseif ($image_no == 2) {
+                $image = $product_brand->image2;
+            } elseif ($image_no == 3) {
+                $image = $product_brand->image3;
+            }
+
+            $path = Url::to('@web/img/product_brand/thumb/' . $image);
+        }
+
+        return $path;
+    }
+
     public function getAutoNoUserAddress() {
         $no = UserAddress::find()->max('no');
 
@@ -74,13 +92,13 @@ class MyLibrary {
         return $newNo;
     }
 
-    public static function getAutoNoProductBrand() {
+    public function getAutoNoProductBrand() {
         $no = ProductBrand::find()->max('no');
 
         if (!$no) {
             $newNo = 'PRDCTBRND0000000000001';
         } else {
-            $oldNo = (int) substr($no, 6, strlen($no));
+            $oldNo = (int) substr($no, 10, strlen($no));
             $addNo = $oldNo + 1;
 
             if ($addNo < 10) {
@@ -115,13 +133,13 @@ class MyLibrary {
         return $newNo;
     }
 
-    public static function getAutoNoProductCategory() {
+    public function getAutoNoProductCategory() {
         $no = ProductPackage::find()->max('no');
 
         if (!$no) {
             $newNo = 'PRDCTCTGRY0000000000001';
         } else {
-            $oldNo = (int) substr($no, 6, strlen($no));
+            $oldNo = (int) substr($no, 11, strlen($no));
             $addNo = $oldNo + 1;
 
             if ($addNo < 10) {
@@ -162,7 +180,7 @@ class MyLibrary {
         if (!$no) {
             $newNo = 'PRDCTITM0000000000001';
         } else {
-            $oldNo = (int) substr($no, 6, strlen($no));
+            $oldNo = (int) substr($no, 9, strlen($no));
             $addNo = $oldNo + 1;
 
             if ($addNo < 10) {
@@ -203,7 +221,7 @@ class MyLibrary {
         if (!$no) {
             $newNo = 'PRDCTPKG0000000000001';
         } else {
-            $oldNo = (int) substr($no, 6, strlen($no));
+            $oldNo = (int) substr($no, 9, strlen($no));
             $addNo = $oldNo + 1;
 
             if ($addNo < 10) {
@@ -244,7 +262,7 @@ class MyLibrary {
         if (!$no) {
             $newNo = 'BLGCTGRY0000000000001';
         } else {
-            $oldNo = (int) substr($no, 6, strlen($no));
+            $oldNo = (int) substr($no, 9, strlen($no));
             $addNo = $oldNo + 1;
 
             if ($addNo < 10) {
@@ -285,7 +303,7 @@ class MyLibrary {
         if (!$no) {
             $newNo = 'BLGTAG0000000000001';
         } else {
-            $oldNo = (int) substr($no, 6, strlen($no));
+            $oldNo = (int) substr($no, 7, strlen($no));
             $addNo = $oldNo + 1;
 
             if ($addNo < 10) {
@@ -326,7 +344,7 @@ class MyLibrary {
         if (!$no) {
             $newNo = 'BLGITM0000000000001';
         } else {
-            $oldNo = (int) substr($no, 6, strlen($no));
+            $oldNo = (int) substr($no, 7, strlen($no));
             $addNo = $oldNo + 1;
 
             if ($addNo < 10) {
@@ -359,11 +377,5 @@ class MyLibrary {
         }
 
         return $newNo;
-    }
-
-    public function getProductBrandImage($product_brand) {
-        if ($product_brand->image)
-
-        return $path;
     }
 }
