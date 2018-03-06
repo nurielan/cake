@@ -16,22 +16,31 @@ use yii\widgets\ActiveForm;
 
     <div class="row">
         <div class="col-md-4">
-            <img class="profile-user-img img-responsive img-circle"
-                 src="<?= Yii::$app->myLibrary->getProductBrandImage($model, 1) ?>"
+            <img class="profile-user-img img-responsive img-square"
+                 src="<?= Yii::$app->myLibrary->getProductBrandImage($model->image1) ?>"
                  alt="<?= $model->name . ' (' . $model->name . ')' ?>" id="image_thumb1">
-            <?= $form->field($model, 'image1')->fileInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'image1')->fileInput(['maxlength' => true, 'class' => 'input_images', 'data-no' => 1])->hint(Yii::t('common', 'Image size 1:1/1024x1024')) ?>
+            <?php if ($model->image1): ?>
+                <?= $form->field($model, 'removeImage1')->checkbox() ?>
+            <?php endif; ?>
         </div>
         <div class="col-md-4">
-            <img class="profile-user-img img-responsive img-circle"
-                 src="<?= Yii::$app->myLibrary->getProductBrandImage($model, 2) ?>"
+            <img class="profile-user-img img-responsive img-square"
+                 src="<?= Yii::$app->myLibrary->getProductBrandImage($model->image2) ?>"
                  alt="<?= $model->name . ' (' . $model->name . ')' ?>" id="image_thumb2">
-            <?= $form->field($model, 'image2')->fileInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'image2')->fileInput(['maxlength' => true, 'class' => 'input_images', 'data-no' => 2])->hint(Yii::t('common', 'Image size 9:16/512x1024')) ?>
+            <?php if ($model->image2): ?>
+                <?= $form->field($model, 'removeImage2')->checkbox() ?>
+            <?php endif; ?>
         </div>
         <div class="col-md-4">
-            <img class="profile-user-img img-responsive img-circle"
-                 src="<?= Yii::$app->myLibrary->getProductBrandImage($model, 3) ?>"
+            <img class="profile-user-img img-responsive img-square"
+                 src="<?= Yii::$app->myLibrary->getProductBrandImage($model->image3) ?>"
                  alt="<?= $model->name . ' (' . $model->name . ')' ?>" id="image_thumb3">
-            <?= $form->field($model, 'image3')->fileInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'image3')->fileInput(['maxlength' => true, 'class' => 'input_images', 'data-no' => 3])->hint(Yii::t('common', 'Image size 1:1/128x128')) ?>
+            <?php if ($model->image3): ?>
+                <?= $form->field($model, 'removeImage3')->checkbox() ?>
+            <?php endif; ?>
         </div>
     </div>
 

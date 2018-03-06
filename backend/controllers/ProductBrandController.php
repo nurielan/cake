@@ -9,6 +9,7 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * ProductBrandController implements the CRUD actions for ProductBrand model.
@@ -79,7 +80,40 @@ class ProductBrandController extends Controller
         $model->created_at = date('Y-m-d h:i:s');
         $model->updated_at = date('Y-m-d h:i:s');
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $model->imageTemp1 = UploadedFile::getInstance($model, 'image1');
+            $model->imageTemp2 = UploadedFile::getInstance($model, 'image2');
+            $model->imageTemp3 = UploadedFile::getInstance($model, 'image3');
+
+            if ($model->imageTemp1) {
+                $model->removeImage($model->image1);
+                $model->uploadImages(1);
+                $model->image1 = $model->imageName1;
+            } elseif ($model->removeImage1) {
+                $model->removeImage($model->image1);
+                $model->image1 = null;
+            }
+
+            if ($model->imageTemp2) {
+                $model->removeImage($model->image2);
+                $model->uploadImages(2);
+                $model->image2 = $model->imageName2;
+            } elseif ($model->removeImage2) {
+                $model->removeImage($model->image2);
+                $model->image2 = null;
+            }
+
+            if ($model->imageTemp3) {
+                $model->removeImage($model->image3);
+                $model->uploadImages(3);
+                $model->image3 = $model->imageName3;
+            } elseif ($model->removeImage3) {
+                $model->removeImage($model->image3);
+                $model->image3 = null;
+            }
+
+            $model->save();
+
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -99,7 +133,40 @@ class ProductBrandController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $model->imageTemp1 = UploadedFile::getInstance($model, 'image1');
+            $model->imageTemp2 = UploadedFile::getInstance($model, 'image2');
+            $model->imageTemp3 = UploadedFile::getInstance($model, 'image3');
+
+            if ($model->imageTemp1) {
+                $model->removeImage($model->image1);
+                $model->uploadImages(1);
+                $model->image1 = $model->imageName1;
+            } elseif ($model->removeImage1) {
+                $model->removeImage($model->image1);
+                $model->image1 = null;
+            }
+
+            if ($model->imageTemp2) {
+                $model->removeImage($model->image2);
+                $model->uploadImages(2);
+                $model->image2 = $model->imageName2;
+            } elseif ($model->removeImage2) {
+                $model->removeImage($model->image2);
+                $model->image2 = null;
+            }
+
+            if ($model->imageTemp3) {
+                $model->removeImage($model->image3);
+                $model->uploadImages(3);
+                $model->image3 = $model->imageName3;
+            } elseif ($model->removeImage3) {
+                $model->removeImage($model->image3);
+                $model->image3 = null;
+            }
+
+            $model->update();
+
             return $this->redirect(['view', 'id' => $model->id]);
         }
 

@@ -75,5 +75,11 @@ return [
     'Non Active' => 'Non Aktif',
     'Image1' => 'Gambar/Foto1',
     'Image2' => 'Gambar/Foto2',
-    'Image3' => 'Gambar/Foto3'
+    'Image3' => 'Gambar/Foto3',
+    'Image size 1:1/1024x1024' => 'Ukuran gambar/foto 1:1/1024x1024',
+    'Image size 9:16/512x1024' => 'Ukuran gambar/foto 9:16/512x1024',
+    'Image size 1:1/128x128' => 'Ukuran gambar/foto 1:1/128x128',
+    'Remove Image1' => 'Hapus Gambar/Foto 1',
+    'Remove Image2' => 'Hapus Gambar/Foto 2',
+    'Remove Image3' => 'Hapus Gambar/Foto 3'
 ];

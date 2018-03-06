@@ -33,19 +33,11 @@ class MyLibrary {
         return $gender;
     }
 
-    public function getProductBrandImage($product_brand, $image_no) {
-        if (!$product_brand->image1 || !$product_brand->image2 || !$product_brand->image3) {
+    public function getProductBrandImage($imagee = null) {
+        if (!$imagee) {
             $path = Url::to('@web/adminlte/dist/img/no_image.png');
         } else {
-            if ($image_no == 1) {
-                $image = $product_brand->image1;
-            } elseif ($image_no == 2) {
-                $image = $product_brand->image2;
-            } elseif ($image_no == 3) {
-                $image = $product_brand->image3;
-            }
-
-            $path = Url::to('@web/img/product_brand/thumb/' . $image);
+            $path = Url::to('@web/img/product_brand/thumb/' . $imagee);
         }
 
         return $path;
