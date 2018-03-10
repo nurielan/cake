@@ -2,19 +2,20 @@
 
 namespace backend\controllers;
 
+use common\models\ProductCategory;
 use Yii;
-use common\models\ProductBrand;
-use common\models\ProductBrandSearch;
-use yii\filters\AccessControl;
+use common\models\ProductItem;
+use common\models\ProductItemSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 use yii\web\UploadedFile;
 
 /**
- * ProductBrandController implements the CRUD actions for ProductBrand model.
+ * ProductItemController implements the CRUD actions for ProductItem model.
  */
-class ProductBrandController extends Controller
+class ProductItemController extends Controller
 {
     /**
      * @inheritdoc
@@ -41,12 +42,12 @@ class ProductBrandController extends Controller
     }
 
     /**
-     * Lists all ProductBrand models.
+     * Lists all ProductItem models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new ProductBrandSearch();
+        $searchModel = new ProductItemSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -56,7 +57,7 @@ class ProductBrandController extends Controller
     }
 
     /**
-     * Displays a single ProductBrand model.
+     * Displays a single ProductItem model.
      * @param string $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -69,14 +70,14 @@ class ProductBrandController extends Controller
     }
 
     /**
-     * Creates a new ProductBrand model.
+     * Creates a new ProductItem model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new ProductBrand();
-        $model->no = Yii::$app->myLibrary->getAutoNoProductBrand();
+        $model = new ProductItem();
+        $model->no = Yii::$app->myLibrary->getAutoNoProductItem();
         $model->created_at = date('Y-m-d h:i:s');
         $model->updated_at = date('Y-m-d h:i:s');
 
@@ -107,11 +108,12 @@ class ProductBrandController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'productCategory' => ProductCategory::find()->all()
         ]);
     }
 
     /**
-     * Updates an existing ProductBrand model.
+     * Updates an existing ProductItem model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param string $id
      * @return mixed
@@ -166,11 +168,12 @@ class ProductBrandController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'productCategory' => ProductCategory::find()->all()
         ]);
     }
 
     /**
-     * Deletes an existing ProductBrand model.
+     * Deletes an existing ProductItem model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param string $id
      * @return mixed
@@ -201,15 +204,15 @@ class ProductBrandController extends Controller
     }
 
     /**
-     * Finds the ProductBrand model based on its primary key value.
+     * Finds the ProductItem model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param string $id
-     * @return ProductBrand the loaded model
+     * @return ProductItem the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = ProductBrand::findOne($id)) !== null) {
+        if (($model = ProductItem::findOne($id)) !== null) {
             return $model;
         }
 

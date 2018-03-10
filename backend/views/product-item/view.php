@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\ProductBrand */
+/* @var $model common\models\ProductItem */
 
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = Yii::t('common', 'Product');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('common', 'Product Brands'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('common', 'Product Items'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -24,7 +24,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <!-- Main content -->
     <section class="content">
-        <div class="product-brand-view">
+
+        <div class="product-item-view">
+
             <p>
                 <?= Html::a(Yii::t('common', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
                 <?= Html::a(Yii::t('common', 'Delete'), ['delete', 'id' => $model->id], [
@@ -41,6 +43,18 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attributes' => [
                     'id',
                     'no',
+                    [
+                        'attribute' => 'product_category_no',
+                        'value' => function ($model) {
+                            if ($model->productCategory) {
+                                $productCategoryName = $model->productCategory->name;
+                            } else {
+                                $productCategoryName = Yii::t('common', 'No Product Category');
+                            }
+
+                            return $productCategoryName;
+                        }
+                    ],
                     'name',
                     'alias',
                     'image1',
@@ -49,7 +63,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'description:ntext',
                     [
                         'attribute' => 'status',
-                        'value' => function ($model, $key) {
+                        'value' => function ($model) {
                             if ($model->status == 0) {
                                 $status = Yii::t('common', 'Non Active');
                             } else {
@@ -57,16 +71,36 @@ $this->params['breadcrumbs'][] = $this->title;
                             }
 
                             return $status;
-                        },
+                        }
                     ],
                     'discount',
                     'discount_price:currency',
+                    'tax',
+                    'tax_price:currency',
+                    [
+                        'attribute' => 'type',
+                        'value' => function ($model) {
+                            if ($model->status == 1) {
+                                $status = Yii::t('common', 'Real');
+                            } else {
+                                $status = Yii::t('common', 'Virtual');
+                            }
+
+                            return $status;
+                        }
+                    ],
+                    'in_stock',
+                    'out_stock',
+                    'price:currency',
+                    'weight',
                     'created_at:datetime',
                     'updated_at:datetime',
                 ],
             ]) ?>
 
         </div>
-    </section>
-    <!-- /.content -->
+
+</div>
+</section>
+<!-- /.content -->
 </div>

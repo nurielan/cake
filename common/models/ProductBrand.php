@@ -44,11 +44,11 @@ class ProductBrand extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
-            [['description', 'imageName1', 'imageName2', 'imageName3'], 'string'],
+            [['description'], 'string'],
             [['discount'], 'integer'],
             [['discount_price'], 'number'],
             [['created_at', 'updated_at'], 'safe'],
-            [['no', 'name', 'alias'], 'string', 'max' => 64],
+            [['no', 'name', 'alias', 'alias', 'image1', 'image2', 'image3', 'imageName1', 'imageName2', 'imageName3'], 'string', 'max' => 64],
             [['status', 'removeImage1', 'removeImage2', 'removeImage3'], 'boolean'],
             [['no'], 'unique'],
             ['image1', 'image', 'minSize' => 1000, 'maxSize' => 2000000, 'minWidth' => 278, 'minHeight' => 278, 'maxWidth' => 1024, 'maxHeight' => 1024, 'mimeTypes' => ['image/*']],
@@ -103,16 +103,22 @@ class ProductBrand extends \yii\db\ActiveRecord
 
                 Image::make($this->imageTemp1->tempName)->save('img/product_brand/origi/' . $this->imageName1, 95);
                 Image::make($this->imageTemp1->tempName)->save('img/product_brand/thumb/' . $this->imageName1, 75);
+
+                $this->image1 = $this->imageName1;
             } elseif ($no == 2) {
                 $this->imageName2 = $this->no . '_' . strtotime(date('Y-m-d h:i:s')) . '_' . $no . '.' . $this->imageTemp2->getExtension();
 
                 Image::make($this->imageTemp2->tempName)->save('img/product_brand/origi/' . $this->imageName2, 95);
                 Image::make($this->imageTemp2->tempName)->save('img/product_brand/thumb/' . $this->imageName2, 75);
+
+                $this->image2 = $this->imageName2;
             } elseif ($no == 3) {
                 $this->imageName3 = $this->no . '_' . strtotime(date('Y-m-d h:i:s')) . '_' . $no . '.' . $this->imageTemp3->getExtension();
 
                 Image::make($this->imageTemp3->tempName)->save('img/product_brand/origi/' . $this->imageName3, 95);
                 Image::make($this->imageTemp3->tempName)->save('img/product_brand/thumb/' . $this->imageName3, 75);
+
+                $this->image3 = $this->imageName3;
             }
             
 
@@ -132,5 +138,10 @@ class ProductBrand extends \yii\db\ActiveRecord
         }
 
         return false;
+    }
+
+    public function getProductCategory()
+    {
+        return $this->hasMany(ProductCategory::className(), ['product_brand_no' => 'no']);
     }
 }

@@ -1,6 +1,16 @@
 <?php
 
 use yii\helpers\Url;
+use common\models\ProductBrand;
+use common\models\ProductCategory;
+use common\models\ProductItem;
+
+$nAProductBrand = ProductBrand::find()->where(['status' => 0])->count('status');
+$aProductBrand = ProductBrand::find()->where(['status' => 1])->count('status');
+$nAProductCategory = ProductCategory::find()->where(['status' => 0])->count('status');
+$aProductCategory = ProductCategory::find()->where(['status' => 1])->count('status');
+$nAProductItem = ProductItem::find()->where(['status' => 0])->count('status');
+$aProductItem = ProductItem::find()->where(['status' => 1])->count('status');
 
 ?>
 
@@ -47,7 +57,7 @@ use yii\helpers\Url;
                         <a href="<?= Url::toRoute(['product-brand/index']) ?>"><i class="fa fa-th"></i>
                             <span><?= Yii::t('common', 'Brand') ?></span>
                             <span class="pull-right-container">
-                              <span class="label label-success pull-right">4</span><span class="label label-danger pull-right">2</span>
+                              <span class="label label-success pull-right"><?= $aProductBrand ?></span><span class="label label-danger pull-right"><?= $nAProductBrand ?></span>
                             </span>
                         </a>
                     </li>
@@ -55,7 +65,7 @@ use yii\helpers\Url;
                         <a href="<?= Url::toRoute(['product-category/index']) ?>"><i class="fa fa-th-large"></i>
                             <span><?= Yii::t('common', 'Category') ?></span>
                             <span class="pull-right-container">
-                              <span class="label label-success pull-right">4</span><span class="label label-danger pull-right">2</span>
+                              <span class="label label-success pull-right"><?= $aProductCategory ?></span><span class="label label-danger pull-right"><?= $nAProductCategory ?></span>
                             </span>
                         </a>
                     </li>
@@ -63,7 +73,7 @@ use yii\helpers\Url;
                         <a href="<?= Url::toRoute(['product-item/index']) ?>"><i class="fa fa-square"></i>
                             <span><?= Yii::t('common', 'Item') ?></span>
                             <span class="pull-right-container">
-                              <span class="label label-success pull-right">4</span><span class="label label-danger pull-right">2</span>
+                              <span class="label label-success pull-right"><?= $aProductItem ?></span><span class="label label-danger pull-right"><?= $nAProductItem ?></span>
                             </span>
                         </a>
                     </li>

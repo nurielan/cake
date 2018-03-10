@@ -2,22 +2,27 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\ProductBrand */
+/* @var $model common\models\ProductCategory */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="product-brand-form">
+<div class="product-category-form">
 
     <?php $form = ActiveForm::begin(); ?>
+
+    <?= $form->field($model, 'product_brand_no')->dropDownList(ArrayHelper::map($productBrand, 'no', 'name'), [
+            'prompt' => Yii::t('common', 'Select one')
+    ]) ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
     <div class="row">
         <div class="col-md-4">
             <img class="profile-user-img img-responsive img-square"
-                 src="<?= Yii::$app->myLibrary->getProductBrandImage($model->image1) ?>"
+                 src="<?= Yii::$app->myLibrary->getProductCategoryImage($model->image1) ?>"
                  alt="<?= $model->name . ' (' . $model->name . ')' ?>" id="image_thumb1">
             <?= $form->field($model, 'image1')->fileInput(['maxlength' => true, 'class' => 'input_images', 'data-no' => 1])->hint(Yii::t('common', 'Image size 1:1/1024x1024')) ?>
             <?php if ($model->image1): ?>
@@ -26,7 +31,7 @@ use yii\bootstrap\ActiveForm;
         </div>
         <div class="col-md-4">
             <img class="profile-user-img img-responsive img-square"
-                 src="<?= Yii::$app->myLibrary->getProductBrandImage($model->image2) ?>"
+                 src="<?= Yii::$app->myLibrary->getProductCategoryImage($model->image2) ?>"
                  alt="<?= $model->name . ' (' . $model->name . ')' ?>" id="image_thumb2">
             <?= $form->field($model, 'image2')->fileInput(['maxlength' => true, 'class' => 'input_images', 'data-no' => 2])->hint(Yii::t('common', 'Image size 9:16/512x1024')) ?>
             <?php if ($model->image2): ?>
@@ -35,7 +40,7 @@ use yii\bootstrap\ActiveForm;
         </div>
         <div class="col-md-4">
             <img class="profile-user-img img-responsive img-square"
-                 src="<?= Yii::$app->myLibrary->getProductBrandImage($model->image3) ?>"
+                 src="<?= Yii::$app->myLibrary->getProductCategoryImage($model->image3) ?>"
                  alt="<?= $model->name . ' (' . $model->name . ')' ?>" id="image_thumb3">
             <?= $form->field($model, 'image3')->fileInput(['maxlength' => true, 'class' => 'input_images', 'data-no' => 3])->hint(Yii::t('common', 'Image size 1:1/128x128')) ?>
             <?php if ($model->image3): ?>
@@ -49,7 +54,7 @@ use yii\bootstrap\ActiveForm;
     <?= $form->field($model, 'status')->checkbox()->hint(Yii::t('common', 'Active') . '/' . Yii::t('common', 'Non Active')) ?>
 
     <?= $form->field($model, 'discount', [
-            'inputTemplate' => '<div class="input-group">{input}<span class="input-group-addon" id="discount_addon">%</span></div>'
+        'inputTemplate' => '<div class="input-group">{input}<span class="input-group-addon" id="discount_addon">%</span></div>'
     ])->textInput(['aria-describedby' => 'discount_addon']) ?>
 
     <div class="form-group">

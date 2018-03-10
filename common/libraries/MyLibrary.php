@@ -43,6 +43,26 @@ class MyLibrary {
         return $path;
     }
 
+    public function getProductCategoryImage($imagee = null) {
+        if (!$imagee) {
+            $path = Url::to('@web/adminlte/dist/img/no_image.png');
+        } else {
+            $path = Url::to('@web/img/product_category/thumb/' . $imagee);
+        }
+
+        return $path;
+    }
+
+    public function getProductItemImage($imagee = null) {
+        if (!$imagee) {
+            $path = Url::to('@web/adminlte/dist/img/no_image.png');
+        } else {
+            $path = Url::to('@web/img/product_item/thumb/' . $imagee);
+        }
+
+        return $path;
+    }
+
     public function getAutoNoUserAddress() {
         $no = UserAddress::find()->max('no');
 

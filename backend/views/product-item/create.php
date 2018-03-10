@@ -2,16 +2,14 @@
 
 use yii\helpers\Html;
 
-/* @var $this yii\web\View */
-/* @var $model common\models\ProductBrand */
 
-$this->title = Yii::t('common', 'Update Product Brand: {nameAttribute}', [
-    'nameAttribute' => $model->name,
-]);
+/* @var $this yii\web\View */
+/* @var $model common\models\ProductItem */
+
+$this->title = Yii::t('common', 'Create Product Item');
 $this->params['breadcrumbs'][] = Yii::t('common', 'Product');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('common', 'Product Brands'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = Yii::t('common', 'Update');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('common', 'Product Items'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <!-- Content Wrapper. Contains page content -->
@@ -26,10 +24,13 @@ $this->params['breadcrumbs'][] = Yii::t('common', 'Update');
 
     <!-- Main content -->
     <section class="content">
-        <div class="product-brand-update">
+        <div class="product-item-create">
+
+            <h1><?= Html::encode($this->title) ?></h1>
 
             <?= $this->render('_form', [
                 'model' => $model,
+                'productCategory' => $productCategory
             ]) ?>
 
         </div>

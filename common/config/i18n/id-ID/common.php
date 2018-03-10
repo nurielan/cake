@@ -81,5 +81,7 @@ return [
     'Image size 1:1/128x128' => 'Ukuran gambar/foto 1:1/128x128',
     'Remove Image1' => 'Hapus Gambar/Foto 1',
     'Remove Image2' => 'Hapus Gambar/Foto 2',
-    'Remove Image3' => 'Hapus Gambar/Foto 3'
+    'Remove Image3' => 'Hapus Gambar/Foto 3',
+    'No Product Brand' => 'Tidak Ada Produk Merek',
+    'Create Product Category' => 'Buat Produk Kategori',
 ];

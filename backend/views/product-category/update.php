@@ -3,17 +3,16 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\ProductBrand */
+/* @var $model common\models\ProductCategory */
 
-$this->title = Yii::t('common', 'Update Product Brand: {nameAttribute}', [
+$this->title = Yii::t('common', 'Update Product Category: {nameAttribute}', [
     'nameAttribute' => $model->name,
 ]);
 $this->params['breadcrumbs'][] = Yii::t('common', 'Product');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('common', 'Product Brands'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('common', 'Product Categories'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Yii::t('common', 'Update');
 ?>
-
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -26,10 +25,11 @@ $this->params['breadcrumbs'][] = Yii::t('common', 'Update');
 
     <!-- Main content -->
     <section class="content">
-        <div class="product-brand-update">
+        <div class="product-category-update">
 
             <?= $this->render('_form', [
                 'model' => $model,
+                'productBrand' => $productBrand
             ]) ?>
 
         </div>
