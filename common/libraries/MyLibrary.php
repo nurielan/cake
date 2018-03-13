@@ -63,6 +63,77 @@ class MyLibrary {
         return $path;
     }
 
+    public function getProductPackageImage($imagee = null) {
+        if (!$imagee) {
+            $path = Url::to('@web/adminlte/dist/img/no_image.png');
+        } else {
+            $path = Url::to('@web/img/product_package/thumb/' . $imagee);
+        }
+
+        return $path;
+    }
+
+    public function getBlogCategoryImage($imagee = null) {
+        if (!$imagee) {
+            $path = Url::to('@web/adminlte/dist/img/no_image.png');
+        } else {
+            $path = Url::to('@web/img/blog_category/thumb/' . $imagee);
+        }
+
+        return $path;
+    }
+
+    public function getBlogItemImage($imagee = null) {
+        if (!$imagee) {
+            $path = Url::to('@web/adminlte/dist/img/no_image.png');
+        } else {
+            $path = Url::to('@web/img/blog_item/thumb/' . $imagee);
+        }
+
+        return $path;
+    }
+
+    public function getAutoNoUser() {
+        $no = UserAddress::find()->max('no');
+
+        if (!$no) {
+            $newNo = 'USR0000000000001';
+        } else {
+            $oldNo = (int) substr($no, 4, strlen($no));
+            $addNo = $oldNo + 1;
+
+            if ($addNo < 10) {
+                $newNo = 'USR000000000000' . $addNo;
+            } elseif ($addNo < 100) {
+                $newNo = 'USR00000000000' . $addNo;
+            } elseif ($addNo < 1000) {
+                $newNo = 'USR0000000000' . $addNo;
+            } elseif ($addNo < 10000) {
+                $newNo = 'USR000000000' . $addNo;
+            } elseif ($addNo < 100000) {
+                $newNo = 'USR00000000' . $addNo;
+            } elseif ($addNo < 1000000) {
+                $newNo = 'USR0000000' . $addNo;
+            } elseif ($addNo < 10000000) {
+                $newNo = 'USR000000' . $addNo;
+            } elseif ($addNo < 100000000) {
+                $newNo = 'USR00000' . $addNo;
+            } elseif ($addNo < 1000000000) {
+                $newNo = 'USR0000' . $addNo;
+            } elseif ($addNo < 10000000000) {
+                $newNo = 'USR000' . $addNo;
+            } elseif ($addNo < 100000000000) {
+                $newNo = 'USR00' . $addNo;
+            } elseif ($addNo < 1000000000000) {
+                $newNo = 'USR0' . $addNo;
+            } elseif ($addNo < 10000000000000) {
+                $newNo = 'USR' . $addNo;
+            }
+        }
+
+        return $newNo;
+    }
+
     public function getAutoNoUserAddress() {
         $no = UserAddress::find()->max('no');
 

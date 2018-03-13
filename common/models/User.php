@@ -202,9 +202,4 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return $this->hasOne(UserConfig::className(), ['user_no' => 'no']);
     }
-
-    public function getOrderListByCashier()
-    {
-        return $this->hasMany(OrderList::className(), ['cashier' => 'no']);
-    }
 }

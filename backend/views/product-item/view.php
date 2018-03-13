@@ -99,8 +99,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ]) ?>
 
         </div>
-
+    </section>
 </div>
-</section>
 <!-- /.content -->
-</div>

@@ -5,6 +5,11 @@ use common\models\ProductBrand;
 use common\models\ProductCategory;
 use common\models\ProductItem;
 use common\models\OrderList;
+use common\models\BlogCategory;
+use common\models\BlogItem;
+use common\models\User;
+use common\models\UserAddress;
+use common\models\ProductPackage;
 
 $nAProductBrand = ProductBrand::find()->where(['status' => 0])->count('status');
 $aProductBrand = ProductBrand::find()->where(['status' => 1])->count('status');
@@ -15,6 +20,15 @@ $aProductItem = ProductItem::find()->where(['status' => 1])->count('status');
 $nAOrderList = OrderList::find()->where(['status' => 0])->count('status');
 $aOrderList = OrderList::find()->where(['status' => 1])->count('status');
 $bOrderList = OrderList::find()->where(['status' => 2])->count('status');
+$nABlogCategory = BlogCategory::find()->where(['status' => 0])->count('status');
+$aBlogCategory = BlogCategory::find()->where(['status' => 1])->count('status');
+$nABlogItem = BlogItem::find()->where(['status' => 0])->count('status');
+$aBlogItem = BlogItem::find()->where(['status' => 1])->count('status');
+$nAUser = User::find()->where('role < 6')->count('role');
+$aUser = User::find()->where('role > 5')->count('role');
+$aUserAddress = UserAddress::find()->count('no');
+$nAProductPackage = ProductPackage::find()->where(['status' => 0])->count('status');
+$aProductPackage = ProductPackage::find()->where(['status' => 1])->count('status');
 
 ?>
 
@@ -81,6 +95,14 @@ $bOrderList = OrderList::find()->where(['status' => 2])->count('status');
                             </span>
                         </a>
                     </li>
+                    <li class="<?= Yii::$app->controller->id != 'product-package' ?: 'active' ?>">
+                        <a href="<?= Url::toRoute(['product-package/index']) ?>"><i class="fa fa-square"></i>
+                            <span><?= Yii::t('common', 'Package') ?></span>
+                            <span class="pull-right-container">
+                              <span class="label label-success pull-right"><?= $aProductPackage ?></span><span class="label label-danger pull-right"><?= $nAProductPackage ?></span>
+                            </span>
+                        </a>
+                    </li>
                 </ul>
             </li>
             <li class="<?= Yii::$app->controller->id == 'order-list' || Yii::$app->controller->id == 'order-item' ? 'active' : '' ?>">
@@ -92,6 +114,60 @@ $bOrderList = OrderList::find()->where(['status' => 2])->count('status');
                         <small class="label pull-right bg-green"><?= $bOrderList ?></small>
                     </span>
                 </a>
+            </li>
+            <li class="treeview <?= Yii::$app->controller->id == 'blog-category' || Yii::$app->controller->id == 'blog-item' ? 'active' : '' ?>">
+                <a href="#">
+                    <i class="fa fa-cubes"></i>
+                    <span><?= Yii::t('common', 'Blog') ?></span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="<?= Yii::$app->controller->id != 'blog-category' ?: 'active' ?>">
+                        <a href="<?= Url::toRoute(['blog-category/index']) ?>"><i class="fa fa-th"></i>
+                            <span><?= Yii::t('common', 'Category') ?></span>
+                            <span class="pull-right-container">
+                              <span class="label label-success pull-right"><?= $aBlogCategory ?></span><span class="label label-danger pull-right"><?= $nABlogCategory ?></span>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="<?= Yii::$app->controller->id != 'blog-item' ?: 'active' ?>">
+                        <a href="<?= Url::toRoute(['blog-item/index']) ?>"><i class="fa fa-th-large"></i>
+                            <span><?= Yii::t('common', 'Item') ?></span>
+                            <span class="pull-right-container">
+                              <span class="label label-success pull-right"><?= $aBlogItem ?></span><span class="label label-danger pull-right"><?= $nABlogItem ?></span>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="treeview <?= Yii::$app->controller->id == 'user' || Yii::$app->controller->id == 'user-address' ? 'active' : '' ?>">
+                <a href="#">
+                    <i class="fa fa-cubes"></i>
+                    <span><?= Yii::t('common', 'User') ?></span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="<?= Yii::$app->controller->id != 'user' ?: 'active' ?>">
+                        <a href="<?= Url::toRoute(['user/index']) ?>"><i class="fa fa-th"></i>
+                            <span><?= Yii::t('common', 'User') ?></span>
+                            <span class="pull-right-container">
+                              <span class="label label-success pull-right"><?= $aUser ?></span><span class="label label-danger pull-right"><?= $nAUser ?></span>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="<?= Yii::$app->controller->id != 'user-address' ?: 'active' ?>">
+                        <a href="<?= Url::toRoute(['user-address/index']) ?>"><i class="fa fa-th-large"></i>
+                            <span><?= Yii::t('common', 'Address') ?></span>
+                            <span class="pull-right-container">
+                              <span class="label label-info pull-right"><?= $aUserAddress ?>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
             </li>
             <li>
                 <a href="../widgets.html">

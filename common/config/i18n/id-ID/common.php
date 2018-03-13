@@ -93,4 +93,16 @@ return [
     'Cashier' => 'Kasir',
     'Quantity' => 'Jumlah',
     'Create Order List' => 'Buat Daftar Pesanan',
+    'Create Product Item' => 'Buat Produk Barang',
+    'Blog Categories' => 'Blog Kategori',
+    'Create Blog Category' => 'Buat Blog Kategori',
+    'Blog Items' => 'Blog Barang',
+    'Create Blog Item' => 'Buat Blog Barang',
+    'Customer' => 'Pelanggan',
+    'User' => 'Pengguna',
+    'User2s' => 'Pengguna',
+    'Create User2' => 'Buat Pengguna',
+    'Package' => 'Paket',
+    'Product Packages' => 'Produk Paket',
+    'Create Product Package' => 'Buat Produk Paket'
 ];
