@@ -4,6 +4,7 @@ use yii\helpers\Url;
 use common\models\ProductBrand;
 use common\models\ProductCategory;
 use common\models\ProductItem;
+use common\models\OrderList;
 
 $nAProductBrand = ProductBrand::find()->where(['status' => 0])->count('status');
 $aProductBrand = ProductBrand::find()->where(['status' => 1])->count('status');
@@ -11,6 +12,9 @@ $nAProductCategory = ProductCategory::find()->where(['status' => 0])->count('sta
 $aProductCategory = ProductCategory::find()->where(['status' => 1])->count('status');
 $nAProductItem = ProductItem::find()->where(['status' => 0])->count('status');
 $aProductItem = ProductItem::find()->where(['status' => 1])->count('status');
+$nAOrderList = OrderList::find()->where(['status' => 0])->count('status');
+$aOrderList = OrderList::find()->where(['status' => 1])->count('status');
+$bOrderList = OrderList::find()->where(['status' => 2])->count('status');
 
 ?>
 
@@ -78,6 +82,16 @@ $aProductItem = ProductItem::find()->where(['status' => 1])->count('status');
                         </a>
                     </li>
                 </ul>
+            </li>
+            <li class="<?= Yii::$app->controller->id == 'order-list' || Yii::$app->controller->id == 'order-item' ? 'active' : '' ?>">
+                <a href="<?= Url::toRoute(['order-list/index']) ?>">
+                    <i class="fa fa-shopping-cart"></i> <span><?= Yii::t('common', 'Order List') ?></span>
+                    <span class="pull-right-container">
+                      <small class="label pull-right bg-red"><?= $nAOrderList ?></small>
+                      <small class="label pull-right bg-yellow"><?= $aOrderList ?></small>
+                        <small class="label pull-right bg-green"><?= $bOrderList ?></small>
+                    </span>
+                </a>
             </li>
             <li>
                 <a href="../widgets.html">

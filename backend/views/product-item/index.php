@@ -44,7 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'attribute' => 'product_category_no',
                         'content' => function ($model) {
                             if ($model->productCategory) {
-                                $productCategoryName = Html::a($model->productCategory->name, ['product-brand/view', 'id' => $model->productCategory->id]);
+                                $productCategoryName = Html::a($model->productCategory->name, ['product-category/view', 'id' => $model->productCategory->id]);
                             } else {
                                 $productCategoryName = Yii::t('common', 'No Product Category');
                             }

@@ -84,4 +84,13 @@ return [
     'Remove Image3' => 'Hapus Gambar/Foto 3',
     'No Product Brand' => 'Tidak Ada Produk Merek',
     'Create Product Category' => 'Buat Produk Kategori',
+    'Order List' => 'Daftar Pesanan',
+    'Order Lists' => 'Daftar Pesanan',
+    'Ordered' => 'Dipesan',
+    'Checking Order' => 'Pengecekan Pesanan',
+    'Processing Order' => 'Pemrosesan Pesanan',
+    'Sending Order' => 'Pengiriman Pesanan',
+    'Cashier' => 'Kasir',
+    'Quantity' => 'Jumlah',
+    'Create Order List' => 'Buat Daftar Pesanan',
 ];

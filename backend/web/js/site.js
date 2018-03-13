@@ -105,4 +105,14 @@ $(document).ready(function () {
     $('.input_images').change(function () {
         imagePreviews(this, $(this).data('no'));
     });
+
+    yii.confirm = function (message, ok, cancel) {
+        swal({
+            title: message,
+            type: 'warning',
+            showCancelButton: true,
+            closeOnConfirm: true,
+            allowOutsideClick: false,
+        }, ok);
+    }
 });
