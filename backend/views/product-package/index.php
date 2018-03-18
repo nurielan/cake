@@ -26,7 +26,6 @@ $this->params['breadcrumbs'][] = $this->title;
     <section class="content">
         <div class="product-package-index table-responsive">
 
-            <h1><?= Html::encode($this->title) ?></h1>
             <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
             <p>
@@ -77,10 +76,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         'class' => 'yii\grid\DataColumn',
                         'attribute' => 'custom',
                         'content' => function ($model) {
-                            if ($model->type == 0) {
+                            if ($model->custom == 0) {
+                                $custom = '<label class="label label-success">' . Yii::t('common', 'No') . '</label>';
+                            } elseif ($model->custom == 1) {
                                 $custom = '<label class="label label-danger">' . Yii::t('common', 'Yes') . '</label>';
-                            } elseif ($model->type == 1) {
-                                $custom = '<label class="label label-warning">' . Yii::t('common', 'No') . '</label>';
                             }
 
                             return $custom;

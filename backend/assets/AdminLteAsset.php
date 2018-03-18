@@ -24,7 +24,8 @@ class AdminLteAsset extends AssetBundle
         'bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css',
         'bower_components/bootstrap-daterangepicker/daterangepicker.css',
         'bower_components/timepicker/bootstrap-timepicker.min.css',
-        'bower_components/select2/dist/css/select2.min.css'
+        'bower_components/select2/dist/css/select2.min.css',
+        'bower_components/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css',
     ];
     public $js = [
         [
@@ -47,7 +48,8 @@ class AdminLteAsset extends AssetBundle
         'bower_components/bootstrap-daterangepicker/daterangepicker.js',
         'bower_components/timepicker/bootstrap-timepicker.min.js',
         'bower_components/select2/dist/js/select2.full.min.js',
-        'bower_components/select2/dist/js/i18n/id.js'
+        'bower_components/select2/dist/js/i18n/id.js',
+        'bower_components/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js',
     ];
     public $depends = [
         'backend\assets\AppAsset'

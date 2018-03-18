@@ -93,6 +93,36 @@ class MyLibrary {
         return $path;
     }
 
+    public function getCakeWhatWeCanImage($imagee = null) {
+        if (!$imagee) {
+            $path = Url::to('@web/adminlte/dist/img/no_image.png');
+        } else {
+            $path = Url::to('@web/img/cake_what_we_can/thumb/' . $imagee);
+        }
+
+        return $path;
+    }
+
+    public function getCakeOurTeamImage($imagee = null) {
+        if (!$imagee) {
+            $path = Url::to('@web/adminlte/dist/img/no_image.png');
+        } else {
+            $path = Url::to('@web/img/cake_our_team/thumb/' . $imagee);
+        }
+
+        return $path;
+    }
+
+    public function getGalleryImage($imagee = null) {
+        if (!$imagee) {
+            $path = Url::to('@web/adminlte/dist/img/no_image.png');
+        } else {
+            $path = Url::to('@web/img/gallery/thumb/' . $imagee);
+        }
+
+        return $path;
+    }
+
     public function getAutoNoUser() {
         $no = UserAddress::find()->max('no');
 
@@ -460,5 +490,25 @@ class MyLibrary {
         }
 
         return $newNo;
+    }
+
+    function getFirstParagraph($string, $removeTags = false) {
+        if ($removeTags) {
+            $string = substr($string,0, strpos($string, "</p>")+4);
+            $string = str_replace("<p>", "", str_replace("<p/>", "", $string));
+        } else {
+            $string = substr($string,0, strpos($string, "</p>")+4);
+        }
+
+        return $string;
+    }
+
+    function limitText($text, $limit) {
+        if (str_word_count($text, 0) > $limit) {
+            $words = str_word_count($text, 2);
+            $pos = array_keys($words);
+            $text = substr($text, 0, $pos[$limit]) . '...';
+        }
+        return $text;
     }
 }

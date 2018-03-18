@@ -104,5 +104,15 @@ return [
     'Create User2' => 'Buat Pengguna',
     'Package' => 'Paket',
     'Product Packages' => 'Produk Paket',
-    'Create Product Package' => 'Buat Produk Paket'
+    'Create Product Package' => 'Buat Produk Paket',
+    'Galleries' => 'Galeri',
+    'Create Gallery' => 'Buat Galeri',
+
+    'Shop' => 'Beli',
+    'Gallery' => 'Galeri',
+    'Terms of Use' => 'Ketentuan Penggunaan',
+    'Intro Text' => 'Teks Pengenalan',
+    'What We Can' => 'Apa Yang Kita Bisa',
+    'Our Team' => 'Tim Kami',
+    'Buy' => 'Beli'
 ];

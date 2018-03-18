@@ -112,7 +112,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             ], [
                                     'prompt' => Yii::t('common', 'Select one')
                             ]) ?>
-                            <?= $form->field($modelPSF, 'description')->textarea(['placeholder' => Yii::t('common', 'Description')]) ?>
+                            <?= $form->field($modelPSF, 'description')->textarea(['placeholder' => Yii::t('common', 'Description'), 'class' => 'form-control bootstrap-textarea', 'width' => '100%']) ?>
 
                             <div class="form-group">
                                 <?= Html::submitButton(Yii::t('common', 'Update'), ['class' => 'btn btn-danger']) ?>

@@ -146,4 +146,9 @@ class ProductItem extends \yii\db\ActiveRecord
     {
         return $this->hasOne(ProductCategory::className(), ['no' => 'product_category_no']);
     }
+
+    public function getCakeProductItemHighlight()
+    {
+        return $this->hasOne(CakeProductItemHighlight::className(), ['product_item_no' => 'no']);
+    }
 }

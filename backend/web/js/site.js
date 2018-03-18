@@ -114,5 +114,7 @@ $(document).ready(function () {
             closeOnConfirm: true,
             allowOutsideClick: false,
         }, ok);
-    }
+    };
+
+    $('.bootstrap-textarea').wysihtml5();
 });

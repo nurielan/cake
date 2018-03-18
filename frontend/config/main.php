@@ -13,7 +13,7 @@ return [
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
         'request' => [
-            'csrfParam' => '_csrf-frontend',
+            'csrfParam' => '_csrf-frontend-cake',
         ],
         'user' => [
             'identityClass' => 'common\models\User',
@@ -22,7 +22,7 @@ return [
         ],
         'session' => [
             // this is the name of the session cookie used for login on the frontend
-            'name' => 'advanced-frontend',
+            'name' => 'advanced-frontend-cake',
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -36,14 +36,17 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'rules' => [
-            ],
+            'rules' => require __DIR__ . '/routes.php',
         ],
-        */
+        'myLibrary' => [
+            'class' => 'common\libraries\MyLibrary'
+        ]
     ],
     'params' => $params,
+    'language' => 'id-ID',
+    //'sourceLanguage' => "en-US",
+    'name' => 'Cake & Bread'
 ];
