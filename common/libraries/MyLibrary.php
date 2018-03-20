@@ -7,7 +7,9 @@ use common\models\ProductItem;
 use common\models\ProductPackage;
 use common\models\UserAddress;
 use Yii;
+use yii\data\Pagination;
 use yii\helpers\Url;
+use yii\widgets\LinkPager;
 
 class MyLibrary {
 
@@ -510,5 +512,25 @@ class MyLibrary {
             $text = substr($text, 0, $pos[$limit]) . '...';
         }
         return $text;
+    }
+
+    function pagiNation($query, $pageSize, $orderBy) {
+        $count = $query->count();
+        $pagination = new Pagination([
+            'totalCount' => $count,
+            'pageSize' => $pageSize
+        ]);
+        $data = $query->offset($pagination->offset)->limit($pagination->limit)->orderBy('created_at ' . $orderBy)->all();
+
+        return [
+            'pagination' => $pagination,
+            'data' => $data
+        ];
+    }
+
+    function linkPager($pagination) {
+        return LinkPager::widget([
+            'pagination' => $pagination
+        ]);
     }
 }

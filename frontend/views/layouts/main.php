@@ -66,7 +66,7 @@ $cakeProductItemHighlight = CakeProductItemHighlight::find()->all();
                                         <a href="<?= Url::toRoute(['site/index']) ?>"><?= Yii::t('common', 'Home') ?></a>
                                     </li>
                                     <li>
-                                        <a href="<?= Url::toRoute(['shop/index']) ?>"><?= Yii::t('common', 'Shop') ?></a>
+                                        <a href="<?= Url::toRoute(['shop/index']) ?>"><?= Yii::t('common', 'Product') ?></a>
                                     </li>
                                     <li class="pad-top-0i">
                                         <img alt="Logo-Cupcakes" src="<?= Url::to('@web/cake/images/logo-150.png') ?>">
@@ -83,7 +83,7 @@ $cakeProductItemHighlight = CakeProductItemHighlight::find()->all();
                             <div class="mega-menu hide">
                                 <div class="tittle-mega">
                                     <h4>
-                                        - <?= Yii::t('common', 'Shop') ?> -
+                                        - <?= Yii::t('common', 'Product') ?> -
                                     </h4>
                                 </div>
                                 <div class="container">
@@ -144,7 +144,7 @@ $cakeProductItemHighlight = CakeProductItemHighlight::find()->all();
                                         </div>
                                     </div>
                                     <div class="div text-center">
-                                        <button class="btn btn-pink-cake mar-top-20 close-menu"><?= Yii::t('common','Close') ?> <?= Yii::t('common','Shop') ?></button>
+                                        <button class="btn btn-pink-cake mar-top-20 close-menu"><?= Yii::t('common','Close') ?> <?= Yii::t('common','Product') ?></button>
                                     </div>
                                 </div>
                             </div>
@@ -154,6 +154,7 @@ $cakeProductItemHighlight = CakeProductItemHighlight::find()->all();
                     <div class="triangle">
                         &nbsp;
                     </div>
+                    
                 </div>
                 <div class="tittle-cake text-center pad-top-150">
                     <div class="container">
@@ -320,7 +321,7 @@ $cakeProductItemHighlight = CakeProductItemHighlight::find()->all();
                                 <a href="<?= Url::to(['site/index']) ?>"><?= Yii::t('common', 'Home') ?></a>
                             </li>
                             <li>
-                                <a href="<?= Url::to(['shop/index']) ?>"><?= Yii::t('common', 'Shop') ?></a>
+                                <a href="<?= Url::to(['shop/index']) ?>"><?= Yii::t('common', 'Product') ?></a>
                             </li>
                             <li>
                                 <a href="<?= Url::to(['gallery/index']) ?>"><?= Yii::t('common', 'Gallery') ?></a>

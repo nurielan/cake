@@ -19,24 +19,14 @@ return [
             'atur-ulang-kata-sandi' => 'rest-password'
         ]
     ],
-    'shop' => [
-        'class' => GUR::className(),
-        'prefix' => 'beli',
-        'routePrefix' => 'shop',
-        'rules' => [
-            'kesalahan' => 'error',
-            'beranda' => 'index',
-            'detil/<alias>' => 'detail'
-        ]
-    ],
     'gallery' => [
         'class' => GUR::className(),
         'prefix' => 'galeri',
         'routePrefix' => 'gallery',
         'rules' => [
             'kesalahan' => 'error',
-            'beranda' => 'index',
-            'detil/<alias>' => 'detail'
+            '' => 'index',
+            'detail/<alias>' => 'detail'
         ]
     ],
     'blog' => [
@@ -45,8 +35,19 @@ return [
         'routePrefix' => 'blog',
         'rules' => [
             'kesalahan' => 'error',
-            'beranda' => 'index',
-            'detil/<alias>' => 'detail'
+            '' => 'index',
+            'detail/<alias>' => 'detail'
+        ]
+    ],
+    'product' => [
+        'class' => GUR::className(),
+        'prefix' => 'produk',
+        'routePrefix' => 'product',
+        'rules' => [
+            'kesalahan' => 'error',
+            '' => 'index',
+            'indeks/hal/<page: \d+>/per-hal/<perPage: \d+>' => 'index',
+            'detail/<alias>' => 'detail',
         ]
     ]
 ];
