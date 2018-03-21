@@ -46,7 +46,8 @@ return [
         'rules' => [
             'kesalahan' => 'error',
             '' => 'index',
-            'indeks/hal/<page: \d+>/per-hal/<perPage: \d+>' => 'index',
+            'indeks/merek/<brand>' => 'index',
+            'indeks/merek/<brand>/kategori/<category>' => 'index',
             'detail/<alias>' => 'detail',
         ]
     ]

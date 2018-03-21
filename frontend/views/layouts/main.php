@@ -66,16 +66,16 @@ $cakeProductItemHighlight = CakeProductItemHighlight::find()->all();
                                         <a href="<?= Url::toRoute(['site/index']) ?>"><?= Yii::t('common', 'Home') ?></a>
                                     </li>
                                     <li>
-                                        <a href="<?= Url::toRoute(['shop/index']) ?>"><?= Yii::t('common', 'Product') ?></a>
+                                        <a href="<?= Url::toRoute(['product/index']) ?>"><?= Yii::t('common', 'Product') ?></a>
                                     </li>
                                     <li class="pad-top-0i">
-                                        <img alt="Logo-Cupcakes" src="<?= Url::to('@web/cake/images/logo-150.png') ?>">
+                                        <img alt="Logo-Cupcakes" src="<?= Url::to('@web/cake/images/logo-100.png') ?>">
                                     </li>
                                     <li>
                                         <a href="<?= Url::toRoute(['gallery/index']) ?>"><?= Yii::t('common', 'Gallery') ?></a>
                                     </li>
                                     <li>
-                                        <a href="<?= Url::toRoute(['blog/index']) ?>"><?= Yii::t('common', 'BLog') ?></a>
+                                        <a href="<?= Url::toRoute(['blog/index']) ?>"><?= Yii::t('common', 'Blog') ?></a>
                                     </li>
                                 </ul>
                             </nav>
@@ -83,7 +83,7 @@ $cakeProductItemHighlight = CakeProductItemHighlight::find()->all();
                             <div class="mega-menu hide">
                                 <div class="tittle-mega">
                                     <h4>
-                                        - <?= Yii::t('common', 'Product') ?> -
+                                        - Mega Menu -
                                     </h4>
                                 </div>
                                 <div class="container">
@@ -144,7 +144,7 @@ $cakeProductItemHighlight = CakeProductItemHighlight::find()->all();
                                         </div>
                                     </div>
                                     <div class="div text-center">
-                                        <button class="btn btn-pink-cake mar-top-20 close-menu"><?= Yii::t('common','Close') ?> <?= Yii::t('common','Product') ?></button>
+                                        <button class="btn btn-pink-cake mar-top-20 close-menu">Close Themes</button>
                                     </div>
                                 </div>
                             </div>
@@ -154,8 +154,8 @@ $cakeProductItemHighlight = CakeProductItemHighlight::find()->all();
                     <div class="triangle">
                         &nbsp;
                     </div>
-                    
                 </div>
+                <?php //if (Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id == 'index' && $cakeProductItemHighlight): ?>
                 <div class="tittle-cake text-center pad-top-150">
                     <div class="container">
                         <h2>
@@ -169,23 +169,15 @@ $cakeProductItemHighlight = CakeProductItemHighlight::find()->all();
                 <div class="slider-cake">
                     <div class="container pad-md-100">
                         <div class="center">
-                            <?php foreach ($cakeProductItemHighlight as $item): ?>
-                                <div>
-                                    <img alt="<?= $item->productItem->name ?>" src="<?= Yii::$app->myLibrary->getProductItemImage($item->productItem->image1) ?>" width="324" height="324">
-                                </div>
+                            <?php foreach ($cakeProductItemHighlight as $cPIHItem): ?>
+                            <div>
+                                <img alt="<?= $cPIHItem->productItem->name ?>" src="<?= Yii::$app->myLibrary->getProductItemImage($cPIHItem->productItem->image1) ?>" width="324" height="324">
+                            </div>
                             <?php endforeach; ?>
-
-                            <!--div class="img-relative">
-                                <img alt="Cake-one" src="<?= Url::to('@web/cake/images/cake-one.png') ?>">
-                                <div class="price-cake hidden-xs">
-                                    <p>
-                                        $40
-                                    </p>
-                                </div>
-                            </div-->
                         </div>
                     </div>
                 </div>
+                <?php //endif; ?>
                 <div class="green-table mar-to-top">
                     &nbsp;
                 </div>
@@ -266,48 +258,16 @@ $cakeProductItemHighlight = CakeProductItemHighlight::find()->all();
                         <p class="mar-btm-20">
                             Cookie apple pie donut gingerbread <br>sweet roll pudding topping <br>marshmallow.<br>
                         </p>
-                        <p class="mar-btm-20">
-                            Jl Kalidam RT 05 RW 10 <br>Cimahi Selatan, Indonesia<br>
-                        </p>
-                        <p class="mar-btm-20">
-                            Telp : <strong>085 327787266</strong>
-                        </p>
                     </div>
                     <!-- Column -->
                     <div class="col-sm-4 hidden-xs">
                         <ul class="list-picture-footer">
+                            <?php for ($i = 1; $i <= 8; $i++): ?>
                             <li>
-                                <a class="fancybox" data-fancybox-group="contentgallery" href="<?= Url::to('@web/cake/images/tag-1.jpg') ?>"><img
-                                            alt="Img-sm-picture" class="img-100" src="<?= Url::to('@web/cake/images/tag-1.jpg') ?>"></a>
+                                <a class="fancybox" data-fancybox-group="contentgallery" href="<?= Url::to('@web/cake/images/tag-' . $i . '.jpg') ?>"><img
+                                            alt="Img-sm-picture" class="img-100" src="<?= Url::to('@web/cake/images/tag-' . $i . '.jpg') ?>"></a>
                             </li>
-                            <li>
-                                <a class="fancybox" data-fancybox-group="contentgallery" href="<?= Url::to('@web/cake/images/tag-2.jpg') ?>"><img
-                                            alt="Img-sm-picture" class="img-100" src="<?= Url::to('@web/cake/images/tag-2.jpg') ?>"></a>
-                            </li>
-                            <li>
-                                <a class="fancybox" data-fancybox-group="contentgallery" href="<?= Url::to('@web/cake/images/tag-3.jpg') ?>"><img
-                                            alt="Img-sm-picture" class="img-100" src="<?= Url::to('@web/cake/images/tag-3.jpg') ?>"></a>
-                            </li>
-                            <li>
-                                <a class="fancybox" data-fancybox-group="contentgallery" href="<?= Url::to('@web/cake/images/tag-4.jpg') ?>"><img
-                                            alt="Img-sm-picture" class="img-100" src="<?= Url::to('@web/cake/images/tag-4.jpg') ?>"></a>
-                            </li>
-                            <li>
-                                <a class="fancybox" data-fancybox-group="contentgallery" href="<?= Url::to('@web/cake/images/tag-5.jpg') ?>"><img
-                                            alt="Img-sm-picture" class="img-100" src="<?= Url::to('@web/cake/images/tag-5.jpg') ?>"></a>
-                            </li>
-                            <li>
-                                <a class="fancybox" data-fancybox-group="contentgallery" href="<?= Url::to('@web/cake/images/tag-6.jpg') ?>"><img
-                                            alt="Img-sm-picture" class="img-100" src="<?= Url::to('@web/cake/images/tag-6.jpg') ?>"></a>
-                            </li>
-                            <li>
-                                <a class="fancybox" data-fancybox-group="contentgallery" href="<?= Url::to('@web/cake/images/tag-7.jpg') ?>"><img
-                                            alt="Img-sm-picture" class="img-100" src="<?= Url::to('@web/cake/images/tag-7.jpg') ?>"></a>
-                            </li>
-                            <li>
-                                <a class="fancybox" data-fancybox-group="contentgallery" href="<?= Url::to('@web/cake/images/tag-8.jpg') ?>"><img
-                                            alt="Img-sm-picture" class="img-100" src="<?= Url::to('@web/cake/images/tag-8.jpg') ?>"></a>
-                            </li>
+                            <?php endfor; ?>
                         </ul>
                         <div class="clear"></div>
                         <p>
@@ -318,28 +278,22 @@ $cakeProductItemHighlight = CakeProductItemHighlight::find()->all();
                     <div class="col-sm-4">
                         <ul class="list-link-home">
                             <li>
-                                <a href="<?= Url::to(['site/index']) ?>"><?= Yii::t('common', 'Home') ?></a>
+                                <a href="<?= Url::toRoute(['site/index']) ?>"><?= Yii::t('common', 'Home') ?></a>
                             </li>
                             <li>
-                                <a href="<?= Url::to(['shop/index']) ?>"><?= Yii::t('common', 'Product') ?></a>
+                                <a href="<?= Url::toRoute(['gallery/index']) ?>"><?= Yii::t('common', 'Gallery') ?></a>
                             </li>
                             <li>
-                                <a href="<?= Url::to(['gallery/index']) ?>"><?= Yii::t('common', 'Gallery') ?></a>
+                                <a href="<?= Url::toRoute(['site/privacy-policy']) ?>"><?= Yii::t('common', 'Privacy Policy') ?></a>
                             </li>
                             <li>
-                                <a href="<?= Url::to(['blog/index']) ?>"><?= Yii::t('common', 'Blog') ?></a>
+                                <a href="<?= Url::toRoute(['site/terms-of-use']) ?>"><?= Yii::t('common', 'Terms of Use') ?></a>
                             </li>
                             <li>
-                                <a href="<?= Url::to(['site/privacy-policy']) ?>"><?= Yii::t('common', 'Privacy-Policy') ?></a>
-                            </li>
-                            <li>
-                                <a href="<?= Url::to(['site/terms-of-use']) ?>"><?= Yii::t('common', 'Terms of Use') ?></a>
+                                <a href="<?= Url::toRoute(['blog/index']) ?>"><?= Yii::t('common', 'Blog') ?></a>
                             </li>
                         </ul>
                     </div>
-                </div>
-                <div class="logo-dn">
-                    <img alt="Delip Nugraha" src="<?= Url::to('@web/cake/images/dn.png') ?>">
                 </div>
             </div>
         </footer>

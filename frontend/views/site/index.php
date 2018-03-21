@@ -13,10 +13,10 @@ use common\models\CakeOurTeam;
 $this->title = Yii::t('common', 'Home');
 
 $cakeIntroText = CakeIntroText::find()->all();
-$indexProductItem = ProductItem::find()->orderBy('created_at DESC')->limit(6)->all();
-$indexBlogItem = BlogItem::find()->orderBy('created_at DESC')->limit(6)->all();
+$productItem = ProductItem::find()->orderBy('created_at DESC')->limit(6)->all();
+$blogItem = BlogItem::find()->orderBy('created_at DESC')->limit(6)->all();
 $cakeWhatWeCan = CakeWhatWeCan::find()->all();
-$indexProductPackage = ProductPackage::find()->orderBy('created_at DESC')->limit(3)->all();
+$productPackage = ProductPackage::find()->orderBy('created_at DESC')->limit(4)->all();
 $cakeOurTeam = CakeOurTeam::find()->all();
 ?>
 
@@ -29,11 +29,14 @@ $cakeOurTeam = CakeOurTeam::find()->all();
         </h2>
         <div class="about-content">
             <img alt="Cake-White" src="<?= Url::to('@web/cake/images/cake-white.png') ?>">
-            <?= $cakeIntroText[0]->description ?>
+            <p>
+                <?= $cakeIntroText[0]->description ?>
+            </p>
         </div>
     </div>
 </section>
 <!-- End About Cake --><!-- Start Product Cake -->
+<?php if ($productItem): ?>
 <section class="product-cake">
     <div class="container">
         <!-- Product Tittle -->
@@ -46,106 +49,52 @@ $cakeOurTeam = CakeOurTeam::find()->all();
         <!-- Product Content -->
         <div class="product-content">
             <div class="row">
-                <?php foreach ($indexProductItem as $key => $iPI): ?>
-                    <?php if ($key % 2 == 0): ?>
-                        <!-- Column -->
-                        <div class="col-sm-4">
-                            <div class="wrap-product">
-                                <div class="top-product red-cake">
-                                    <!--h1 class="normal-heading">
-                                        Rp <?= number_format($iPI->price, 0, '.', ',') ?>
-                                    </h1-->
-                                    <p class="mar-top-10 mar-btm-0">
-                                        Rp <?= number_format($iPI->price, 0, '.', ',') ?>
-                                    </p>
-                                    <span><?= $iPI->name ?></span>
-                                </div>
-                                <div class="bottom-product bottom-red">
-                                    <div class="bottom-product-abs pink-dot">
-                                        <div class="button-cake">
-                                            <div class="blue-button-cake">
-                                                <button class="button-d-cake pink-button-cake"><?= Yii::t('common', 'Buy') ?></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="wrap-bottom-cake">
-                                        <?= Yii::$app->myLibrary->getFirstParagraph($iPI->description, true) ?>
-                                        <div class="red-line"></div>
+                <?php foreach ($productItem as $pIItem): ?>
+                <!-- Column -->
+                <div class="col-md-4">
+                    <div class="wrap-product">
+                        <div>
+                            <a href="<?= Url::to(['product/detail', 'alias' => $pIItem->alias]) ?>">
+                                <img class="img-rounded" src="<?= Yii::$app->myLibrary->getProductItemImage($pIItem->image1) ?>" width="100%">
+                            </a>
+                        </div>
+                        <div align="center">
+                            <p style="font-size: 30px; font-weight: bold;">
+                                Rp <?= number_format($pIItem->price, 0, '.', ',') ?>
+                            </p>
+                            <p style="font-size: 15px; font-weight: bold;"><?= $pIItem->name ?></p>
+                        </div>
+                        <div class="bottom-product bottom-red">
+                            <div class="bottom-product-abs pink-dot">
+                                <div class="button-cake">
+                                    <div class="blue-button-cake">
+                                        <button class="button-d-cake pink-button-cake"><?= Yii::t('common', 'Buy') ?></button>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    <?php elseif ($key % 2 == 1): ?>
-                        <!-- Column -->
-                        <div class="col-sm-4">
-                            <div class="wrap-product">
-                                <div class="top-product blue-cake">
-                                    <!--h1 class="normal-heading">
-                                        Rp <?= number_format($iPI->price, 0, '.', ',') ?>
-                                    </h1-->
-                                    <p class="mar-top-10 mar-btm-0">
-                                        Rp <?= number_format($iPI->price, 0, '.', ',') ?>
-                                    </p>
-                                    <span><?= $iPI->name ?></span>
-                                </div>
-                                <div class="bottom-product bottom-blue">
-                                    <div class="bottom-product-abs blue-dot">
-                                        <div class="button-cake">
-                                            <div class="blue-button-cake">
-                                                <button class="button-d-cake blue-button-cake"><?= Yii::t('common', 'Buy') ?></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="wrap-bottom-cake">
-                                        <?= Yii::$app->myLibrary->getFirstParagraph($iPI->description, true) ?>
-                                        <div class="blue-line"></div>
-                                    </div>
-                                </div>
+                            <div class="wrap-bottom-cake">
+                                <p>
+                                    <?= Yii::$app->myLibrary->getFirstParagraph($pIItem->description, true) ?>
+                                </p>
+                                <div class="red-line"></div>
                             </div>
                         </div>
-                    <?php else: ?>
-                        <!-- Column -->
-                        <div class="col-sm-4">
-                            <div class="wrap-product">
-                                <div class="top-product orange-cake">
-                                    <!--h1 class="normal-heading">
-                                        Rp <?= number_format($iPI->price, 0, '.', ',') ?>
-                                    </h1-->
-                                    <p class="mar-top-10 mar-btm-0">
-                                        Rp <?= number_format($iPI->price, 0, '.', ',') ?>
-                                    </p>
-                                    <span><?= $iPI->name ?></span>
-                                </div>
-                                <div class="bottom-product bottom-orange">
-                                    <div class="bottom-product-abs orange-dot">
-                                        <div class="button-cake">
-                                            <div class="orange-button-cake">
-                                                <button class="button-d-cake orange-button-cake"><?= Yii::t('common', 'Buy') ?></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="wrap-bottom-cake">
-                                        <?= Yii::$app->myLibrary->getFirstParagraph($iPI->description, true) ?>
-                                        <div class="orange-line"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    <?php endif; ?>
+                    </div>
+                </div>
                 <?php endforeach; ?>
                 <!-- Column Tittle -->
-                <div class="col-sm-12 text-content text-center">
-                    <!--p class="text-content text-center">
-                        Toffee sugar plum halvah liquorice <b class="purple-color">brownie gummies</b>&nbsp;chocolate
-                        bar muffin candy canes.Dessert jelly-o tootsie roll jelly sesame snaps icing.
-                    </p-->
-                    <?= $cakeIntroText[1]->description ?>
+                <div class="col-sm-12">
+                    <p class="text-content text-center">
+                        <?= $cakeIntroText[1]->description ?>
+                    </p>
                 </div>
             </div>
         </div>
     </div>
 </section>
+<?php endif; ?>
 <!-- End Product Cake --><!-- Start Option Cake -->
+<?php if ($cakeWhatWeCan): ?>
 <section class="option">
     <!-- Tittle Option -->
     <div class="green-table pad-top-10 pad-btm-10">
@@ -162,86 +111,7 @@ $cakeOurTeam = CakeOurTeam::find()->all();
     <!-- Option Content -->
     <div class="option-content">
         <div class="container">
-            <!-- Column -->
-            <div class="col-sm-4">
-                <div class="messes">
-                    <div class="messes-show"></div>
-                    <div class="round-wrap green-option"></div>
-                </div>
-                <h4 class="green-color">
-                    Make Cake
-                </h4>
-                <div class="line-temp line-green-sm">
-                    &nbsp;
-                </div>
-                <p class="text-center mar-top-10">
-                    Cookie apple pie donut gingerbread sweet roll pudding topping marshmallow.
-                </p>
-            </div>
-            <!-- Column -->
-            <div class="col-sm-4">
-                <div class="messes">
-                    <div class="messes-show"></div>
-                    <div class="round-wrap orange-option"></div>
-                </div>
-                <h4 class="orange-color">
-                    Make Cake
-                </h4>
-                <div class="line-temp line-orange-sm">
-                    &nbsp;
-                </div>
-                <p class="text-center mar-top-10">
-                    Cookie apple pie donut gingerbread sweet roll pudding topping marshmallow.
-                </p>
-            </div>
-            <!-- Column -->
-            <div class="col-sm-4">
-                <div class="messes">
-                    <div class="messes-show"></div>
-                    <div class="round-wrap blue-option"></div>
-                </div>
-                <h4 class="blue-color">
-                    Make Cake
-                </h4>
-                <div class="line-temp line-blue-sm">
-                    &nbsp;
-                </div>
-                <p class="text-center mar-top-10">
-                    Cookie apple pie donut gingerbread sweet roll pudding topping marshmallow.
-                </p>
-            </div>
-            <!-- Column -->
-            <div class="col-sm-4">
-                <div class="messes">
-                    <div class="messes-show"></div>
-                    <div class="round-wrap pink-option"></div>
-                </div>
-                <h4 class="pink-color">
-                    Make Cake
-                </h4>
-                <div class="line-temp line-pink-sm">
-                    &nbsp;
-                </div>
-                <p class="text-center mar-top-10">
-                    Cookie apple pie donut gingerbread sweet roll pudding topping marshmallow.
-                </p>
-            </div>
-            <!-- Column -->
-            <div class="col-sm-4">
-                <div class="messes">
-                    <div class="messes-show"></div>
-                    <div class="round-wrap purple-option"></div>
-                </div>
-                <h4 class="purple-color">
-                    Make Cake
-                </h4>
-                <div class="line-temp line-purple-sm">
-                    &nbsp;
-                </div>
-                <p class="text-center mar-top-10">
-                    Cookie apple pie donut gingerbread sweet roll pudding topping marshmallow.
-                </p>
-            </div>
+            <?php foreach ($cakeWhatWeCan as $cWWCItem): ?>
             <!-- Column -->
             <div class="col-sm-4">
                 <div class="messes">
@@ -249,19 +119,22 @@ $cakeOurTeam = CakeOurTeam::find()->all();
                     <div class="round-wrap dpurple-option"></div>
                 </div>
                 <h4 class="dpurple-color">
-                    Make Cake
+                    <?= $cWWCItem->name ?>
                 </h4>
                 <div class="line-temp line-dpurple-sm">
                     &nbsp;
                 </div>
                 <p class="text-center mar-top-10">
-                    Cookie apple pie donut gingerbread sweet roll pudding topping marshmallow.
+                    <?= Yii::$app->myLibrary->getFirstParagraph($cWWCItem->description, true) ?>
                 </p>
             </div>
+            <?php endforeach; ?>
         </div>
     </div>
 </section>
+<?php endif; ?>
 <!-- End Option Cake --><!-- Start Pricing Cake -->
+<?php if ($productPackage): ?>
 <section class="pricing-cake">
     <div class="triangle-no-animate">
         &nbsp;
@@ -272,206 +145,133 @@ $cakeOurTeam = CakeOurTeam::find()->all();
             <div class="container">
                 <img alt="Cake-White" src="<?= Url::to('@web/cake/images/cake-white.png') ?>">
                 <h2>
-                    Our Price
+                    <?= Yii::t('common', 'Product Packages') ?>
                 </h2>
             </div>
         </div>
         <div class="container mar-top-20">
+            <?php foreach ($productPackage as $pPItem): ?>
             <!-- Column -->
             <div class="col-sm-3 mar-btm-20">
                 <div class="img-wrap-price">
-                    <img alt="Price-Purple" class="img-full-sm"
-                         src="<?= Url::to('@web/cake/images/price-purple.png') ?>">
+                    <img alt="<?= $pPItem->name ?>" class="img-full-sm img-thumbnail" src="<?= Yii::$app->myLibrary->getProductPackageImage($pPItem->image1) ?>" width="215" height="215">
                 </div>
                 <div class="content-price content-price-tag text-center">
                     <h4 class="dpurple-color">
-                        $ 100/<span>Package</span>
+                        Rp. <?= number_format($pPItem->price, 0, '.', ',') ?><hr><span>Per-<?= Yii::t('common', 'Package') ?></span>
                     </h4>
                     <div class="price-purple">
                         <div class="triangle-no-animate">
                             &nbsp;
                         </div>
                         <div class="text-price">
-                            Just Cupcakes + Free Order
+                            <?= Yii::$app->myLibrary->getFirstParagraph($pPItem->description) ?>
                         </div>
                         <ul class="text-left list-price pad-top-0i">
+                            <?php if ($pPItem->product_item_1): ?>
                             <li class="purple-line">
-                                - 10 Cupcakes
+                                - <?= $pPItem->productItem1->name ?>
                             </li>
-                            <li class="purple-line">
-                                - Free 1 Cupcakes
-                            </li>
-                            <li class="purple-line">
-                                - Free Order
-                            </li>
+                            <?php endif; ?>
+
+                            <?php if ($pPItem->product_item_2): ?>
+                                <li class="purple-line">
+                                    - <?= $pPItem->productItem2->name ?>
+                                </li>
+                            <?php endif; ?>
+
+                            <?php if ($pPItem->product_item_3): ?>
+                                <li class="purple-line">
+                                    - <?= $pPItem->productItem3->name ?>
+                                </li>
+                            <?php endif; ?>
+
+                            <?php if ($pPItem->product_item_4): ?>
+                                <li class="purple-line">
+                                    - <?= $pPItem->productItem4->name ?>
+                                </li>
+                            <?php endif; ?>
+
+                            <?php if ($pPItem->product_item_5): ?>
+                                <li class="purple-line">
+                                    - <?= $pPItem->productItem5->name ?>
+                                </li>
+                            <?php endif; ?>
+
+                            <?php if ($pPItem->product_item_6): ?>
+                                <li class="purple-line">
+                                    - <?= $pPItem->productItem6->name ?>
+                                </li>
+                            <?php endif; ?>
+
+                            <?php if ($pPItem->product_item_7): ?>
+                                <li class="purple-line">
+                                    - <?= $pPItem->productItem7->name ?>
+                                </li>
+                            <?php endif; ?>
+
+                            <?php if ($pPItem->product_item_8): ?>
+                                <li class="purple-line">
+                                    - <?= $pPItem->productItem8->name ?>
+                                </li>
+                            <?php endif; ?>
+
+                            <?php if ($pPItem->product_item_9): ?>
+                                <li class="purple-line">
+                                    - <?= $pPItem->productItem9->name ?>
+                                </li>
+                            <?php endif; ?>
+
+                            <?php if ($pPItem->product_item_10): ?>
+                                <li class="purple-line">
+                                    - <?= $pPItem->productItem10->name ?>
+                                </li>
+                            <?php endif; ?>
                         </ul>
                         <div class="price-btn price-purple-btn">
-                            Order
+                            <a href="<?= Url::toRoute(['cart/add']) ?>"><?= Yii::t('common', 'Order') ?></a>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Column -->
-            <div class="col-sm-3 mar-btm-20">
-                <div class="img-wrap-price">
-                    <img alt="Price-Pink" class="img-full-sm" src="<?= Url::to('@web/cake/images/price-pink.png') ?>">
-                </div>
-                <div class="content-price content-price-tag text-center">
-                    <h4 class="pink-color">
-                        $ 200/<span>Package</span>
-                    </h4>
-                    <div class="price-pink">
-                        <div class="triangle-no-animate">
-                            &nbsp;
-                        </div>
-                        <div class="text-price">
-                            Cupcakes + Ice Cream + Free Order
-                        </div>
-                        <ul class="text-left list-price pad-top-0i">
-                            <li class="pink-line">
-                                - 20 Cupcakes + 5 Ice Cream
-                            </li>
-                            <li class="pink-line">
-                                - Free 5 Cupcakes
-                            </li>
-                            <li class="pink-line">
-                                - Free Order
-                            </li>
-                        </ul>
-                        <div class="price-btn price-pink-btn">
-                            Order
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Column -->
-            <div class="col-sm-3 mar-btm-20">
-                <div class="img-wrap-price">
-                    <img alt="Price-Green" class="img-full-sm" src="<?= Url::to('@web/cake/images/price-green.png') ?>">
-                </div>
-                <div class="content-price content-price-tag text-center">
-                    <h4 class="green-color">
-                        $ 300/<span>Package</span>
-                    </h4>
-                    <div class="price-green">
-                        <div class="triangle-no-animate">
-                            &nbsp;
-                        </div>
-                        <div class="text-price">
-                            Cupcakes + Ice Cream + Cookies
-                        </div>
-                        <ul class="text-left list-price pad-top-0i">
-                            <li class="green-line">
-                                - 25 Cupcakes + 5 Ice Cream
-                            </li>
-                            <li class="green-line">
-                                - Free 5 Cupcakes
-                            </li>
-                            <li class="green-line">
-                                - 2 Cookies Free Order
-                            </li>
-                        </ul>
-                        <div class="price-btn price-green-btn">
-                            Order
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Column -->
-            <div class="col-sm-3 mar-btm-20">
-                <div class="img-wrap-price">
-                    <img alt="Price-Blue" class="img-full-sm" src="<?= Url::to('@web/cake/images/price-blue.png') ?>">
-                </div>
-                <div class="content-price content-price-tag text-center">
-                    <h4 class="blue-color">
-                        $ 400/<span>Package</span>
-                    </h4>
-                    <div class="price-blue">
-                        <div class="triangle-no-animate">
-                            &nbsp;
-                        </div>
-                        <div class="text-price">
-                            Special Cupcakes + Ice Cream + Cookies
-                        </div>
-                        <ul class="text-left list-price pad-top-0i">
-                            <li class="blue-line">
-                                - 30 Special Cupcakes
-                            </li>
-                            <li class="blue-line">
-                                - Free 10 Cupcakes
-                            </li>
-                            <li class="blue-line">
-                                - 10 Ice Cream
-                            </li>
-                        </ul>
-                        <div class="price-btn price-blue-btn">
-                            Order
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <?php endforeach; ?>
         </div>
     </div>
     <div class="triangle-top-no-animate">
         &nbsp;
     </div>
 </section>
+<?php endif; ?>
 <!-- End Pricing Cake --><!-- Start Team Cake -->
+<?php if ($cakeOurTeam): ?>
 <section class="abouts-cake">
     <div class="tittle-cake text-center">
         <div class="container">
             <img alt="Cake-Pink" src="<?= Url::to('@web/cake/images/cake-pink.png') ?>">
             <h2 class="pink-color">
-                Our Team
+                <?= Yii::t('common', 'Our Team') ?>
             </h2>
         </div>
     </div>
     <div class="container mar-top-20">
+        <?php foreach ($cakeOurTeam as $cOTItem): ?>
         <!-- Column -->
         <div class="col-sm-4">
             <div class="img-round-about">
-                <img alt="About Team" class="img-100" src="<?= Url::to('@web/cake/images/about-1.png') ?>">
+                <img alt="<?= $cOTItem->fullname ?>" class="img-100 img-circle" src="<?= Yii::$app->myLibrary->getCakeOurTeamImage($cOTItem->image1) ?>">
             </div>
             <h4>
-                Katy Candy
+                <?= $cOTItem->fullname ?>
             </h4>
             <div class="line-pink-about">
                 &nbsp;
             </div>
             <p class="text-center">
-                Cookie apple pie donut gingerbread <br>sweet roll pudding topping <br>marshmallow.
+                <?= Yii::$app->myLibrary->getFirstParagraph($cOTItem->description, true) ?>
             </p>
         </div>
-        <!-- Column -->
-        <div class="col-sm-4">
-            <div class="img-round-about">
-                <img alt="About Team" class="img-100" src="<?= Url::to('@web/cake/images/about-2.png') ?>">
-            </div>
-            <h4>
-                Will Candy
-            </h4>
-            <div class="line-pink-about">
-                &nbsp;
-            </div>
-            <p class="text-center">
-                Cookie apple pie donut gingerbread <br>sweet roll pudding topping <br>marshmallow.
-            </p>
-        </div>
-        <!-- Column -->
-        <div class="col-sm-4">
-            <div class="img-round-about">
-                <img alt="About Team" class="img-100" src="<?= Url::to('@web/cake/images/about-3.png') ?>">
-            </div>
-            <h4>
-                Pink Candy
-            </h4>
-            <div class="line-pink-about">
-                &nbsp;
-            </div>
-            <p class="text-center">
-                Cookie apple pie donut gingerbread <br>sweet roll pudding topping <br>marshmallow.
-            </p>
-        </div>
+        <?php endforeach; ?>
     </div>
 </section>
+<?php endif; ?>
 <!-- End Option Cake -->
