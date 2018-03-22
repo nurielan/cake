@@ -14,7 +14,7 @@ $this->title = $name;
 <!-- Start 404 Page -->
 <section class="404">
     <div class="container">
-        <div class="content-404">
+        <div class="content-404" style="margin-bottom: 100px;">
             <ul>
                 <li>
                     4

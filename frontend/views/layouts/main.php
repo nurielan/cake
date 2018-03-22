@@ -185,10 +185,19 @@ $cakeProductItemHighlight = CakeProductItemHighlight::find()->all();
                     &nbsp;
                 </div>
             </header>
+            <?php
+            if (Yii::$app->controller->id == 'product' && Yii::$app->controller->action->id == 'detail') {
+                echo $content;
+            }
+            ?>
         </section>
         <!-- End Header Cake -->
 
-        <?= $content ?>
+        <?php
+        if (Yii::$app->controller->id == 'product' && Yii::$app->controller->action->id != 'detail') {
+            echo $content;
+        }
+        ?>
 
         <!-- Start Footer Cake -->
         <footer>
@@ -300,6 +309,10 @@ $cakeProductItemHighlight = CakeProductItemHighlight::find()->all();
         <!-- End Option Cake -->
     </div>
 </div>
+
+<script type="text/javascript">
+    baseUrl = '<?= Yii::$app->request->baseUrl ?>';
+</script>
 
 <?php $this->endBody() ?>
 </body>

@@ -12,9 +12,9 @@ class ProductController extends Controller
     public function actionIndex($brand = null, $category = null)
     {
         if ($brand) {
-            $pagination = Yii::$app->myLibrary->pagiNation(ProductItem::find()->leftJoin('p')->where(['status' => 1, 'product_brand.no' => $brand]), 10, 'DESC');
+            $pagination = Yii::$app->myLibrary->pagiNation(ProductItem::find()->leftJoin('product_category', 'product_item.product_category_no = product_category.no')->leftJoin('product_brand', 'product_category.product_brand_no = product_brand.no')->where(['product_item.status' => 1, 'product_brand.alias' => $brand]), 10, 'DESC');
         } elseif ($brand && $category) {
-            $pagination = Yii::$app->myLibrary->pagiNation(ProductItem::find()->leftJoin('product_category', 'product_item.product_category_no = product_category.no')->leftJoin('product_brand', 'product_category.product_brand_no = product_brand.no')->where(['status' => 1, 'product_brand.no' => $brand, 'product_category.no' => $category]), 10, 'DESC');
+            $pagination = Yii::$app->myLibrary->pagiNation(ProductItem::find()->leftJoin('product_category', 'product_item.product_category_no = product_category.no')->leftJoin('product_brand', 'product_category.product_brand_no = product_brand.no')->where(['product_item.status' => 1, 'product_brand.alias' => $brand, 'product_category.alias' => $category]), 10, 'DESC');
         } else {
             $pagination = Yii::$app->myLibrary->pagiNation(ProductItem::find()->where(['status' => 1]), 10, 'DESC');
         }

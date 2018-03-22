@@ -29,7 +29,8 @@ class CakeAsset extends AssetBundle
         'stylesheets/css/global.css',
         'stylesheets/css/effect2.css',
         'javascripts/fancybox/jquery.fancybox.css',
-        'stylesheets/css/sweetalert.min.css'
+        'stylesheets/css/sweetalert.min.css',
+        'javascripts/jquery-ui-1.12.1.custom/jquery-ui.min.css'
     ];
     public $js = [
         [
@@ -46,6 +47,10 @@ class CakeAsset extends AssetBundle
             'url' => 'javascripts/modernizr.custom.js',
             'position' => View::POS_HEAD,
         ],
+        'javascripts/jquery-ui-1.12.1.custom/jquery-ui.min.js',
+        'javascripts/typeahead/typeahead.jquery.min.js',
+        'javascripts/typeahead/typeahead.bundle.min.js',
+        //'javascripts/typeahead/bootstrap3-typeahead.min.js',
         'javascripts/sweetalert.min.js',
         'javascripts/fancybox/jquery.fancybox.pack.js',
         'javascripts/slick.js',

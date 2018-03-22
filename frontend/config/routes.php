@@ -25,7 +25,7 @@ return [
         'routePrefix' => 'gallery',
         'rules' => [
             'kesalahan' => 'error',
-            '' => 'index',
+            '/' => 'index',
             'detail/<alias>' => 'detail'
         ]
     ],
@@ -35,7 +35,7 @@ return [
         'routePrefix' => 'blog',
         'rules' => [
             'kesalahan' => 'error',
-            '' => 'index',
+            '/' => 'index',
             'detail/<alias>' => 'detail'
         ]
     ],
@@ -45,9 +45,12 @@ return [
         'routePrefix' => 'product',
         'rules' => [
             'kesalahan' => 'error',
-            '' => 'index',
-            'indeks/merek/<brand>' => 'index',
-            'indeks/merek/<brand>/kategori/<category>' => 'index',
+            'merek/<brand>/kategori/<category>/hal/<page:\d+>/per-hal/<per-page:\d+>' => 'index',
+            'merek/<brand>/kategori/<category>' => 'index',
+            'merek/<brand>/hal/<page:\d+>/per-hal/<per-page:\d+>' => 'index',
+            'merek/<brand>' => 'index',
+            'hal/<page:\d+>/per-hal/<per-page:\d+>' => 'index',
+            '/' => 'index',
             'detail/<alias>' => 'detail',
         ]
     ]

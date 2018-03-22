@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Url;
+use yii\helpers\Html;
 
 $this->title = Yii::t('common', 'Product');
 
@@ -18,8 +19,10 @@ $this->title = Yii::t('common', 'Product');
             </div>
             <div class="row">
                 <div class="col-md-3">
-                    <input class="form-control" type="text">
-                    <div class="form-list-box">
+                    <div class="form-group">
+                        <?= Html::textInput('input_search_product', null, ['class' => 'form-control', 'id' => 'input_search_product', 'placeholder' => Yii::t('common', 'Search Product')]) ?>
+                    </div>
+                    <!--div class="form-list-box">
                         <h3>
                             <?= Yii::t('common' ,'Product Brands') ?>
                         </h3>
@@ -35,7 +38,7 @@ $this->title = Yii::t('common', 'Product');
                             </li>
                             <?php endforeach; ?>
                         </ul>
-                    </div>
+                    </div-->
                 </div>
                 <!-- Product Content -->
                 <div class="product-content col-md-9" style="margin-bottom: 100px;">

@@ -4,6 +4,7 @@ namespace common\models;
 
 use Yii;
 use Intervention\Image\ImageManagerStatic as Image;
+use yz\shoppingcart\CartPositionProviderInterface;
 
 /**
  * This is the model class for table "product_item".
@@ -30,7 +31,7 @@ use Intervention\Image\ImageManagerStatic as Image;
  * @property string $created_at
  * @property string $updated_at
  */
-class ProductItem extends \yii\db\ActiveRecord
+class ProductItem extends \yii\db\ActiveRecord implements CartPositionProviderInterface
 {
     public $imageName1, $imageName2, $imageName3;
     public $imageTemp1, $imageTemp2, $imageTemp3;
@@ -150,5 +151,13 @@ class ProductItem extends \yii\db\ActiveRecord
     public function getCakeProductItemHighlight()
     {
         return $this->hasOne(CakeProductItemHighlight::className(), ['product_item_no' => 'no']);
+    }
+
+    public function getCartPosition($array = null)
+    {
+        return Yii::createObject([
+            'class' => 'common\models\ProductCartPosition',
+            'id' => $this->id,
+        ]);
     }
 }

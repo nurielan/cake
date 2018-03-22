@@ -114,5 +114,8 @@ return [
     'Intro Text' => 'Teks Pengenalan',
     'What We Can' => 'Apa Yang Kita Bisa',
     'Our Team' => 'Tim Kami',
-    'Buy' => 'Beli'
+    'Buy' => 'Beli',
+    'Search Product' => 'Cari Produk',
+    'Add to Cart' => 'Tambah ke Keranjang',
+    'Cancel' => 'Batal'
 ];
