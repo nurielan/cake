@@ -12,6 +12,7 @@ $this->title = Yii::t('common', 'Product Detail');
 </div>
 <div class="chart-cake">
     <div class="container">
+        <?= Html::beginForm(['cart/put']) ?>
         <div class="row" style="margin-bottom: 100px;">
             <div class="col-sm-6">
                 <img alt="<?= $productItem->name ?>"
@@ -65,12 +66,12 @@ $this->title = Yii::t('common', 'Product Detail');
                         Rp. <?= number_format($productItem->price, 0, '.', ',') ?>
                     </h1>
                 </div>
-                <?= Html::beginForm(['cart/add']) ?>
+
                 <div class="row">
                     <div class="col-sm-3">
                         <div class="form-group mar-btm-10">
-                            <select class="form-control form-control-custom">
-                                <option>Qty</option>
+                            <select class="form-control form-control-custom" name="qty">
+                                <option value="0">Qty</option>
                                 <?php for ($i = 1; $i <= 15; $i++): ?>
                                     <option value="<?= $i ?>"><?= $i ?></option>
                                 <?php endfor; ?>
@@ -81,12 +82,14 @@ $this->title = Yii::t('common', 'Product Detail');
                 <p class="mar-top-0 mar-btm-20">
                     <?= $productItem->description ?>
                 </p>
+                <?= Html::hiddenInput('product_item_no', $productItem->no) ?>
                 <button class="btn btn-pink-cake mar-right-10"
                         type="submit"><?= Yii::t('common', 'Add to Cart') ?></button>
                 <a class="btn btn-grey-cake"
                    href="<?= Url::toRoute(['product/index']) ?>"><?= Yii::t('common', 'Cancel') ?></a>
-                <?= Html::endForm() ?>
+
             </div>
         </div>
+        <?= Html::endForm() ?>
     </div>
 </div>

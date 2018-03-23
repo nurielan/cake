@@ -43,6 +43,10 @@ return [
         ],
         'myLibrary' => [
             'class' => 'common\libraries\MyLibrary'
+        ],
+        'cart' => [
+            'class' => 'yz\shoppingcart\ShoppingCart',
+            'cartId' => 'cart_cake_frontend'
         ]
     ],
     'params' => $params,

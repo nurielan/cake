@@ -3,6 +3,7 @@
 /* @var $this yii\web\View */
 
 use yii\helpers\Url;
+use yii\helpers\Html;
 use common\models\CakeIntroText;
 use common\models\ProductItem;
 use common\models\BlogItem;
@@ -52,6 +53,7 @@ $cakeOurTeam = CakeOurTeam::find()->all();
                 <?php foreach ($productItem as $pIItem): ?>
                 <!-- Column -->
                 <div class="col-md-4">
+                    <?= Html::beginForm(['cart/put']) ?>
                     <div class="wrap-product">
                         <div>
                             <a href="<?= Url::to(['product/detail', 'alias' => $pIItem->alias]) ?>">
@@ -68,7 +70,8 @@ $cakeOurTeam = CakeOurTeam::find()->all();
                             <div class="bottom-product-abs pink-dot">
                                 <div class="button-cake">
                                     <div class="blue-button-cake">
-                                        <button class="button-d-cake pink-button-cake"><?= Yii::t('common', 'Buy') ?></button>
+                                        <?= Html::hiddenInput('product_item_no', $pIItem->no) ?>
+                                        <button class="button-d-cake pink-button-cake" type="submit"><?= Yii::t('common', 'Buy') ?></button>
                                     </div>
                                 </div>
                             </div>
@@ -80,6 +83,7 @@ $cakeOurTeam = CakeOurTeam::find()->all();
                             </div>
                         </div>
                     </div>
+                    <?= Html::endForm() ?>
                 </div>
                 <?php endforeach; ?>
                 <!-- Column Tittle -->

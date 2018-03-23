@@ -12,6 +12,7 @@ use common\models\CakeProductItemHighlight;
 CakeAsset::register($this);
 
 $cakeProductItemHighlight = CakeProductItemHighlight::find()->all();
+$cartCount = Yii::$app->cart->getCount();
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -62,20 +63,32 @@ $cakeProductItemHighlight = CakeProductItemHighlight::find()->all();
                             </div>
                             <nav>
                                 <ul class="header-nav hidden-xs">
+                                    <li class="pad-top-0i">
+                                        <img alt="Logo-Cupcakes" src="<?= Url::to('@web/cake/images/logo-100.png') ?>">
+                                    </li>
                                     <li>
                                         <a href="<?= Url::toRoute(['site/index']) ?>"><?= Yii::t('common', 'Home') ?></a>
                                     </li>
                                     <li>
                                         <a href="<?= Url::toRoute(['product/index']) ?>"><?= Yii::t('common', 'Product') ?></a>
                                     </li>
-                                    <li class="pad-top-0i">
-                                        <img alt="Logo-Cupcakes" src="<?= Url::to('@web/cake/images/logo-100.png') ?>">
-                                    </li>
                                     <li>
                                         <a href="<?= Url::toRoute(['gallery/index']) ?>"><?= Yii::t('common', 'Gallery') ?></a>
                                     </li>
                                     <li>
                                         <a href="<?= Url::toRoute(['blog/index']) ?>"><?= Yii::t('common', 'Blog') ?></a>
+                                    </li>
+                                    <?php if (Yii::$app->user->isGuest): ?>
+                                        <li>
+                                            <a href="<?= Url::toRoute(['site/login']) ?>"><?= Yii::t('common', 'Login') ?></a>
+                                        </li>
+                                    <?php else: ?>
+                                        <li>
+                                            <a href="<?= Url::toRoute(['site/order-list']) ?>"><?= Yii::$app->user->identity->username ?> <i class="glyphicon glyphicon-user"></i></a>
+                                        </li>
+                                    <?php endif; ?>
+                                    <li>
+                                        <a href="<?= Url::toRoute(['cart/index']) ?>"><?= $cartCount ?> <i class="glyphicon glyphicon-shopping-cart"></i></a>
                                     </li>
                                 </ul>
                             </nav>
@@ -188,13 +201,17 @@ $cakeProductItemHighlight = CakeProductItemHighlight::find()->all();
             <?php
             if (Yii::$app->controller->id == 'product' && Yii::$app->controller->action->id == 'detail') {
                 echo $content;
+            } elseif (Yii::$app->controller->id == 'cart' && Yii::$app->controller->action->id == 'index') {
+                echo $content;
             }
             ?>
         </section>
         <!-- End Header Cake -->
 
         <?php
-        if (Yii::$app->controller->id == 'product' && Yii::$app->controller->action->id != 'detail') {
+        if (Yii::$app->controller->id == 'product' && Yii::$app->controller->action->id == 'index') {
+            echo $content;
+        } elseif (Yii::$app->controller->id == 'site') {
             echo $content;
         }
         ?>

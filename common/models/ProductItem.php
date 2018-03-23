@@ -156,8 +156,10 @@ class ProductItem extends \yii\db\ActiveRecord implements CartPositionProviderIn
     public function getCartPosition($array = null)
     {
         return Yii::createObject([
-            'class' => 'common\models\ProductCartPosition',
-            'id' => $this->id,
+            'class' => ProductCartPosition::className(),
+            'no' => $this->no,
+            'price' => $this->price,
+            'weight' => $this->weight
         ]);
     }
 }

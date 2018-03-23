@@ -117,5 +117,11 @@ return [
     'Buy' => 'Beli',
     'Search Product' => 'Cari Produk',
     'Add to Cart' => 'Tambah ke Keranjang',
-    'Cancel' => 'Batal'
+    'Cancel' => 'Batal',
+    'Cart' => 'Keranjang',
+    'Cart empty' => 'Keranjang kosong',
+    'Please fill out the following fields to login' => 'Mohon untuk mengisi semua kolom untuk masuk',
+    'If you forgot your password you can' => 'Jika anda lupa kata sandi, anda bisa',
+    'Remove all items' => 'Buang semua barang',
+    'Back to Product' => 'Kembali ke Produk'
 ];

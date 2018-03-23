@@ -53,5 +53,17 @@ return [
             '/' => 'index',
             'detail/<alias>' => 'detail',
         ]
-    ]
+    ],
+    'cart' => [
+        'class' => GUR::className(),
+        'prefix' => 'keranjang',
+        'routePrefix' => 'cart',
+        'rules' => [
+            'kesalahan' => 'error',
+            '/' => 'index',
+            'taruh' => 'put',
+            'ubah' => 'update',
+            'buang' => 'remove'
+        ]
+    ],
 ];
