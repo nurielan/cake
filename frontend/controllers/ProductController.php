@@ -29,6 +29,7 @@ class ProductController extends Controller
     public function actionDetail($alias)
     {
         $data['productItem'] = ProductItem::findOne(['alias' => $alias]);
+        $data['userAddress'] = Yii::$app->user->identity->userAddress;
 
         return $this->render('detail', $data);
     }

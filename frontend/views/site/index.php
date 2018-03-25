@@ -71,6 +71,7 @@ $cakeOurTeam = CakeOurTeam::find()->all();
                                 <div class="button-cake">
                                     <div class="blue-button-cake">
                                         <?= Html::hiddenInput('product_item_no', $pIItem->no) ?>
+                                        <?= Html::hiddenInput('user_address', Yii::$app->user->identity->userConfig->primary_address) ?>
                                         <button class="button-d-cake pink-button-cake" type="submit"><?= Yii::t('common', 'Buy') ?></button>
                                     </div>
                                 </div>

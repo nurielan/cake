@@ -3,6 +3,7 @@ namespace frontend\models;
 
 use yii\base\Model;
 use common\models\User;
+use Yii;
 
 /**
  * Signup form
@@ -36,6 +37,15 @@ class SignupForm extends Model
         ];
     }
 
+    public function attributeLabels()
+    {
+        return [
+            'username' => Yii::t('common', 'Username'),
+            'email' => Yii::t('common', 'E-Mail'),
+            'password' => Yii::t('common', 'Password'),
+        ];
+    }
+
     /**
      * Signs user up.
      *
@@ -48,10 +58,15 @@ class SignupForm extends Model
         }
         
         $user = new User();
+        $user->no = Yii::$app->myLibrary->getAutoNoUserAddress();
         $user->username = $this->username;
         $user->email = $this->email;
         $user->setPassword($this->password);
+        $user->role = 3;
+        $user->status = 11;
         $user->generateAuthKey();
+        $user->created_at = date('Y-m-d h:i:s');
+        $user->updated_at = date('Y-m-d h:i:s');
         
         return $user->save() ? $user : null;
     }

@@ -64,5 +64,6 @@ class CakeAsset extends AssetBundle
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapPluginAsset',
+        'frontend\assets\AppAsset'
     ];
 }

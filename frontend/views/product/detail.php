@@ -2,6 +2,7 @@
 
 use yii\helpers\Url;
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 
 $this->title = Yii::t('common', 'Product Detail');
 
@@ -82,6 +83,10 @@ $this->title = Yii::t('common', 'Product Detail');
                 <p class="mar-top-0 mar-btm-20">
                     <?= $productItem->description ?>
                 </p>
+                <div class="form-group">
+                    <?= Html::label(Yii::t('common', 'Send to'), 'user_address') ?>
+                    <?= Html::dropDownList('user_address', Yii::$app->user->identity->userConfig->primary_address, ArrayHelper::map($userAddress, 'no', 'title'), ['class' => 'form-control']) ?>
+                </div>
                 <?= Html::hiddenInput('product_item_no', $productItem->no) ?>
                 <button class="btn btn-pink-cake mar-right-10"
                         type="submit"><?= Yii::t('common', 'Add to Cart') ?></button>

@@ -42,6 +42,10 @@ $this->params['breadcrumbs'][] = $this->title;
                             <?= Html::submitButton($this->title, ['class' => 'btn btn-pink-cake', 'name' => 'login-button']) ?>
                         </div>
 
+                        <div class="form-group">
+                            <?= Yii::t('common', 'You do not have account yet? Register') ?>&nbsp;<a href="<?= Url::toRoute(['site/signup']) ?>"><?= Yii::t('common', 'here') ?></a>
+                        </div>
+
                         <?php ActiveForm::end(); ?>
                     </div>
                 </div>

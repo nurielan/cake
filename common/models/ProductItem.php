@@ -36,6 +36,7 @@ class ProductItem extends \yii\db\ActiveRecord implements CartPositionProviderIn
     public $imageName1, $imageName2, $imageName3;
     public $imageTemp1, $imageTemp2, $imageTemp3;
     public $removeImage1, $removeImage2, $removeImage3;
+    public $user_address_no;
 
     /**
      * @inheritdoc
@@ -159,7 +160,8 @@ class ProductItem extends \yii\db\ActiveRecord implements CartPositionProviderIn
             'class' => ProductCartPosition::className(),
             'no' => $this->no,
             'price' => $this->price,
-            'weight' => $this->weight
+            'weight' => $this->weight,
+            'user_address_no' => $this->user_address_no
         ]);
     }
 }

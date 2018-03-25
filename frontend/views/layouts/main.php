@@ -75,9 +75,9 @@ $cartCount = Yii::$app->cart->getCount();
                                     <li>
                                         <a href="<?= Url::toRoute(['gallery/index']) ?>"><?= Yii::t('common', 'Gallery') ?></a>
                                     </li>
-                                    <li>
+                                    <!--li>
                                         <a href="<?= Url::toRoute(['blog/index']) ?>"><?= Yii::t('common', 'Blog') ?></a>
-                                    </li>
+                                    </li-->
                                     <?php if (Yii::$app->user->isGuest): ?>
                                         <li>
                                             <a href="<?= Url::toRoute(['site/login']) ?>"><?= Yii::t('common', 'Login') ?></a>
@@ -315,9 +315,9 @@ $cartCount = Yii::$app->cart->getCount();
                             <li>
                                 <a href="<?= Url::toRoute(['site/terms-of-use']) ?>"><?= Yii::t('common', 'Terms of Use') ?></a>
                             </li>
-                            <li>
+                            <!--li>
                                 <a href="<?= Url::toRoute(['blog/index']) ?>"><?= Yii::t('common', 'Blog') ?></a>
-                            </li>
+                            </li-->
                         </ul>
                     </div>
                 </div>

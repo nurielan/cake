@@ -7,25 +7,33 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = 'Reset password';
+$this->title = Yii::t('common', 'Reset password');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-reset-password">
-    <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>Please choose your new password:</p>
+<section class="about-cake">
+    <div class="container">
+        <h2 class="hide">
+            &nbsp;
+        </h2>
+        <div class="site-reset-password about-content" style="margin-bottom: 100px;">
+            <h1><?= Html::encode($this->title) ?></h1>
 
-    <div class="row">
-        <div class="col-lg-5">
-            <?php $form = ActiveForm::begin(['id' => 'reset-password-form']); ?>
+            <p><?= Yii::t('app', 'Please choose your new password') ?>:</p>
 
-                <?= $form->field($model, 'password')->passwordInput(['autofocus' => true]) ?>
+            <div class="row">
+                <div class="col-lg-6 col-lg-offset-3">
+                    <?php $form = ActiveForm::begin(['id' => 'reset-password-form']); ?>
 
-                <div class="form-group">
-                    <?= Html::submitButton('Save', ['class' => 'btn btn-primary']) ?>
+                    <?= $form->field($model, 'password')->passwordInput(['autofocus' => true]) ?>
+
+                    <div class="form-group">
+                        <?= Html::submitButton(Yii::t('common', 'Save'), ['class' => 'btn btn-pink-cake']) ?>
+                    </div>
+
+                    <?php ActiveForm::end(); ?>
                 </div>
-
-            <?php ActiveForm::end(); ?>
+            </div>
         </div>
     </div>
-</div>
+</section>

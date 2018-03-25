@@ -90,6 +90,7 @@ return [
     'Checking Order' => 'Pengecekan Pesanan',
     'Processing Order' => 'Pemrosesan Pesanan',
     'Sending Order' => 'Pengiriman Pesanan',
+    'Order Sent' => 'Pesanan Terkirim',
     'Cashier' => 'Kasir',
     'Quantity' => 'Jumlah',
     'Create Order List' => 'Buat Daftar Pesanan',
@@ -120,8 +121,18 @@ return [
     'Cancel' => 'Batal',
     'Cart' => 'Keranjang',
     'Cart empty' => 'Keranjang kosong',
+    'Update Cart' => 'Ubah Keranjang',
     'Please fill out the following fields to login' => 'Mohon untuk mengisi semua kolom untuk masuk',
     'If you forgot your password you can' => 'Jika anda lupa kata sandi, anda bisa',
     'Remove all items' => 'Buang semua barang',
-    'Back to Product' => 'Kembali ke Produk'
+    'Back to Product' => 'Kembali ke Produk',
+    'Please choose your new password' => 'Silahkan pilih kata sandi baru anda',
+    'Please fill out your email. A link to reset password will be sent there.' => 'Mohon isikan E-Mail anda. Sebuah tautan untuk mengatur ulang kata sandi akan di kirimkan ke sana.',
+    'Request password reset' => 'Permintaan atur ulang kata sandi',
+    'Send' => 'Kirim',
+    'You do not have account yet? Register' => 'Anda belum memiliki akun? Mendaftar',
+    'here' => 'disini',
+    'Please fill out the following fields to signup' => 'Mohon untuk mengisi semua kolom untuk mendaftar',
+    'No Order List' => 'Tidak Ada Daftar Pesanan',
+    'Send to' => 'Kirim ke'
 ];

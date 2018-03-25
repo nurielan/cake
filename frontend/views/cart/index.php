@@ -2,6 +2,7 @@
 
 use yii\helpers\Url;
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 
 $this->title = Yii::t('common', 'Cart');
 
@@ -12,6 +13,7 @@ $this->title = Yii::t('common', 'Cart');
 </div>
 <div class="chart-cake">
     <div class="container">
+        <?= Html::beginForm(['cart/update']) ?>
         <table class="table table-bordered table-hover hidden-xs" style="margin-bottom: 100px;">
             <thead>
             <tr>
@@ -87,9 +89,13 @@ $this->title = Yii::t('common', 'Cart');
                             <p class="mar-top-10 pad-top-10 top-dashed">
                                 <?= Yii::$app->myLibrary->getFirstParagraph($value->getProduct()->description, true) ?>
                             </p>
+                            <div class="form-group">
+                                <?= Html::label(Yii::t('common', 'Send to'), 'user_address') ?>
+                                <?= Html::dropDownList('user_address[]', $value->getUserAddress()->no, ArrayHelper::map($userAddress, 'no', 'title'), ['class' => 'form-control', 'disabled' => true]) ?>
+                            </div>
                         </td>
                         <td align="center">
-                            <?= $value->getQuantity() ?>
+                            <?= Html::input('number', 'qty[]', $value->getQuantity(), ['min' => 0, 'class' => 'form-control']) ?>
                         </td>
                         <td align="right">
                             Rp. <?= number_format($value->getProduct()->price, 0, '.', ',') ?>
@@ -99,20 +105,29 @@ $this->title = Yii::t('common', 'Cart');
                         </td>
                         <td class="chart-center">
                             <?= Html::beginForm(['cart/remove']) ?>
-                            <?= Html::hiddenInput('product_item_no', $value->getProduct()->no) ?>
+                            <?= Html::hiddenInput('cart_position', $key) ?>
                             <button class="btn btn-pink-cake mar-right-10" type="submit">&times;</button>
                             <?= Html::endForm() ?>
                         </td>
                     </tr>
+                    <?= Html::hiddenInput('product_item_no[]', $value->getProduct()->no) ?>
                 <?php endforeach; ?>
                 <tr>
-                    <td class="chart-center" colspan="7">
-                        <a class="btn btn-pink-cake mar-right-10" href="<?= Url::toRoute(['cart/remove']) ?>" data-method="post"><?= Yii::t('common', 'Remove all items') ?></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="chart-center" colspan="7">
-                        <button class="btn btn-pink-cake mar-right-10">Checkout</button>
+                    <td colspan="7">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <a href="<?= Url::toRoute(['product/index']) ?>" class="btn btn-pink-cake btn-block"><i class="fa fa-cubes"></i> <?= Yii::t('common', 'Back to Product') ?></a>
+                            </div>
+                            <div class="col-md-3">
+                                <a href="<?= Url::toRoute(['cart/remove-all']) ?>" class="btn btn-pink-cake btn-block" data-method="post"><i class="fa fa-trash"></i> <?= Yii::t('common', 'Remove all items') ?></a>
+                            </div>
+                            <div class="col-md-3">
+                                <button class="btn btn-pink-cake btn-block" type="submit"><i class="fa fa-cart-arrow-down"></i> <?= Yii::t('common', 'Update Cart') ?></button>
+                            </div>
+                            <div class="col-md-3">
+                                <a href="<?= Url::toRoute(['cart/checkout']) ?>" class="btn btn-pink-cake btn-block"><i class="fa fa-check"></i> <?= Yii::t('common', 'Checkout') ?></a>
+                            </div>
+                        </div>
                     </td>
                 </tr>
             <?php else: ?>
@@ -130,6 +145,7 @@ $this->title = Yii::t('common', 'Cart');
             <?php endif; ?>
             </tbody>
         </table>
+        <?= Html::endForm() ?>
         <div class="visible-xs">
             <div class="top-cake-table">
                 <div class="top-cake-no">

@@ -17,13 +17,15 @@ class ProductCartPosition extends Object implements CartPositionInterface
     public $weight;
     public $quantities = [];
     public $cost;
+    public $user_address_no;
 
     public function getId()
     {
         return md5(serialize([
             $this->no,
             $this->price,
-            $this->weight
+            $this->weight,
+            $this->user_address_no
         ]));
     }
 
@@ -61,5 +63,10 @@ class ProductCartPosition extends Object implements CartPositionInterface
         $this->cost = $this->price * $this->getQuantity();
 
         return $this->cost;
+    }
+
+    public function getUserAddress()
+    {
+        return UserAddress::find()->where(['no' => $this->user_address_no])->one();
     }
 }

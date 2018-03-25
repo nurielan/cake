@@ -3,6 +3,15 @@
 use yii\web\GroupUrlRule as GUR;
 
 return [
+    'rest-data' => [
+        'class' => GUR::className(),
+        'prefix' => 'rest-data',
+        'routePrefix' => 'rest-data',
+        'rules' => [
+            'kesalahan' => 'error',
+            'user-address/<noid>' => 'user-address'
+        ]
+    ],
     'site' => [
         'class' => GUR::className(),
         'prefix' => '',
@@ -16,7 +25,10 @@ return [
             'tentang' => 'about',
             'mendaftar' => 'signup',
             'permintaan-atur-ulang-kata-sandi' => 'request-password-reset',
-            'atur-ulang-kata-sandi' => 'rest-password'
+            'atur-ulang-kata-sandi' => 'rest-password',
+            'daftar-pesanan' => 'order-list',
+            'profil' => 'profile',
+            'barang-pesanan/<order_list_no>' => 'order-item',
         ]
     ],
     'gallery' => [
@@ -63,7 +75,8 @@ return [
             '/' => 'index',
             'taruh' => 'put',
             'ubah' => 'update',
-            'buang' => 'remove'
+            'buang' => 'remove',
+            'buang-semua' => 'remove-all'
         ]
     ],
 ];

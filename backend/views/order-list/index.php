@@ -62,13 +62,15 @@ $this->params['breadcrumbs'][] = $this->title;
                         'attribute' => 'status',
                         'content' => function ($model) {
                             if ($model->status == 0) {
-                                $status = '<label class="label label-danger">' . Yii::t('common', 'Ordered') . '</label>';
+                                $status = '<label class="label label-default">' . Yii::t('common', 'Ordered') . '</label>';
                             } elseif ($model->status == 1) {
                                 $status = '<label class="label label-warning">' . Yii::t('common', 'Checking Order') . '</label>';
                             } elseif ($model->status == 2) {
                                 $status = '<label class="label label-success">' . Yii::t('common', 'Processing Order') . '</label>';
                             } elseif ($model->status == 3) {
                                 $status = '<label class="label label-info">' . Yii::t('common', 'Sending Order') . '</label>';
+                            } elseif ($model->status == 4) {
+                                $status = '<label class="label label-success">' . Yii::t('common', 'Order Sent') . '</label>';
                             }
 
                             return $status;
