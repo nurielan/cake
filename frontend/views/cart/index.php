@@ -89,10 +89,12 @@ $this->title = Yii::t('common', 'Cart');
                             <p class="mar-top-10 pad-top-10 top-dashed">
                                 <?= Yii::$app->myLibrary->getFirstParagraph($value->getProduct()->description, true) ?>
                             </p>
+                            <?php if (!Yii::$app->user->isGuest): ?>
                             <div class="form-group">
                                 <?= Html::label(Yii::t('common', 'Send to'), 'user_address') ?>
                                 <?= Html::dropDownList('user_address[]', $value->getUserAddress()->no, ArrayHelper::map($userAddress, 'no', 'title'), ['class' => 'form-control', 'disabled' => true]) ?>
                             </div>
+                            <?php endif; ?>
                         </td>
                         <td align="center">
                             <?= Html::input('number', 'qty[]', $value->getQuantity(), ['min' => 0, 'class' => 'form-control']) ?>

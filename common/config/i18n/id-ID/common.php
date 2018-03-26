@@ -134,5 +134,6 @@ return [
     'here' => 'disini',
     'Please fill out the following fields to signup' => 'Mohon untuk mengisi semua kolom untuk mendaftar',
     'No Order List' => 'Tidak Ada Daftar Pesanan',
-    'Send to' => 'Kirim ke'
+    'Send to' => 'Kirim ke',
+    'User Details' => 'Detail Pengguna'
 ];

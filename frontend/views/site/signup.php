@@ -2,6 +2,7 @@
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
+
 /* @var $model \frontend\models\SignupForm */
 
 use yii\helpers\Html;
@@ -22,8 +23,11 @@ $this->params['breadcrumbs'][] = $this->title;
             <p><?= Yii::t('common', 'Please fill out the following fields to signup') ?>:</p>
 
             <div class="row">
-                <div class="col-lg-6 col-lg-offset-3">
-                    <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
+                <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
+                <div class="col-lg-6">
+                    <h3><?= Yii::t('common', 'User') ?></h3>
+
+                    <hr>
 
                     <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
 
@@ -31,11 +35,34 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     <?= $form->field($model, 'password')->passwordInput() ?>
 
-                    <div class="form-group">
-                        <?= Html::submitButton(Yii::t('common', 'Signup'), ['class' => 'btn btn-pink-cake', 'name' => 'signup-button']) ?>
-                    </div>
+                    <?= $form->field($model, 'password2')->passwordInput() ?>
 
-                    <?php ActiveForm::end(); ?>
+                </div>
+                <div class="col-lg-6">
+                    <h3><?= Yii::t('common', 'User Details') ?></h3>
+
+                    <hr>
+
+                    <?= $form->field($model, 'uDFullname') ?>
+                    <?= $form->field($model, 'uDGender')->dropDownList([
+                        1 => Yii::t('common', 'Male'),
+                        2 => Yii::t('common', 'Female')
+                    ], [
+                        'prompt' => Yii::t('common', 'Select one')
+                    ]) ?>
+
+                    <?= $form->field($model, 'uAAddress') ?>
+                    <?= $form->field($model, 'uASubdistrict') ?>
+                    <?= $form->field($model, 'uADistrict') ?>
+                    <?= $form->field($model, 'uAProvince') ?>
+                    <?= $form->field($model, 'uAPostalCode') ?>
+                    <?= $form->field($model, 'uAPhoneNumber') ?>
+                </div>
+                <?php ActiveForm::end(); ?>
+            </div>
+            <div class="row">
+                <div class="col-lg-12" align="center">
+                    <?= Html::submitButton(Yii::t('common', 'Signup'), ['class' => 'btn btn-pink-cake', 'name' => 'signup-button']) ?>
                 </div>
             </div>
         </div>
