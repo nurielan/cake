@@ -60,6 +60,7 @@ return [
             'merek/<brand>/kategori/<category>/hal/<page:\d+>/per-hal/<per-page:\d+>' => 'index',
             'merek/<brand>/kategori/<category>' => 'index',
             'merek/<brand>/hal/<page:\d+>/per-hal/<per-page:\d+>' => 'index',
+            'kategori/<category>' => 'index',
             'merek/<brand>' => 'index',
             'hal/<page:\d+>/per-hal/<per-page:\d+>' => 'index',
             '/' => 'index',

@@ -4,9 +4,12 @@ namespace common\models;
 
 use yii\base\Object;
 use yz\shoppingcart\CartPositionInterface;
+use yz\shoppingcart\CartPositionTrait;
 
 class ProductCartPosition extends Object implements CartPositionInterface
 {
+    use CartPositionTrait;
+
     /**
      * @var Product
      */
@@ -15,8 +18,6 @@ class ProductCartPosition extends Object implements CartPositionInterface
     public $no;
     public $price;
     public $weight;
-    public $quantities = [];
-    public $cost;
     public $user_address_no;
 
     public function getId()
@@ -43,26 +44,6 @@ class ProductCartPosition extends Object implements CartPositionInterface
             $this->_product = ProductItem::findOne(['no' => $this->no]);
         }
         return $this->_product;
-    }
-
-    public function setQuantity($quantity)
-    {
-        // TODO: Implement setQuantity() method.
-        $this->quantities = $quantity;
-    }
-
-    public function getQuantity()
-    {
-        // TODO: Implement getQuantity() method.
-        return $this->quantities;
-    }
-
-    public function getCost($withDiscount = true)
-    {
-        // TODO: Implement getCost() method.
-        $this->cost = $this->price * $this->getQuantity();
-
-        return $this->cost;
     }
 
     public function getUserAddress()

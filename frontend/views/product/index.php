@@ -2,6 +2,9 @@
 
 use yii\helpers\Url;
 use yii\helpers\Html;
+use kartik\typeahead\TypeaheadBasic;
+use yii\bootstrap\ActiveForm;
+use yii\helpers\ArrayHelper;
 
 $this->title = Yii::t('common', 'Product');
 
@@ -18,13 +21,29 @@ $this->title = Yii::t('common', 'Product');
                 </h2>
             </div>
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-8 col-md-offset-2">
+                    <?php $formSearch = ActiveForm::begin() ?>
                     <div class="form-group">
-                        <?= Html::textInput('input_search_product', null, ['class' => 'form-control', 'id' => 'input_search_product', 'placeholder' => Yii::t('common', 'Search Product')]) ?>
+                        <?= $formSearch->field($search, 'product_name', [
+                            'inputTemplate' => '<div class="input-group">{input}<span class="input-group-btn"><button class="btn btn-pink-cake" type="submit"><i class="glyphicon glyphicon-search"></i></button></span></div>'
+                        ])->widget(TypeaheadBasic::className(), [
+                            'data' => $dataSearchItem,
+                            'scrollable' => true,
+                            'pluginOptions' => [
+                                'highlight' => true
+                            ],
+                            'options' => [
+                                'placeholder' => Yii::t('common', 'Search Product')
+                            ],
+                            'pluginEvents' => [
+                                'typeahead:selected' => 'function (ev, suggest) { swal(suggest) }'
+                            ]
+                        ])->label(false) ?>
                     </div>
+                    <?php ActiveForm::end() ?>
                     <!--div class="form-list-box">
                         <h3>
-                            <?= Yii::t('common' ,'Product Brands') ?>
+                            <?= Yii::t('common', 'Product Brands') ?>
                         </h3>
                         <ul>
                             <?php foreach ($productBrand as $pBItem): ?>
@@ -40,8 +59,35 @@ $this->title = Yii::t('common', 'Product');
                         </ul>
                     </div-->
                 </div>
+            </div>
+            <div class="row" style="margin-bottom: 15px;">
+                <div class="col-md-8 col-md-offset-2">
+                    <?= Html::beginForm(['product/index'], 'get', ['class' => 'form-inline']) ?>
+                    <div class="form-group">
+                        <?= Html::label(Yii::t('common', 'Product Brands'), 'brand') ?>
+                        <?= Html::dropDownList('brand', null, ArrayHelper::map($productBrand, 'no', 'name'),
+                            [
+                                    'prompt' => Yii::t('common', 'Select one'),
+                                'class' => 'form-control'
+                            ]) ?>
+                    </div>
+                    <div class="form-group">
+                        <?= Html::label(Yii::t('common', 'Product Categories'), 'category') ?>
+                        <?= Html::dropDownList('category', null, ArrayHelper::map($productCategory, 'no', 'name'),
+                            [
+                                'prompt' => Yii::t('common', 'Select one'),
+                                'class' => 'form-control'
+                            ]) ?>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-pink-cake" type="submit"><i class="glyphicon glyphicon-search"></i> <?= Yii::t('common', 'Search') ?></button>
+                    </div>
+                    <?= Html::endForm() ?>
+                </div>
+            </div>
+            <div class="row">
                 <!-- Product Content -->
-                <div class="product-content col-md-9" style="margin-bottom: 100px;">
+                <div class="product-content col-md-12" style="margin-bottom: 100px;">
                     <div class="row">
                         <?php foreach ($productItem as $pIItem): ?>
                             <!-- Column -->
@@ -66,7 +112,8 @@ $this->title = Yii::t('common', 'Product');
                                             <div class="button-cake">
                                                 <div class="blue-button-cake">
                                                     <?= Html::hiddenInput('product_item_no', $pIItem->no) ?>
-                                                    <button class="button-d-cake pink-button-cake" type="submit"><?= Yii::t('common', 'Buy') ?></button>
+                                                    <button class="button-d-cake pink-button-cake"
+                                                            type="submit"><?= Yii::t('common', 'Buy') ?></button>
                                                 </div>
                                             </div>
                                         </div>

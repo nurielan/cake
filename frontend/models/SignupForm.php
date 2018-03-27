@@ -66,6 +66,7 @@ class SignupForm extends Model
             'username' => Yii::t('common', 'Username'),
             'email' => Yii::t('common', 'E-Mail'),
             'password' => Yii::t('common', 'Password'),
+            'password2' => Yii::t('common', 'Password Repeat'),
 
             'uDFullname' => Yii::t('common', 'Fullname'),
             'uDGender' => Yii::t('common', 'Gender'),

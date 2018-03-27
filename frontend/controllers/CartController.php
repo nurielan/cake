@@ -19,11 +19,11 @@ class CartController extends Controller
 
             if ($model) {
                 Yii::$app->cart->put($model->getCartPosition(), $qty);
-
-                return $this->redirect(['cart/index']);
             } else {
                 throw new NotFoundHttpException;
             }
+
+            return $this->redirect(['cart/index']);
         }
 
         throw new MethodNotAllowedHttpException;
@@ -31,23 +31,22 @@ class CartController extends Controller
 
     public function actionUpdate()
     {
-        if (Yii::$app->request->post()) {
-            if (Yii::$app->request->post('product_item_no')) {
-                foreach (Yii::$app->request->post('product_item_no') as $key => $value) {
-                    $model = ProductItem::findOne(['no' => $value]);
-                    //$model->user_address_no = Yii::$app->request->post('user_address')[$key];
+        if (Yii::$app->request->isPost) {
+            foreach (Yii::$app->request->post('cart_position') as $key => $value) {
+                $position = Yii::$app->cart->getPositionById($value);
 
-                    if ($model) {
-                        Yii::$app->cart->update($model->getCartPosition(), Yii::$app->request->post('qty')[$key]);
-
-                        return $this->redirect(['cart/index']);
-                    } else {
-                        throw new NotFoundHttpException;
-                    }
+                if (Yii::$app->request->post('user_address')) {
+                    $position->user_address_no = Yii::$app->request->post('user_address')[$key];
                 }
 
-                return $this->redirect(['cart/index']);
+                if ($position) {
+                    Yii::$app->cart->update($position, Yii::$app->request->post('qty')[$key]);
+                } else {
+                    throw new NotFoundHttpException;
+                }
             }
+
+            return $this->redirect(['cart/index']);
         }
 
         throw new MethodNotAllowedHttpException;
@@ -55,7 +54,7 @@ class CartController extends Controller
 
     public function actionRemove()
     {
-        if (Yii::$app->request->post()) {
+        if (Yii::$app->request->isPost) {
             if (Yii::$app->request->post('cart_position')) {
                 Yii::$app->cart->removeById(Yii::$app->request->post('cart_position'));
             }
@@ -80,7 +79,10 @@ class CartController extends Controller
     public function actionIndex()
     {
         $data['productItem'] = Yii::$app->cart->getPositions();
-        $data['userAddress'] = Yii::$app->user->identity->userAddress;
+
+        if (! Yii::$app->user->isGuest) {
+            $data['userAddress'] = Yii::$app->user->identity->userAddress;
+        }
 
         return $this->render('index', $data);
         //print_r(Yii::$app->cart->getPositions());
@@ -91,7 +93,5 @@ class CartController extends Controller
         if (Yii::$app->user->isGuest) {
             return $this->redirect(['site/login']);
         }
-
-        
     }
 }

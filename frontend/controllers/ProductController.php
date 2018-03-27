@@ -3,8 +3,10 @@
 namespace frontend\controllers;
 
 use common\models\ProductBrand;
+use common\models\ProductCategory;
 use common\models\ProductItem;
 use Yii;
+use yii\base\DynamicModel;
 use yii\web\Controller;
 
 class ProductController extends Controller
@@ -22,6 +24,26 @@ class ProductController extends Controller
         $data['productItem'] = $pagination['data'];
         $data['pagination'] = $pagination['pagination'];
         $data['productBrand'] = ProductBrand::find()->all();
+        $data['productCategory'] = ProductCategory::find()->all();
+
+        $dataSearch = ProductItem::find()->joinWith(['productCategory', 'productCategory.productBrand'])->all();
+        $dataSearchItem = [];
+
+        foreach ($dataSearch as $key => $value) {
+            $dataSearchItem[] = $value->productCategory->productBrand->name . ' - ' . $value->productCategory->name . ' - ' . $value->name;
+        }
+        $data['dataSearchItem'] = $dataSearchItem;
+
+        $search = new DynamicModel([
+            'product_name' => Yii::$app->request->post('product_name')
+        ]);
+        $search->addRule('product_name', 'required');
+        $search->addRule('product_name', 'string', ['min' => 1]);
+        $data['search'] = $search;
+
+        if ($search->load(Yii::$app->request->post()) && $search->validate()) {
+
+        }
 
         return $this->render('index', $data);
     }
@@ -29,7 +51,10 @@ class ProductController extends Controller
     public function actionDetail($alias)
     {
         $data['productItem'] = ProductItem::findOne(['alias' => $alias]);
-        $data['userAddress'] = Yii::$app->user->identity->userAddress;
+
+        if (! Yii::$app->user->isGuest) {
+            $data['userAddress'] = Yii::$app->user->identity->userAddress;
+        }
 
         return $this->render('detail', $data);
     }

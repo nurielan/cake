@@ -24,39 +24,60 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <div class="row">
                 <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
-                <div class="col-lg-6">
+                <div class="col-md-6">
                     <h3><?= Yii::t('common', 'User') ?></h3>
 
                     <hr>
 
-                    <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+                    <?= $form->field($model, 'username', [
+                        'inputTemplate' => '<div class="input-group">{input}<span class="input-group-addon" id="username_addon"><i class="glyphicon glyphicon-user"></i></span></div>'
+                    ])->textInput(['aria-describedby' => 'username_addon', 'autofocus' => true]) ?>
 
-                    <?= $form->field($model, 'email') ?>
+                    <?= $form->field($model, 'email', [
+                        'inputTemplate' => '<div class="input-group">{input}<span class="input-group-addon" id="email_addon">@</span></div>'
+                    ])->textInput(['aria-describedby' => 'email_addon']) ?>
 
                     <?= $form->field($model, 'password')->passwordInput() ?>
 
                     <?= $form->field($model, 'password2')->passwordInput() ?>
 
                 </div>
-                <div class="col-lg-6">
+                <div class="col-md-6">
                     <h3><?= Yii::t('common', 'User Details') ?></h3>
 
                     <hr>
 
-                    <?= $form->field($model, 'uDFullname') ?>
-                    <?= $form->field($model, 'uDGender')->dropDownList([
+                    <?= $form->field($model, 'uDFullname', [
+                        'inputTemplate' => '<div class="input-group">{input}<span class="input-group-addon" id="uDFullname_addon"><i class="glyphicon glyphicon-user"></i></span></div>'
+                    ])->textInput(['aria-describedby' => 'uDFullname_addon']) ?>
+
+                    <?= $form->field($model, 'uDGender', [
+                        'inputTemplate' => '<div class="input-group">{input}<span class="input-group-addon" id="uAAddress_addon"><i class="glyphicon glyphicon-user"></i></span></div>'
+                    ])->dropDownList([
                         1 => Yii::t('common', 'Male'),
                         2 => Yii::t('common', 'Female')
                     ], [
                         'prompt' => Yii::t('common', 'Select one')
                     ]) ?>
 
-                    <?= $form->field($model, 'uAAddress') ?>
-                    <?= $form->field($model, 'uASubdistrict') ?>
-                    <?= $form->field($model, 'uADistrict') ?>
-                    <?= $form->field($model, 'uAProvince') ?>
-                    <?= $form->field($model, 'uAPostalCode') ?>
-                    <?= $form->field($model, 'uAPhoneNumber') ?>
+                    <?= $form->field($model, 'uAAddress', [
+                        'inputTemplate' => '<div class="input-group">{input}<span class="input-group-addon" id="uAAddress_addon"><i class="glyphicon glyphicon-map-marker"></i></span></div>'
+                    ])->textInput(['aria-describedby' => 'uAAddress_addon']) ?>
+                    <?= $form->field($model, 'uASubdistrict', [
+                        'inputTemplate' => '<div class="input-group">{input}<span class="input-group-addon" id="uASubdistrict_addon"><i class="glyphicon glyphicon-map-marker"></i></span></div>'
+                    ])->textInput(['aria-describedby' => 'uASubdistrict_addon']) ?>
+                    <?= $form->field($model, 'uADistrict', [
+                        'inputTemplate' => '<div class="input-group">{input}<span class="input-group-addon" id="uADistrict_addon"><i class="glyphicon glyphicon-map-marker"></i></span></div>'
+                    ])->textInput(['aria-describedby' => 'uADistrict_addon']) ?>
+                    <?= $form->field($model, 'uAProvince', [
+                        'inputTemplate' => '<div class="input-group">{input}<span class="input-group-addon" id="uAProvince_addon"><i class="glyphicon glyphicon-map-marker"></i></span></div>'
+                    ])->textInput(['aria-describedby' => 'uAProvince_addon']) ?>
+                    <?= $form->field($model, 'uAPostalCode', [
+                        'inputTemplate' => '<div class="input-group">{input}<span class="input-group-addon" id="uAPostalCode_addon"><i class="glyphicon glyphicon-envelope"></i></span></div>'
+                    ])->textInput(['aria-describedby' => 'uAPostalCode_addon']) ?>
+                    <?= $form->field($model, 'uAPhoneNumber', [
+                        'inputTemplate' => '<div class="input-group">{input}<span class="input-group-addon" id="uAPhoneNumber_addon"><i class="glyphicon glyphicon-phone"></i></span></div>'
+                    ])->textInput(['aria-describedby' => 'uAPhoneNumber_addon']) ?>
                 </div>
                 <?php ActiveForm::end(); ?>
             </div>

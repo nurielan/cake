@@ -135,5 +135,9 @@ return [
     'Please fill out the following fields to signup' => 'Mohon untuk mengisi semua kolom untuk mendaftar',
     'No Order List' => 'Tidak Ada Daftar Pesanan',
     'Send to' => 'Kirim ke',
-    'User Details' => 'Detail Pengguna'
+    'User Details' => 'Detail Pengguna',
+    'Are you sure you want to remove all items?' => 'Apakah anda yakin akan menghapus semua barang?',
+    'Are you sure you want to remove this item?' => 'Apakah anda yakin akan menghapus barang ini?',
+    'Product Name' => 'Nama Produk',
+    'Search' => 'Cari'
 ];
