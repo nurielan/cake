@@ -37,8 +37,9 @@ return [
         'routePrefix' => 'gallery',
         'rules' => [
             'kesalahan' => 'error',
+            'detail/<alias>' => 'detail',
+            'hal/<page:\d+>/per-hal/<per-page:\d+>' => 'index',
             '/' => 'index',
-            'detail/<alias>' => 'detail'
         ]
     ],
     'blog' => [

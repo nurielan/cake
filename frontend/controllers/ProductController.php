@@ -7,6 +7,7 @@ use common\models\ProductCategory;
 use common\models\ProductItem;
 use Yii;
 use yii\base\DynamicModel;
+use yii\helpers\Url;
 use yii\web\Controller;
 
 class ProductController extends Controller
@@ -30,7 +31,10 @@ class ProductController extends Controller
         $dataSearchItem = [];
 
         foreach ($dataSearch as $key => $value) {
-            $dataSearchItem[] = $value->productCategory->productBrand->name . ' - ' . $value->productCategory->name . ' - ' . $value->name;
+            $dataSearchItem[$key] = [
+                'name' => $value->productCategory->productBrand->name . ' - ' . $value->productCategory->name . ' - ' . $value->name,
+                'link' => Url::toRoute(['product/detail', 'alias' => $value->alias])
+            ];
         }
         $data['dataSearchItem'] = $dataSearchItem;
 

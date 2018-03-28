@@ -4,6 +4,7 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 
 $this->title = Yii::t('common', 'Gallery');
+$this->params['breadcrumbs'][] = $this->title;
 
 ?>
 
@@ -12,7 +13,7 @@ $this->title = Yii::t('common', 'Gallery');
     <h2 class="hide">
         &nbsp;
     </h2>
-    <div class="chart-cake">
+    <div class="gallery-cake">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
@@ -27,6 +28,14 @@ $this->title = Yii::t('common', 'Gallery');
                             </a>
                         </div>
                         <?php endforeach; ?>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="pagination-wrap pull-right">
+                        <?= Yii::$app->myLibrary->linkPager($pagination) ?>
                     </div>
                 </div>
             </div>

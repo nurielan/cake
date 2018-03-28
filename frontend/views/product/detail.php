@@ -84,10 +84,10 @@ $this->title = Yii::t('common', 'Product Detail');
                     <?= $productItem->description ?>
                 </p>
                 <?php if (!Yii::$app->user->isGuest): ?>
-                <div class="form-group">
+                <!--div class="form-group">
                     <?= Html::label(Yii::t('common', 'Send to'), 'user_address') ?>
                     <?= Html::dropDownList('user_address', Yii::$app->user->identity->userConfig->primary_address, ArrayHelper::map($userAddress, 'no', 'title'), ['class' => 'form-control']) ?>
-                </div>
+                </div-->
                 <?php endif; ?>
                 <?= Html::hiddenInput('product_item_no', $productItem->no) ?>
                 <button class="btn btn-pink-cake mar-right-10"

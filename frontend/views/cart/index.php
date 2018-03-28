@@ -90,10 +90,10 @@ $this->title = Yii::t('common', 'Cart');
                                 <?= Yii::$app->myLibrary->getFirstParagraph($value->getProduct()->description, true) ?>
                             </p>
                             <?php if (!Yii::$app->user->isGuest): ?>
-                                <div class="form-group">
+                                <!--div class="form-group">
                                     <?= Html::label(Yii::t('common', 'Send to'), 'user_address') ?>
                                     <?= Html::dropDownList('user_address[]', null, ArrayHelper::map($userAddress, 'no', 'title'), ['class' => 'form-control', 'prompt' => Yii::t('common', 'Select one')]) ?>
-                                </div>
+                                </div-->
                             <?php endif; ?>
                         </td>
                         <td align="center">

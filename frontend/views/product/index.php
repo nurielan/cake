@@ -3,6 +3,7 @@
 use yii\helpers\Url;
 use yii\helpers\Html;
 use kartik\typeahead\TypeaheadBasic;
+use kartik\typeahead\Typeahead;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\ArrayHelper;
 
@@ -26,17 +27,22 @@ $this->title = Yii::t('common', 'Product');
                     <div class="form-group">
                         <?= $formSearch->field($search, 'product_name', [
                             'inputTemplate' => '<div class="input-group">{input}<span class="input-group-btn"><button class="btn btn-pink-cake" type="submit"><i class="glyphicon glyphicon-search"></i></button></span></div>'
-                        ])->widget(TypeaheadBasic::className(), [
-                            'data' => $dataSearchItem,
+                        ])->widget(Typeahead::className(), [
+                            'dataset' => [
+                                [
+                                    'prefetch' => Url::toRoute(['rest-data/search-product']),
+                                    'display' => 'value'
+                                ]
+                            ],
                             'scrollable' => true,
                             'pluginOptions' => [
-                                'highlight' => true
+                                'highlight' => true,
                             ],
                             'options' => [
                                 'placeholder' => Yii::t('common', 'Search Product')
                             ],
                             'pluginEvents' => [
-                                'typeahead:selected' => 'function (ev, suggest) { swal(suggest) }'
+                                'typeahead:select' => 'function (suggest) { swal(suggest.link) }'
                             ]
                         ])->label(false) ?>
                     </div>
@@ -67,7 +73,7 @@ $this->title = Yii::t('common', 'Product');
                         <?= Html::label(Yii::t('common', 'Product Brands'), 'brand') ?>
                         <?= Html::dropDownList('brand', null, ArrayHelper::map($productBrand, 'no', 'name'),
                             [
-                                    'prompt' => Yii::t('common', 'Select one'),
+                                'prompt' => Yii::t('common', 'Select one'),
                                 'class' => 'form-control'
                             ]) ?>
                     </div>
@@ -80,7 +86,8 @@ $this->title = Yii::t('common', 'Product');
                             ]) ?>
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-pink-cake" type="submit"><i class="glyphicon glyphicon-search"></i> <?= Yii::t('common', 'Search') ?></button>
+                        <button class="btn btn-pink-cake" type="submit"><i
+                                    class="glyphicon glyphicon-search"></i> <?= Yii::t('common', 'Search') ?></button>
                     </div>
                     <?= Html::endForm() ?>
                 </div>

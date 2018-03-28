@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use common\models\ProductItem;
 use common\models\UserAddress;
 use Yii;
+use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\Response;
 
@@ -33,7 +34,10 @@ class RestDataController extends Controller
         $productItems = [];
 
         foreach ($productItem as $key => $value) {
-            $productItems[] = $value['productCategory']['name'] . ' ' . $value['productCategory']['productBrand']['name'] . ' ' . $value['name'];
+            $productItems[$key] = [
+                'value' => $value['productCategory']['name'] . ' ' . $value['productCategory']['productBrand']['name'] . ' ' . $value['name'],
+                'link' => Url::toRoute(['product/detail', 'alias' => $value->alias])
+            ];
         }
 
         return Yii::createObject([

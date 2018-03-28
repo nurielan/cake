@@ -90,8 +90,12 @@ class CartController extends Controller
 
     public function actionCheckout()
     {
+        Yii::$app->user->setReturnUrl(['cart/checkout']);
+
         if (Yii::$app->user->isGuest) {
             return $this->redirect(['site/login']);
         }
+
+        echo 'Checkout';
     }
 }

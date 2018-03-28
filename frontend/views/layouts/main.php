@@ -213,6 +213,8 @@ $cartCount = Yii::$app->cart->getCount();
             echo $content;
         } elseif (Yii::$app->controller->id == 'site') {
             echo $content;
+        } elseif (Yii::$app->controller->id == 'gallery') {
+            echo $content;
         }
         ?>
 
@@ -232,7 +234,7 @@ $cartCount = Yii::$app->cart->getCount();
                                  src="<?= Url::to('@web/cake/images/logo-white.png') ?>">
                         </div>
                         <div class="col-sm-6 text-right">
-                            <ul class="sosmed-cake">
+                            <!--ul class="sosmed-cake">
                                 <li>
                                     <div class="center-sosmed">
                                         <p class="icon icon-facebook">
@@ -268,7 +270,7 @@ $cartCount = Yii::$app->cart->getCount();
                                         </p>
                                     </div>
                                 </li>
-                            </ul>
+                            </ul-->
                         </div>
                     </div>
                 </div>
@@ -287,7 +289,7 @@ $cartCount = Yii::$app->cart->getCount();
                     </div>
                     <!-- Column -->
                     <div class="col-sm-4 hidden-xs">
-                        <ul class="list-picture-footer">
+                        <!--ul class="list-picture-footer">
                             <?php for ($i = 1; $i <= 8; $i++): ?>
                             <li>
                                 <a class="fancybox" data-fancybox-group="contentgallery" href="<?= Url::to('@web/cake/images/tag-' . $i . '.jpg') ?>"><img
@@ -298,13 +300,16 @@ $cartCount = Yii::$app->cart->getCount();
                         <div class="clear"></div>
                         <p>
                             Cookie apple pie donut gingerbread <br>sweet roll pudding topping
-                        </p>
+                        </p-->
                     </div>
                     <!-- Column -->
                     <div class="col-sm-4">
                         <ul class="list-link-home">
                             <li>
                                 <a href="<?= Url::toRoute(['site/index']) ?>"><?= Yii::t('common', 'Home') ?></a>
+                            </li>
+                            <li>
+                                <a href="<?= Url::toRoute(['product/index']) ?>"><?= Yii::t('common', 'Product') ?></a>
                             </li>
                             <li>
                                 <a href="<?= Url::toRoute(['gallery/index']) ?>"><?= Yii::t('common', 'Gallery') ?></a>
