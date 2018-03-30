@@ -118,6 +118,11 @@ $this->title = Yii::t('common', 'Cart');
                     <?= Html::hiddenInput('cart_position[]', $key) ?>
                 <?php endforeach; ?>
                 <tr>
+                    <td colspan="5"></td>
+                    <td align="right">Rp. <?= number_format(Yii::$app->cart->getCost(), 0, '.', ',') ?></td>
+                    <td></td>
+                </tr>
+                <tr>
                     <td colspan="7">
                         <div class="row">
                             <div class="col-md-3">

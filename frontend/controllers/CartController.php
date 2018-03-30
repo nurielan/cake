@@ -2,8 +2,10 @@
 
 namespace frontend\controllers;
 
+use common\models\Bank;
 use common\models\ProductItem;
 use Yii;
+use yii\base\DynamicModel;
 use yii\web\Controller;
 use yii\web\MethodNotAllowedHttpException;
 use yii\web\NotFoundHttpException;
@@ -96,6 +98,38 @@ class CartController extends Controller
             return $this->redirect(['site/login']);
         }
 
-        echo 'Checkout';
+        $data['userAddress'] = Yii::$app->user->identity->userAddress;
+        $data['bank'] = Bank::find()->all();
+
+        $model = new DynamicModel([
+            'user_address',
+            'bank'
+        ]);
+        $model->addRule(['user_address', 'bank'], 'required');
+        $data['model'] = $model;
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            Yii::$app->session->set('user_address', Yii::$app->request->post('user_address'));
+            Yii::$app->session->set('bank', Yii::$app->request->post('bank'));
+
+            return $this->redirect(['cart/complete']);
+        }
+
+        return $this->render('checkout', $data);
+    }
+
+    public function actionComplete()
+    {
+        Yii::$app->user->setReturnUrl(['cart/complete']);
+
+        if (Yii::$app->user->isGuest) {
+            return $this->redirect(['site/login']);
+        }
+
+        $data['cart'] = Yii::$app->cart->getPositions();
+        $data['user_address'] = Yii::$app->session->get('user_address');
+        $data['bank'] = Yii::$app->session->get('bank');
+
+        return $this->render('complete', $data);
     }
 }

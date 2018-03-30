@@ -12,14 +12,29 @@ use yii\web\Controller;
 
 class ProductController extends Controller
 {
-    public function actionIndex($brand = null, $category = null)
+    public function actionIndex()
     {
-        if ($brand) {
-            $pagination = Yii::$app->myLibrary->pagiNation(ProductItem::find()->leftJoin('product_category', 'product_item.product_category_no = product_category.no')->leftJoin('product_brand', 'product_category.product_brand_no = product_brand.no')->where(['product_item.status' => 1, 'product_brand.alias' => $brand]), 10, 'DESC');
-        } elseif ($brand && $category) {
-            $pagination = Yii::$app->myLibrary->pagiNation(ProductItem::find()->leftJoin('product_category', 'product_item.product_category_no = product_category.no')->leftJoin('product_brand', 'product_category.product_brand_no = product_brand.no')->where(['product_item.status' => 1, 'product_brand.alias' => $brand, 'product_category.alias' => $category]), 10, 'DESC');
+        $pagination = null;
+        $price_min = 0;
+        $price_max = 999999999999;
+
+        if (Yii::$app->request->isPost) {
+            $brand = Yii::$app->request->post('brand');
+            $category = Yii::$app->request->post('category');
+            $price_min = Yii::$app->request->post('price_min');
+            $price_max = Yii::$app->request->post('price_max');
+
+            if ($brand) {
+                $pagination = Yii::$app->myLibrary->pagiNation(ProductItem::find()->joinWith(['productCategory', 'productCategory.productBrand'])->where(['product_item.status' => 1, 'product_brand.alias' => $brand])->andWhere(['between', 'product_item.price', $price_min, $price_max]), 10, 'DESC');
+            } elseif ($category) {
+                $pagination = Yii::$app->myLibrary->pagiNation(ProductItem::find()->joinWith(['productCategory', 'productCategory.productBrand'])->where(['product_item.status' => 1, 'product_category.alias' => $category])->andWhere(['between', 'product_item.price', $price_min, $price_max]), 10, 'DESC');
+            } elseif ($brand && $category) {
+                $pagination = Yii::$app->myLibrary->pagiNation(ProductItem::find()->joinWith(['productCategory', 'productCategory.productBrand'])->where(['product_item.status' => 1, 'product_brand.alias' => $brand, 'product_category.alias' => $category])->andWhere(['between', 'product_item.price', $price_min, $price_max]), 10, 'DESC');
+            } else {
+                $pagination = Yii::$app->myLibrary->pagiNation(ProductItem::find()->joinWith(['productCategory', 'productCategory.productBrand'])->where(['product_item.status' => 1])->andWhere(['between', 'product_item.price', $price_min, $price_max]), 10, 'DESC');
+            }
         } else {
-            $pagination = Yii::$app->myLibrary->pagiNation(ProductItem::find()->where(['status' => 1]), 10, 'DESC');
+            $pagination = Yii::$app->myLibrary->pagiNation(ProductItem::find()->joinWith(['productCategory', 'productCategory.productBrand'])->where(['product_item.status' => 1])->andWhere(['between', 'product_item.price', $price_min, $price_max]), 10, 'DESC');
         }
 
         $data['productItem'] = $pagination['data'];

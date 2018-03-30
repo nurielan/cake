@@ -15,20 +15,32 @@ $this->params['breadcrumbs'][] = $this->title;
     </h2>
     <div class="gallery-cake">
         <div class="container">
+            <div class="product-tittle">
+                <img alt="Cake-Purple" src="<?= Url::to('@web/cake/images/cake-purple.png') ?>">
+                <h2>
+                    <?= Yii::t('common', 'Gallery') ?>
+                </h2>
+            </div>
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="row gallery-cake">
-                        <?php foreach ($gallery as $galleryItem): ?>
-                        <div class="col-sm-3 mar-btm-20 cupcakes">
-                            <a class="fancybox" data-fancybox-group="contentgallerygel" href="<?= Yii::$app->myLibrary->getGalleryImage($galleryItem->image1) ?>">
-                                <div class="gal-relative">
-                                    <div class="gal-absolute"></div>
-                                    <img alt="<?= $galleryItem->name ?>" class="img-100" src="<?= Yii::$app->myLibrary->getGalleryImage($galleryItem->image1) ?>">
+                    <?php if ($gallery): ?>
+                        <div class="row gallery-cake">
+                            <?php foreach ($gallery as $galleryItem): ?>
+                                <div class="col-sm-3 mar-btm-20 cupcakes">
+                                    <a class="fancybox" data-fancybox-group="contentgallerygel"
+                                       href="<?= Yii::$app->myLibrary->getGalleryImage($galleryItem->image1) ?>">
+                                        <div class="gal-relative">
+                                            <div class="gal-absolute"></div>
+                                            <img alt="<?= $galleryItem->name ?>" class="img-100"
+                                                 src="<?= Yii::$app->myLibrary->getGalleryImage($galleryItem->image1) ?>">
+                                        </div>
+                                    </a>
                                 </div>
-                            </a>
+                            <?php endforeach; ?>
                         </div>
-                        <?php endforeach; ?>
-                    </div>
+                    <?php else: ?>
+                        <h3 align="center"><?= Yii::t('common', 'No Gallery') ?></h3>
+                    <?php endif; ?>
                 </div>
             </div>
 

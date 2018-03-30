@@ -139,5 +139,8 @@ return [
     'Are you sure you want to remove all items?' => 'Apakah anda yakin akan menghapus semua barang?',
     'Are you sure you want to remove this item?' => 'Apakah anda yakin akan menghapus barang ini?',
     'Product Name' => 'Nama Produk',
-    'Search' => 'Cari'
+    'Search' => 'Cari',
+    'No Product Item' => 'Tidak ada Produk Barang',
+    'No Gallery' => 'Tidak ada Galeri',
+    'User Address' => 'Alamat Pengguna'
 ];

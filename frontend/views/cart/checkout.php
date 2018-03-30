@@ -3,20 +3,26 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Url;
+use yii\helpers\ArrayHelper;
 
 $this->title = Yii::t('common', 'Checkout');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<section class="about-cake">
+<section class="checkout-cake">
     <div class="container">
-        <h2 class="hide">
-            &nbsp;
-        </h2>
+        <div class="product-tittle">
+            <img alt="Cake-Purple" src="<?= Url::to('@web/cake/images/cake-purple.png') ?>">
+            <h2>
+                <?= Yii::t('common', 'Checkout') ?>
+            </h2>
+        </div>
         <div class="row" style="margin-bottom: 100px;">
-            <img alt="Cake-White" src="<?= Url::to('@web/cake/images/cake-white.png') ?>">
-            <div class="col-md-12">
-
+            <div class="col-md-6 col-md-offset-3">
+                <?php $form = ActiveForm::begin(); ?>
+                <?= $form->field($model, 'user_address', [])->radioList(ArrayHelper::map($userAddress, 'no', 'name'))->label(Yii::t("common", 'User Address')) ?>
+                <?= $form->field($model, 'bank', [])->radioList(ArrayHelper::map($bank, 'id', 'name')) ?>
+                <?php ActiveForm::end() ?>
             </div>
         </div>
     </div>

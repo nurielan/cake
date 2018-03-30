@@ -11,43 +11,42 @@ $this->title = Yii::t('common', 'Product');
 
 ?>
 
-<?php if ($productItem): ?>
-    <section class="product-cake">
-        <div class="container">
-            <!-- Product Tittle -->
-            <div class="product-tittle">
-                <img alt="Cake-Purple" src="<?= Url::to('@web/cake/images/cake-purple.png') ?>">
-                <h2>
-                    <?= Yii::t('common', 'Product') ?>
-                </h2>
-            </div>
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <?php $formSearch = ActiveForm::begin() ?>
-                    <div class="form-group">
-                        <?= $formSearch->field($search, 'product_name', [
-                            'inputTemplate' => '<div class="input-group">{input}<span class="input-group-btn"><button class="btn btn-pink-cake" type="submit"><i class="glyphicon glyphicon-search"></i></button></span></div>'
-                        ])->widget(Typeahead::className(), [
-                            'dataset' => [
-                                [
-                                    'prefetch' => Url::toRoute(['rest-data/search-product']),
-                                    'display' => 'value'
-                                ]
-                            ],
-                            'scrollable' => true,
-                            'pluginOptions' => [
-                                'highlight' => true,
-                            ],
-                            'options' => [
-                                'placeholder' => Yii::t('common', 'Search Product')
-                            ],
-                            'pluginEvents' => [
-                                'typeahead:select' => 'function (suggest) { swal(suggest.link) }'
+<section class="product-cake">
+    <div class="container">
+        <!-- Product Tittle -->
+        <div class="product-tittle">
+            <img alt="Cake-Purple" src="<?= Url::to('@web/cake/images/cake-purple.png') ?>">
+            <h2>
+                <?= Yii::t('common', 'Product') ?>
+            </h2>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <?php $formSearch = ActiveForm::begin() ?>
+                <div class="form-group">
+                    <?= $formSearch->field($search, 'product_name')->widget(Typeahead::className(), [
+                        'dataset' => [
+                            [
+                                'prefetch' => Url::toRoute(['rest-data/search-product']),
+                                'datumTokenizer' => "Bloodhound.tokenizers.obj.whitespace('name')",
+                                'displayKey' => 'name'
                             ]
-                        ])->label(false) ?>
-                    </div>
-                    <?php ActiveForm::end() ?>
-                    <!--div class="form-list-box">
+                        ],
+                        'scrollable' => true,
+                        'pluginOptions' => [
+                            'highlight' => true,
+                        ],
+                        'options' => [
+                            'placeholder' => Yii::t('common', 'Search Product'),
+                            'data-provide' => 'typeahead'
+                        ],
+                        'pluginEvents' => [
+                            'typeahead:select' => 'function (suggest) { swal(suggest.link) }'
+                        ]
+                    ])->label(false) ?>
+                </div>
+                <?php ActiveForm::end() ?>
+                <!--div class="form-list-box">
                         <h3>
                             <?= Yii::t('common', 'Product Brands') ?>
                         </h3>
@@ -64,36 +63,44 @@ $this->title = Yii::t('common', 'Product');
                             <?php endforeach; ?>
                         </ul>
                     </div-->
-                </div>
             </div>
-            <div class="row" style="margin-bottom: 15px;">
-                <div class="col-md-8 col-md-offset-2">
-                    <?= Html::beginForm(['product/index'], 'get', ['class' => 'form-inline']) ?>
-                    <div class="form-group">
-                        <?= Html::label(Yii::t('common', 'Product Brands'), 'brand') ?>
-                        <?= Html::dropDownList('brand', null, ArrayHelper::map($productBrand, 'no', 'name'),
+        </div>
+        <div class="row" style="margin-bottom: 15px;">
+            <div class="col-md-8 col-md-offset-2">
+                <?= Html::beginForm(['product/index']) ?>
+                <div class="row">
+                    <div class="col-md-3">
+                        <?= Html::dropDownList('brand', null, ArrayHelper::map($productBrand, 'alias', 'name'),
                             [
                                 'prompt' => Yii::t('common', 'Select one'),
                                 'class' => 'form-control'
                             ]) ?>
                     </div>
-                    <div class="form-group">
-                        <?= Html::label(Yii::t('common', 'Product Categories'), 'category') ?>
-                        <?= Html::dropDownList('category', null, ArrayHelper::map($productCategory, 'no', 'name'),
+                    <div class="col-md-3">
+                        <?= Html::dropDownList('category', null, ArrayHelper::map($productCategory, 'alias', 'name'),
                             [
                                 'prompt' => Yii::t('common', 'Select one'),
                                 'class' => 'form-control'
                             ]) ?>
                     </div>
-                    <div class="form-group">
+                    <div class="col-md-2">
+                        <?= Html::input('number', 'price_min', 0, ['class' => 'form-control', 'min' => 0]) ?>
+                    </div>
+                    <div class="col-md-2">
+                        <?= Html::input('number', 'price_max', 0, ['class' => 'form-control', 'min' => 0]) ?>
+                    </div>
+                    <div class="col-md-1">
                         <button class="btn btn-pink-cake" type="submit"><i
-                                    class="glyphicon glyphicon-search"></i> <?= Yii::t('common', 'Search') ?></button>
+                                    class="glyphicon glyphicon-search"></i> <?= Yii::t('common', 'Search') ?>
+                        </button>
                     </div>
-                    <?= Html::endForm() ?>
                 </div>
+                <?= Html::endForm() ?>
             </div>
-            <div class="row">
-                <!-- Product Content -->
+        </div>
+        <div class="row">
+            <!-- Product Content -->
+            <?php if ($productItem): ?>
                 <div class="product-content col-md-12" style="margin-bottom: 100px;">
                     <div class="row">
                         <?php foreach ($productItem as $pIItem): ?>
@@ -144,7 +151,15 @@ $this->title = Yii::t('common', 'Product');
                         </div>
                     </div>
                 </div>
-            </div>
+            <?php else: ?>
+                <div class="product-content col-md-12" style="margin-bottom: 100px;">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3 align="center"><?= Yii::t('common', 'No Product Item') ?></h3>
+                        </div>
+                    </div>
+                </div>
+            <?php endif; ?>
         </div>
-    </section>
-<?php endif; ?>
+    </div>
+</section>

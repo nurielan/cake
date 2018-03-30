@@ -34,9 +34,9 @@ class RestDataController extends Controller
         $productItems = [];
 
         foreach ($productItem as $key => $value) {
-            $productItems[$key] = [
-                'value' => $value['productCategory']['name'] . ' ' . $value['productCategory']['productBrand']['name'] . ' ' . $value['name'],
-                'link' => Url::toRoute(['product/detail', 'alias' => $value->alias])
+            $productItems[] = [
+                'name' => $value['productCategory']['name'] . ' ' . $value['productCategory']['productBrand']['name'] . ' ' . $value['name'],
+                'link' => Url::toRoute(['product/detail', 'alias' => $value['alias']])
             ];
         }
 

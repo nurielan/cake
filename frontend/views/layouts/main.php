@@ -215,6 +215,10 @@ $cartCount = Yii::$app->cart->getCount();
             echo $content;
         } elseif (Yii::$app->controller->id == 'gallery') {
             echo $content;
+        } elseif (Yii::$app->controller->id == 'cart' && Yii::$app->controller->action->id == 'checkout') {
+            echo $content;
+        } elseif (Yii::$app->controller->id == 'cart' && Yii::$app->controller->action->id == 'complete') {
+            echo $content;
         }
         ?>
 

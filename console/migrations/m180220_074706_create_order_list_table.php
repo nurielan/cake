@@ -28,12 +28,14 @@ class m180220_074706_create_order_list_table extends Migration
             'user_email' => $this->string(64)->notNull()->unique(),
             'user_image' => $this->string(64),
             'user_role' => 'TINYINT(1) DEFAULT 0',
+            'transfer_confirmation' => 'INT UNSIGNED',
             'status' => 'TINYINT(1) DEFAULT 0',
             'created_at' => $this->dateTime(),
             'updated_at' => $this->timestamp()
         ]);
 
         $this->createIndex('i-order_list-cashier', 'order_list', 'cashier', false);
+        $this->createIndex('-order_list-transfer_confirmation', 'order_list', 'transfer_confirmation', false);
     }
 
     /**
