@@ -29,6 +29,7 @@ return [
             'daftar-pesanan' => 'order-list',
             'profil' => 'profile',
             'barang-pesanan/<order_list_no>' => 'order-item',
+            'konfirmasi-pesanan/<order_list_no>' => 'order-confirm'
         ]
     ],
     'gallery' => [
@@ -79,7 +80,9 @@ return [
             'taruh' => 'put',
             'ubah' => 'update',
             'buang' => 'remove',
-            'buang-semua' => 'remove-all'
+            'buang-semua' => 'remove-all',
+            'checkout' => "checkout",
+            'metode-pembayaran' => "payment-method"
         ]
     ],
 ];

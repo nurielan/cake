@@ -22,6 +22,7 @@ use Yii;
  * @property string $user_email
  * @property string $user_image
  * @property int $user_role
+ * @property string $transfer_confirmation
  * @property int $status
  * @property string $created_at
  * @property string $updated_at
@@ -43,14 +44,12 @@ class OrderList extends \yii\db\ActiveRecord
     {
         return [
             [['no', 'user_username', 'user_email'], 'required'],
-            [['quantity', 'discount', 'tax', 'weight'], 'integer'],
+            [['quantity', 'discount', 'tax', 'weight', 'transfer_confirmation'], 'integer'],
             [['discount_price', 'tax_price', 'price'], 'number'],
             [['created_at', 'updated_at'], 'safe'],
             [['no', 'cashier', 'user_no', 'user_username', 'user_email', 'user_image'], 'string', 'max' => 64],
             [['user_role', 'status'], 'string', 'max' => 1],
             [['no'], 'unique'],
-            [['user_username'], 'unique'],
-            [['user_email'], 'unique'],
         ];
     }
 
@@ -75,9 +74,20 @@ class OrderList extends \yii\db\ActiveRecord
             'user_email' => Yii::t('common', 'User Email'),
             'user_image' => Yii::t('common', 'User Image'),
             'user_role' => Yii::t('common', 'User Role'),
+            'transfer_confirmation' => Yii::t('common', 'Transfer Confirmation'),
             'status' => Yii::t('common', 'Status'),
             'created_at' => Yii::t('common', 'Created At'),
             'updated_at' => Yii::t('common', 'Updated At'),
         ];
+    }
+
+    public function getOrderItem()
+    {
+        return $this->hasMany(OrderItem::className(), ['order_list_no' => 'no']);
+    }
+
+    public function getOrderConfirm()
+    {
+        return $this->hasOne(OrderConfirm::className(), ['id' => 'transfer_confirmation']);
     }
 }

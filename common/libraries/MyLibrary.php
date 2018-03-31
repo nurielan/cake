@@ -125,6 +125,16 @@ class MyLibrary {
         return $path;
     }
 
+    public function getBankImage($imagee = null) {
+        if (!$imagee) {
+            $path = Url::to('@web/adminlte/dist/img/no_image.png');
+        } else {
+            $path = Url::to('@web/img/bank/thumb/' . $imagee);
+        }
+
+        return $path;
+    }
+
     public function getAutoNoUser() {
         $no = UserAddress::find()->max('no');
 
@@ -488,6 +498,48 @@ class MyLibrary {
                 $newNo = 'BLGITM0' . $addNo;
             } elseif ($addNo < 10000000000000) {
                 $newNo = 'BLGITM' . $addNo;
+            }
+        }
+
+        return $newNo;
+    }
+
+    public function getAutoNoOrderList() {
+        $no = ProductBrand::find()->max('no');
+        $date = date('d/m/Y');
+
+        if (!$no) {
+            $newNo = 'ORDRCKE/'. $date .'/0000000000001';
+        } else {
+            $oldNo = (int) substr($no, 14, strlen($no));
+            $addNo = $oldNo + 1;
+
+            if ($addNo < 10) {
+                $newNo = 'ORDRCKE/'. $date .'/000000000000' . $addNo;
+            } elseif ($addNo < 100) {
+                $newNo = 'ORDRCKE/'. $date .'/00000000000' . $addNo;
+            } elseif ($addNo < 1000) {
+                $newNo = 'ORDRCKE/'. $date .'/0000000000' . $addNo;
+            } elseif ($addNo < 10000) {
+                $newNo = 'ORDRCKE/'. $date .'/000000000' . $addNo;
+            } elseif ($addNo < 100000) {
+                $newNo = 'ORDRCKE/'. $date .'/00000000' . $addNo;
+            } elseif ($addNo < 1000000) {
+                $newNo = 'ORDRCKE/'. $date .'/0000000' . $addNo;
+            } elseif ($addNo < 10000000) {
+                $newNo = 'ORDRCKE/'. $date .'/000000' . $addNo;
+            } elseif ($addNo < 100000000) {
+                $newNo = 'ORDRCKE/'. $date .'/00000' . $addNo;
+            } elseif ($addNo < 1000000000) {
+                $newNo = 'ORDRCKE/'. $date .'/0000' . $addNo;
+            } elseif ($addNo < 10000000000) {
+                $newNo = 'ORDRCKE/'. $date .'/000' . $addNo;
+            } elseif ($addNo < 100000000000) {
+                $newNo = 'ORDRCKE/'. $date .'/00' . $addNo;
+            } elseif ($addNo < 1000000000000) {
+                $newNo = 'ORDRCKE/'. $date .'/0' . $addNo;
+            } elseif ($addNo < 10000000000000) {
+                $newNo = 'ORDRCKE/'. $date .'/' . $addNo;
             }
         }
 

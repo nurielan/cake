@@ -142,5 +142,12 @@ return [
     'Search' => 'Cari',
     'No Product Item' => 'Tidak ada Produk Barang',
     'No Gallery' => 'Tidak ada Galeri',
-    'User Address' => 'Alamat Pengguna'
+    'User Address' => 'Alamat Pengguna',
+    'Product below has no address yet' => 'Produk di bawah belum memiliki alamat',
+    'Payment Method' => 'Metode Pembayaran',
+    'Finish and Save Order' => 'Selesai dan Simpan Pesanan',
+    'Tax' => 'Pajak',
+    'Order Confirm' => 'Konfirmasi Pesanan',
+    'Saved' => 'Tersimpan',
+    'Payment Confirm' => 'Konfirmasi Pembayaran'
 ];

@@ -6,6 +6,7 @@ use backend\models\ProfileAddressForm;
 use backend\models\ProfileConfigAddressForm;
 use backend\models\ProfilePasswordForm;
 use backend\models\ProfileSettingsForm;
+use common\models\OrderConfirm;
 use common\models\OrderItem;
 use common\models\OrderList;
 use common\models\UserAddress;
@@ -231,9 +232,13 @@ class SiteController extends Controller
 
     public function actionOrderItem($order_list_no)
     {
-        $data['orderItem'] = OrderItem::find()->where(['order_list_no' => $order_list_no])->all();
+        $order_list_no = str_replace('-', '/', $order_list_no);
+        $data['orderList'] = OrderList::findOne(['no' => $order_list_no]);
+        $data['orderItem'] = OrderItem::find()->joinWith('orderList')->where(['order_list_no' => $order_list_no])->all();
+        $data['userAddress'] = Yii::$app->user->identity->userAddress;
 
         return $this->render('order-item', $data);
+        //print_r($data['orderItem']);
     }
 
     public function actionProfile()
@@ -361,5 +366,20 @@ class SiteController extends Controller
             'modelPAF' => $modelPAF,
             'modelPCAF' => $modelPCAF
         ]);
+    }
+
+    public function actionOrderConfirm($order_list_no)
+    {
+        $order_list_no = str_replace('-', '/', $order_list_no);
+        $model = OrderConfirm::find()->joinWith('orderList')->where(['order_list.no' => $order_list_no])->one();
+        $data['model'] = $model;
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('order-confirm', Yii::t('common', 'Saved'));
+
+            return $this->redirect(['site/order-list']);
+        }
+
+        return $this->render('order-confirm', $data);
     }
 }

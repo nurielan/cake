@@ -68,7 +68,6 @@ class OrderItem extends \yii\db\ActiveRecord
             [['order_list_no', 'product_item_no', 'product_item_name', 'product_item_alias', 'product_item_image1', 'product_item_image2', 'product_item_image3', 'user_address_title', 'user_address_name', 'user_address_subdistrict', 'user_address_district', 'user_address_province'], 'string', 'max' => 64],
             [['product_item_type'], 'string', 'max' => 1],
             [['user_address_subdistrict_no', 'user_address_district_no', 'user_address_province_no', 'user_address_postal_code', 'user_address_phone_number'], 'string', 'max' => 24],
-            [['user_address_phone_number'], 'unique'],
         ];
     }
 
@@ -115,5 +114,10 @@ class OrderItem extends \yii\db\ActiveRecord
             'created_at' => Yii::t('common', 'Created At'),
             'updated_at' => Yii::t('common', 'Updated At'),
         ];
+    }
+
+    public function getOrderList()
+    {
+        return $this->hasOne(OrderList::className(), ['no' => 'order_list_no']);
     }
 }

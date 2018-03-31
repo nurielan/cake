@@ -219,6 +219,8 @@ $cartCount = Yii::$app->cart->getCount();
             echo $content;
         } elseif (Yii::$app->controller->id == 'cart' && Yii::$app->controller->action->id == 'complete') {
             echo $content;
+        } elseif (Yii::$app->controller->id == 'cart' && Yii::$app->controller->action->id == 'payment-method') {
+            echo $content;
         }
         ?>
 

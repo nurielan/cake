@@ -8,11 +8,16 @@ $this->title = Yii::t('common', 'Order List');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<section class="about-cake">
+
+
+<section class="order-cake">
     <div class="container">
-        <h2 class="hide">
-            &nbsp;
-        </h2>
+        <!--div class="product-tittle">
+            <img alt="Cake-Purple" src="<?= Url::to('@web/cake/images/cake-purple.png') ?>">
+            <h2>
+                <?= $this->title ?>
+            </h2>
+        </div-->
 
         <?= $this->render('user-menu') ?>
 
@@ -20,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="col-md-12">
                 <div class="table-responsive">
                     <table class="table table-condensed table-striped table-hover">
-                        <thead style="color: #fff;">
+                        <thead>
                         <tr>
                             <th>No.</th>
                             <th><?= Yii::t('common', 'Order') ?></th>
@@ -31,6 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <th><?= Yii::t('common', 'Weight') ?> (g/grams)</th>
                             <th><?= Yii::t('common', 'Price') ?> (Rp/Rupiah)</th>
                             <th><?= Yii::t('common', 'Status') ?></th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -39,9 +45,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <tr>
                                     <td><?= $key + 1 ?></td>
                                     <td>
-                                        <a href="<?= Url::toRoute(['site/order-item', 'order_list_no' => $value->no]) ?>"><?= $value->no ?></a>
+                                        <a href="<?= Url::toRoute(['site/order-item', 'order_list_no' => str_replace('/', '-', $value->no)]) ?>" target="_blank"><?= $value->no ?></a>
                                     </td>
-                                    <td><?= $value->cashier->username ?></td>
+                                    <td><?= $value->cashier ?></td>
                                     <td align="center"><?= $value->quantity ?></td>
                                     <td align="center"><?= $value->discount ?></td>
                                     <td align="center"><?= $value->tax ?></td>
@@ -50,17 +56,20 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <td align="center">
                                         <?php
                                         if ($value->status == 0) {
-                                            $status = '<label class="label label-default">' . Yii::t('common', 'Ordered') . '</label>';
+                                            echo '<label class="label label-default">' . Yii::t('common', 'Ordered') . '</label>';
                                         } elseif ($value->status == 1) {
-                                            $status = '<label class="label label-warning">' . Yii::t('common', 'Checking Order') . '</label>';
+                                            echo '<label class="label label-warning">' . Yii::t('common', 'Checking Order') . '</label>';
                                         } elseif ($value->status == 2) {
-                                            $status = '<label class="label label-success">' . Yii::t('common', 'Processing Order') . '</label>';
+                                            echo '<label class="label label-success">' . Yii::t('common', 'Processing Order') . '</label>';
                                         } elseif ($value->status == 3) {
-                                            $status = '<label class="label label-info">' . Yii::t('common', 'Sending Order') . '</label>';
+                                            echo '<label class="label label-info">' . Yii::t('common', 'Sending Order') . '</label>';
                                         } elseif ($value->status == 4) {
-                                            $status = '<label class="label label-success">' . Yii::t('common', 'Order Sent') . '</label>';
+                                            echo '<label class="label label-success">' . Yii::t('common', 'Order Sent') . '</label>';
                                         }
                                         ?>
+                                    </td>
+                                    <td>
+                                        <?= Html::a(Yii::t('common', 'Payment Confirm'), ['site/order-confirm', 'order_list_no' => str_replace('/', '-', $value->no)], ['class' => 'btn btn-pink-cake btn-xs']) ?>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

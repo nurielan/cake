@@ -141,7 +141,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     }
                                     ?>
                                     <?php $form3_1 = ActiveForm::begin(); ?>
-                                    <?= $form3_1->field($modelPCAF, 'primary_address')->dropDownList(ArrayHelper::map(\common\models\UserAddress::find()->all(), 'no', 'title'), [
+                                    <?= $form3_1->field($modelPCAF, 'primary_address')->dropDownList(ArrayHelper::map(Yii::$app->user->identity->userAddress, 'no', 'title'), [
                                         'prompt' => Yii::t('common', 'Select one'),
                                         'id' => 'primary_address'
                                     ]) ?>

@@ -13,6 +13,15 @@ $this->title = Yii::t('common', 'Cart');
 </div>
 <div class="chart-cake">
     <div class="container">
+        <?php
+        if (Yii::$app->session->hasFlash('no_user_address')) {
+            echo '<div class="alert alert-info"><ul>' . Yii::t('common', 'Product below has no address yet') . ':';
+            foreach (Yii::$app->session->getFlash('no_user_address') as $flash) {
+                echo '<li>' . $flash . '</li>';
+            }
+            echo '</ul></div>';
+        }
+        ?>
         <?= Html::beginForm(['cart/update']) ?>
         <table class="table table-bordered table-hover hidden-xs" style="margin-bottom: 100px;">
             <thead>
@@ -90,10 +99,10 @@ $this->title = Yii::t('common', 'Cart');
                                 <?= Yii::$app->myLibrary->getFirstParagraph($value->getProduct()->description, true) ?>
                             </p>
                             <?php if (!Yii::$app->user->isGuest): ?>
-                                <!--div class="form-group">
+                                <div class="form-group">
                                     <?= Html::label(Yii::t('common', 'Send to'), 'user_address') ?>
-                                    <?= Html::dropDownList('user_address[]', null, ArrayHelper::map($userAddress, 'no', 'title'), ['class' => 'form-control', 'prompt' => Yii::t('common', 'Select one')]) ?>
-                                </div-->
+                                    <?= Html::dropDownList('user_address[]', $value->user_address_no ? $value->user_address_no : null, ArrayHelper::map($userAddress, 'no', 'title'), ['class' => 'form-control', 'prompt' => Yii::t('common', 'Select one'), 'required' => true]) ?>
+                                </div>
                             <?php endif; ?>
                         </td>
                         <td align="center">
