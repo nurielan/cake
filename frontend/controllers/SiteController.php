@@ -374,7 +374,10 @@ class SiteController extends Controller
         $model = OrderConfirm::find()->joinWith('orderList')->where(['order_list.no' => $order_list_no])->one();
         $data['model'] = $model;
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $model->status = 1;
+            $model->update();
+
             Yii::$app->session->setFlash('order-confirm', Yii::t('common', 'Saved'));
 
             return $this->redirect(['site/order-list']);

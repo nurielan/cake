@@ -22,10 +22,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <?php $form = ActiveForm::begin() ?>
+                        <div class="form-group">
+                            <?= Html::label('Order No.', 'order_list_no') ?>
+                            <?= Html::textInput('order_list_no', $model->orderList->no, ['class' => 'form-control', 'disabled' => true]) ?>
+                        </div>
                         <?= $form->field($model, 'via')->textInput(['disabled' => true]) ?>
                         <?= $form->field($model, 'amount')->textInput(['min' => 1, 'type' => 'number']) ?>
                         <?= $form->field($model, 'bank')->textInput(['disabled' => true]) ?>
-                        <?= $form->field($model, 'account_number')->textInput() ?>
+                        <?= $form->field($model, 'account_number')->textInput(['required' => true]) ?>
                         <div class="row">
                             <div class="col-md-6">
                                 <?= Html::a(Yii::t('common', 'Order List'), ['site/order-list'], ['class' => 'btn btn-pink-cake']) ?>
