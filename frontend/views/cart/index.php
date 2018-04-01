@@ -115,13 +115,9 @@ $this->title = Yii::t('common', 'Cart');
                             Rp. <?= number_format($value->getCost(), 0, '.', ',') ?>
                         </td>
                         <td class="chart-center">
-                            <?= Html::beginForm(['cart/remove']) ?>
-                            <?= Html::hiddenInput('cart_position', $key) ?>
-                            <button class="btn btn-pink-cake mar-right-10" type="submit"
-                                    data-confirm="<?= Yii::t('common', 'Are you sure you want to remove this item?') ?>">
+                            <a class="btn btn-pink-cake mar-right-10" href="<?= Url::toRoute(['cart/remove', 'cart_id' => $key]) ?>" data-confirm="<?= Yii::t('common', 'Are you sure you want to remove this item?') ?>" data-method="post">
                                 &times;
-                            </button>
-                            <?= Html::endForm() ?>
+                            </a>
                         </td>
                     </tr>
                     <?= Html::hiddenInput('cart_position[]', $key) ?>

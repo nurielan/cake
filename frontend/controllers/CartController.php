@@ -55,12 +55,13 @@ class CartController extends Controller
         throw new MethodNotAllowedHttpException;
     }
 
-    public function actionRemove()
+    public function actionRemove($cart_id)
     {
         if (Yii::$app->request->isPost) {
-            if (Yii::$app->request->post('cart_position')) {
-                Yii::$app->cart->removeById(Yii::$app->request->post('cart_position'));
-            }
+            //if (Yii::$app->request->post('cart_position')) {
+                //Yii::$app->cart->remove(Yii::$app->request->post('cart_position'));
+                Yii::$app->cart->removeById($cart_id);
+            //}
 
             return $this->redirect(['cart/index']);
         }

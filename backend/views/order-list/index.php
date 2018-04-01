@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ['class' => 'yii\grid\SerialColumn'],
 
                     'no',
-                    [
+                    /*[
                         'class' => 'yii\grid\DataColumn',
                         'attribute' => 'cashier',
                         'content' => function ($model) {
@@ -46,7 +46,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
                             return $userFullname;
                         }
-                    ],
+                    ],*/
+                    'cashier',
                     'quantity',
                     'discount',
                     //'discount_price',

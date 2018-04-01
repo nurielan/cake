@@ -130,6 +130,7 @@ class SignupForm extends Model
         $userConfig->primary_address = $userAddress->no;
         $userConfig->created_at = date('Y-m-d h:i:s');
         $userConfig->updated_at = date('Y-m-d h:i:s');
+        $userConfig->save(false);
         
         //return $user->save() ? $user : null;
         return true;

@@ -225,7 +225,7 @@ class SiteController extends Controller
 
     public function actionOrderList()
     {
-        $data['orderList'] = OrderList::find()->orderBy(['status' => 'ASC', 'created_at' => 'DESC'])->all();
+        $data['orderList'] = OrderList::find()->where(['user_no' => Yii::$app->user->identity->no])->orderBy(['status' => 'ASC', 'created_at' => 'DESC'])->all();
 
         return $this->render('order-list', $data);
     }
@@ -368,10 +368,11 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionOrderConfirm($order_list_no)
+    public function actionOrderConfirm($order_list_no = null)
     {
         $order_list_no = str_replace('-', '/', $order_list_no);
         $model = OrderConfirm::find()->joinWith('orderList')->where(['order_list.no' => $order_list_no])->one();
+        $model->amount = number_format($model->orderList->price, 0);
         $data['model'] = $model;
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {

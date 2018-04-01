@@ -149,5 +149,6 @@ return [
     'Tax' => 'Pajak',
     'Order Confirm' => 'Konfirmasi Pesanan',
     'Saved' => 'Tersimpan',
-    'Payment Confirm' => 'Konfirmasi Pembayaran'
+    'Payment Confirm' => 'Konfirmasi Pembayaran',
+    'Your price order: ' => 'Harga pesanan anda: '
 ];

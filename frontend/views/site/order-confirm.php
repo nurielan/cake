@@ -27,7 +27,9 @@ $this->params['breadcrumbs'][] = $this->title;
                             <?= Html::textInput('order_list_no', $model->orderList->no, ['class' => 'form-control', 'disabled' => true]) ?>
                         </div>
                         <?= $form->field($model, 'via')->textInput(['disabled' => true]) ?>
-                        <?= $form->field($model, 'amount')->textInput(['min' => 1, 'type' => 'number']) ?>
+                        <?= $form->field($model, 'amount', [
+                            'inputTemplate' => '<div class="input-group"><span class="input-group-addon" id="price_addon">Rp</span>{input}</div>'
+                        ])->textInput(['min' => 1, 'type' => 'number', 'value' => null])->hint(Yii::t('common', 'Your price order: ') . 'Rp. ' . $model->amount) ?>
                         <?= $form->field($model, 'bank')->textInput(['disabled' => true]) ?>
                         <?= $form->field($model, 'account_number')->textInput(['required' => true]) ?>
                         <div class="row">
