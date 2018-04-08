@@ -11,27 +11,19 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <section class="checkout-cake">
     <div class="container">
-        <div class="product-tittle">
-            <img alt="Cake-Purple" src="<?= Url::to('@web/cake/images/cake-purple.png') ?>">
-            <h2>
-                <?= $this->title ?>
-            </h2>
-        </div>
         <div class="row" style="margin-bottom: 100px;">
             <div class="col-md-6 col-md-offset-3">
+                <h2 align="center"><?= $this->title ?></h2>
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <?php $form = ActiveForm::begin() ?>
-                        <div class="form-group">
-                            <?= Html::label('Order No.', 'order_list_no') ?>
-                            <?= Html::textInput('order_list_no', $model->orderList->no, ['class' => 'form-control', 'disabled' => true]) ?>
-                        </div>
+                        <?= $form->field($model, 'order_list_no')->textInput(['disabled' => true]) ?>
                         <?= $form->field($model, 'via')->textInput(['disabled' => true]) ?>
                         <?= $form->field($model, 'amount', [
                             'inputTemplate' => '<div class="input-group"><span class="input-group-addon" id="price_addon">Rp</span>{input}</div>'
-                        ])->textInput(['min' => 1, 'type' => 'number', 'value' => null])->hint(Yii::t('common', 'Your price order: ') . 'Rp. ' . $model->amount) ?>
+                        ])->textInput(['min' => 1, 'type' => 'number', 'value' => null])->hint(Yii::t('common', 'Your price order: ') . 'Rp. ' . number_format($orderConfirm->orderList->price, 0)) ?>
                         <?= $form->field($model, 'bank')->textInput(['disabled' => true]) ?>
-                        <?= $form->field($model, 'account_number')->textInput(['required' => true]) ?>
+                        <?= $form->field($model, 'account_number')->textInput() ?>
                         <div class="row">
                             <div class="col-md-6">
                                 <?= Html::a(Yii::t('common', 'Order List'), ['site/order-list'], ['class' => 'btn btn-pink-cake']) ?>

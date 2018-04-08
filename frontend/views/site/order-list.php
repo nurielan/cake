@@ -69,7 +69,15 @@ $this->params['breadcrumbs'][] = $this->title;
                                         ?>
                                     </td>
                                     <td>
-                                        <?= Html::a(Yii::t('common', 'Payment Confirm'), ['site/order-confirm', 'order_list_no' => str_replace('/', '-', $value->no)], ['class' => 'btn btn-pink-cake btn-xs']) ?>
+                                        <?php
+                                        if ($value->orderConfirm->status == 0) {
+                                            echo Html::a(Yii::t('common', 'Payment Confirm'), ['site/order-confirm', 'order_list_no' => str_replace('/', '-', $value->no)], ['class' => 'btn btn-pink-cake btn-xs']);
+                                        } elseif ($value->orderConfirm->status == 1) {
+                                            echo Html::a(Yii::t('common', 'Payment Check'), ['site/order-confirm', 'order_list_no' => str_replace('/', '-', $value->no)], ['class' => 'btn btn-pink-cake btn-xs disabled']);
+                                        } elseif ($value->orderConfirm->status == 2) {
+                                            echo Html::a(Yii::t('common', 'Payment Confirmed'), ['site/order-confirm', 'order_list_no' => str_replace('/', '-', $value->no)], ['class' => 'btn btn-pink-cake btn-xs disabled']);
+                                        }
+                                        ?>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

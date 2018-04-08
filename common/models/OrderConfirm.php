@@ -11,6 +11,7 @@ use Yii;
  * @property string $via
  * @property int $amount
  * @property string $bank
+ * @property string $account_name
  * @property string $account_number
  * @property int $status
  * @property string $created_at
@@ -32,9 +33,10 @@ class OrderConfirm extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['via', 'bank', 'account_name', 'account_number'], 'required'],
             [['amount'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
-            [['via', 'bank', 'account_number'], 'string', 'max' => 255],
+            [['via', 'bank', 'account_name', 'account_number'], 'string', 'max' => 255],
             [['status'], 'string', 'max' => 1],
         ];
     }
@@ -49,6 +51,7 @@ class OrderConfirm extends \yii\db\ActiveRecord
             'via' => Yii::t('common', 'Via'),
             'amount' => Yii::t('common', 'Amount'),
             'bank' => Yii::t('common', 'Bank'),
+            'account_name' => Yii::t('common', 'Account Name'),
             'account_number' => Yii::t('common', 'Account Number'),
             'status' => Yii::t('common', 'Status'),
             'created_at' => Yii::t('common', 'Created At'),

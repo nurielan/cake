@@ -21,7 +21,6 @@ use yii\helpers\Url;
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li class="<?= Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id == 'order-list' ? 'active' : '' ?>"><a href="<?= Url::toRoute(['site/order-list']) ?>"><?= Yii::t('common', 'Order List') ?></a></li>
-                        <li class="<?= Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id == 'order-confirm' ? 'active' : '' ?>"><a href="<?= Url::toRoute(['site/order-confirm']) ?>"><?= Yii::t('common', 'Order Confirm') ?></a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="<?= Yii::$app->controller->id == 'site' && Yii::$app->controller->action->id == 'profile' ? 'active' : '' ?>"><a href="<?= Url::toRoute(['site/profile']) ?>"><?= Yii::t('common', 'Profile') ?></a></li>

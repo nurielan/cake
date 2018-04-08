@@ -10,6 +10,7 @@ use common\models\OrderConfirm;
 use common\models\OrderItem;
 use common\models\OrderList;
 use common\models\UserAddress;
+use frontend\models\OrderConfirmForm;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -368,16 +369,25 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionOrderConfirm($order_list_no = null)
+    public function actionOrderConfirm($order_list_no)
     {
         $order_list_no = str_replace('-', '/', $order_list_no);
-        $model = OrderConfirm::find()->joinWith('orderList')->where(['order_list.no' => $order_list_no])->one();
-        $model->amount = number_format($model->orderList->price, 0);
+        $orderConfirm = OrderConfirm::find()->joinWith('orderList')->where(['order_list.no' => $order_list_no])->one();
+        $model = new OrderConfirmForm;
+        $model->order_list_no = $orderConfirm->orderList->no;
+        $model->via = $orderConfirm->via;
+        $model->amount = number_format($orderConfirm->orderList->price, 0);
+        $model->bank = $orderConfirm->bank;
+        $model->account_name = $orderConfirm->account_name;
+        $model->account_number = $orderConfirm->account_number;
         $data['model'] = $model;
+        $data['orderConfirm'] = $orderConfirm;
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            $model->status = 1;
-            $model->update();
+            $orderConfirm->amount = $model->amount;
+            $orderConfirm->account_number = $model->account_number;
+            $orderConfirm->status = 1;
+            $orderConfirm->update();
 
             Yii::$app->session->setFlash('order-confirm', Yii::t('common', 'Saved'));
 

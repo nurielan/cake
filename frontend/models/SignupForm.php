@@ -56,7 +56,7 @@ class SignupForm extends Model
 
             [['uAAddress', 'uASubdistrict', 'uADistrict', 'uAProvince', 'uAPostalCode', 'uAPhoneNumber'], 'required'],
             [['uAPostalCode'], 'integer'],
-            ['uAPhoneNumber', 'unique', 'targetClass' => '\common\models\UserDetail', 'targetAttribute' => 'phone_number']
+            ['uAPhoneNumber', 'unique', 'targetClass' => '\common\models\UserAddress', 'targetAttribute' => 'phone_number']
         ];
     }
 
@@ -133,6 +133,6 @@ class SignupForm extends Model
         $userConfig->save(false);
         
         //return $user->save() ? $user : null;
-        return true;
+        return $user;
     }
 }

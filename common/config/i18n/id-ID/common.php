@@ -122,7 +122,6 @@ return [
     'Cart' => 'Keranjang',
     'Cart empty' => 'Keranjang kosong',
     'Update Cart' => 'Ubah Keranjang',
-    'Please fill out the following fields to login' => 'Mohon untuk mengisi semua kolom untuk masuk',
     'If you forgot your password you can' => 'Jika anda lupa kata sandi, anda bisa',
     'Remove all items' => 'Buang semua barang',
     'Back to Product' => 'Kembali ke Produk',
@@ -150,5 +149,11 @@ return [
     'Order Confirm' => 'Konfirmasi Pesanan',
     'Saved' => 'Tersimpan',
     'Payment Confirm' => 'Konfirmasi Pembayaran',
-    'Your price order: ' => 'Harga pesanan anda: '
+    'Your price order: ' => 'Harga pesanan anda: ',
+    'Amount below expectation.' => 'Jumlah dibawah ekspektasi',
+    'Payment Check' => 'Pengecekan Pembayaran',
+    'Payment Confirmed' => 'Pembayaran Terkonfirmasi',
+    'Amount' => 'Jumlah',
+    'Account Number' => 'Nomor Rekening',
+    'Account Name' => 'Nama Pemilik Rekening'
 ];

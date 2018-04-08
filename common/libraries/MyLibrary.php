@@ -5,6 +5,7 @@ namespace common\libraries;
 use common\models\ProductBrand;
 use common\models\ProductItem;
 use common\models\ProductPackage;
+use common\models\User;
 use common\models\UserAddress;
 use Yii;
 use yii\data\Pagination;
@@ -136,7 +137,7 @@ class MyLibrary {
     }
 
     public function getAutoNoUser() {
-        $no = UserAddress::find()->max('no');
+        $no = User::find()->max('no');
 
         if (!$no) {
             $newNo = 'USR0000000000001';
@@ -511,7 +512,7 @@ class MyLibrary {
         if (!$no) {
             $newNo = 'ORDRCKE/'. $date .'/0000000000001';
         } else {
-            $oldNo = (int) substr($no, 14, strlen($no));
+            $oldNo = (int) substr($no, 20, strlen($no));
             $addNo = $oldNo + 1;
 
             if ($addNo < 10) {
