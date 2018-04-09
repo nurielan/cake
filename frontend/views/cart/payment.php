@@ -11,14 +11,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <section class="checkout-cake">
     <div class="container">
-        <div class="product-tittle">
-            <img alt="Cake-Purple" src="<?= Url::to('@web/cake/images/cake-purple.png') ?>">
-            <h2>
-                <?= $this->title ?>
-            </h2>
-        </div>
         <div class="row" style="margin-bottom: 100px;">
             <div class="col-md-6 col-md-offset-3">
+                <h2 align="center"><?= $this->title ?></h2>
                 <?= Html::beginForm(['cart/payment-method']) ?>
                 <div class="row">
                     <?php foreach ($bank as $key => $item): ?>

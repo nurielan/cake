@@ -73,6 +73,9 @@ $cartCount = Yii::$app->cart->getCount();
                                         <a href="<?= Url::toRoute(['product/index']) ?>"><?= Yii::t('common', 'Product') ?></a>
                                     </li>
                                     <li>
+                                        <a href="<?= Url::toRoute(['product-custom/index']) ?>"><?= Yii::t('common', 'Product Custom') ?></a>
+                                    </li>
+                                    <li>
                                         <a href="<?= Url::toRoute(['gallery/index']) ?>"><?= Yii::t('common', 'Gallery') ?></a>
                                     </li>
                                     <!--li>
@@ -96,7 +99,7 @@ $cartCount = Yii::$app->cart->getCount();
                             <div class="mega-menu hide">
                                 <div class="tittle-mega">
                                     <h4>
-                                        - Mega Menu -
+                                        <?= Yii::t('common', 'Menu') ?>
                                     </h4>
                                 </div>
                                 <div class="container">
@@ -104,60 +107,40 @@ $cartCount = Yii::$app->cart->getCount();
                                         <div class="col-sm-4">
                                             <ul class="list-mega">
                                                 <li class="bottom-red-border">
-                                                    Blog
+                                                    <?= Yii::$app->name ?>
                                                 </li>
                                                 <li>
-                                                    <a href="blog.html">Blog Left Content</a>
+                                                    <a href="<?= Url::toRoute(['site/index']) ?>"><?= Yii::t('common', 'Home') ?></a>
                                                 </li>
                                                 <li>
-                                                    <a href="blog-right-content.html">Blog Right Content</a>
+                                                    <a href="<?= Url::toRoute(['product/index']) ?>"><?= Yii::t('common', 'Product') ?></a>
                                                 </li>
                                                 <li>
-                                                    <a href="blog-center.html">Blog Center</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <ul class="list-mega">
-                                                <li class="bottom-red-border">
-                                                    Gallery
+                                                    <a href="<?= Url::toRoute(['product-custom/index']) ?>"><?= Yii::t('common', 'Product Custom') ?></a>
                                                 </li>
                                                 <li>
-                                                    <a href="gallery.html">Gallery 3 Column</a>
+                                                    <a href="<?= Url::toRoute(['gallery/index']) ?>"><?= Yii::t('common', 'Gallery') ?></a>
                                                 </li>
+                                                <!--li>
+                                        <a href="<?= Url::toRoute(['blog/index']) ?>"><?= Yii::t('common', 'Blog') ?></a>
+                                    </li-->
+                                                <?php if (Yii::$app->user->isGuest): ?>
+                                                    <li>
+                                                        <a href="<?= Url::toRoute(['site/login']) ?>"><?= Yii::t('common', 'Login') ?></a>
+                                                    </li>
+                                                <?php else: ?>
+                                                    <li>
+                                                        <a href="<?= Url::toRoute(['site/order-list']) ?>"><?= Yii::$app->user->identity->username ?> <i class="glyphicon glyphicon-user"></i></a>
+                                                    </li>
+                                                <?php endif; ?>
                                                 <li>
-                                                    <a href="gallery-4-column.html">Gallery 4 Column</a>
-                                                </li>
-                                                <li>
-                                                    <a href="gallery-dot.html">Gallery With Text</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <ul class="list-mega">
-                                                <li class="bottom-red-border">
-                                                    OTHER PAGEs
-                                                </li>
-                                                <li>
-                                                    <a href="chart-page.html">Chart Page</a>
-                                                </li>
-                                                <li>
-                                                    <a href="product-details-page.html">Product Details</a>
-                                                </li>
-                                                <li>
-                                                    <a href="privacy-policy.html">Privacy Policy</a>
-                                                </li>
-                                                <li>
-                                                    <a href="terms-of-use.html">Terms Of Use</a>
-                                                </li>
-                                                <li>
-                                                    <a href="404.html">404</a>
+                                                    <a href="<?= Url::toRoute(['cart/index']) ?>"><?= $cartCount ?> <i class="glyphicon glyphicon-shopping-cart"></i></a>
                                                 </li>
                                             </ul>
                                         </div>
                                     </div>
                                     <div class="div text-center">
-                                        <button class="btn btn-pink-cake mar-top-20 close-menu">Close Themes</button>
+                                        <button class="btn btn-pink-cake mar-top-20 close-menu"><?= Yii::t('common', 'Close') ?></button>
                                     </div>
                                 </div>
                             </div>
@@ -220,6 +203,8 @@ $cartCount = Yii::$app->cart->getCount();
         } elseif (Yii::$app->controller->id == 'cart' && Yii::$app->controller->action->id == 'complete') {
             echo $content;
         } elseif (Yii::$app->controller->id == 'cart' && Yii::$app->controller->action->id == 'payment-method') {
+            echo $content;
+        } elseif (Yii::$app->controller->id == 'product-custom') {
             echo $content;
         }
         ?>
@@ -320,15 +305,18 @@ $cartCount = Yii::$app->cart->getCount();
                             <li>
                                 <a href="<?= Url::toRoute(['gallery/index']) ?>"><?= Yii::t('common', 'Gallery') ?></a>
                             </li>
+                            <?php if (Yii::$app->user->isGuest): ?>
+                                <li>
+                                    <a href="<?= Url::toRoute(['site/login']) ?>"><?= Yii::t('common', 'Login') ?></a>
+                                </li>
+                            <?php else: ?>
+                                <li>
+                                    <a href="<?= Url::toRoute(['site/order-list']) ?>"><?= Yii::$app->user->identity->username ?> <i class="glyphicon glyphicon-user"></i></a>
+                                </li>
+                            <?php endif; ?>
                             <li>
-                                <a href="<?= Url::toRoute(['site/privacy-policy']) ?>"><?= Yii::t('common', 'Privacy Policy') ?></a>
+                                <a href="<?= Url::toRoute(['cart/index']) ?>"><?= $cartCount ?> <i class="glyphicon glyphicon-shopping-cart"></i></a>
                             </li>
-                            <li>
-                                <a href="<?= Url::toRoute(['site/terms-of-use']) ?>"><?= Yii::t('common', 'Terms of Use') ?></a>
-                            </li>
-                            <!--li>
-                                <a href="<?= Url::toRoute(['blog/index']) ?>"><?= Yii::t('common', 'Blog') ?></a>
-                            </li-->
                         </ul>
                     </div>
                 </div>

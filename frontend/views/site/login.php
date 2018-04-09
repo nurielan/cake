@@ -15,9 +15,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <section>
     <div class="container">
-        <div class="row" style="margin-bottom: 100px;">
+        <div class="row" style="margin-bottom: 100px; margin-top: 50px;">
             <div class="col-md-6 col-md-offset-3">
-                <img alt="Cake-White" src="<?= Url::to('@web/cake/images/cake-white.png') ?>">
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <h1><?= Html::encode($this->title) ?></h1>

@@ -35,7 +35,7 @@ class m180220_074706_create_order_list_table extends Migration
         ]);
 
         //$this->createIndex('i-order_list-cashier', 'order_list', 'cashier', false);
-        $this->createIndex('-order_list-transfer_confirmation', 'order_list', 'transfer_confirmation', false);
+        $this->createIndex('i-order_list-transfer_confirmation', 'order_list', 'transfer_confirmation', false);
     }
 
     /**

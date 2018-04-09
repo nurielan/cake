@@ -155,5 +155,12 @@ return [
     'Payment Confirmed' => 'Pembayaran Terkonfirmasi',
     'Amount' => 'Jumlah',
     'Account Number' => 'Nomor Rekening',
-    'Account Name' => 'Nama Pemilik Rekening'
+    'Account Name' => 'Nama Pemilik Rekening',
+    'Do you want to request custom cake?' => 'Apakah anda ingin memesan cake sesuai keinginan?',
+    'Click here' => 'Klik disini',
+    'Product Custom' => 'Produk Kustom',
+    'Product Custom List' => 'Daftar Produk Kustom',
+    'Create Product Custom' => 'Buat Produk Kustom',
+    'No Product Custom' => 'Tidak ada Produk Kustom',
+    'You should select at least one Product' => 'Anda harus memilih setidaknya satu Produk'
 ];

@@ -86,4 +86,14 @@ return [
             'metode-pembayaran' => "payment-method"
         ]
     ],
+    'product-custom' => [
+        'class' => GUR::className(),
+        'prefix' => 'produk-kustom',
+        'routePrefix' => 'product-custom',
+        'rules' => [
+            'kesalahan' => 'error',
+            '/' => 'index',
+            'hapus/<no>' => 'remove'
+        ]
+    ],
 ];

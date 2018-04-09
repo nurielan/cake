@@ -18,7 +18,7 @@ class m180330_200111_create_order_confirm_table extends Migration
             'amount' => $this->integer()->defaultValue(0),
             'bank' => $this->string()->notNull(),
             'account_name' => $this->string()->notNull(),
-            'account_number' => $this->string()->notNull(),
+            'account_number' => $this->string(),
             'status' => 'TINYINT(1) DEFAULT 0',
             'created_at' => $this->dateTime(),
             'updated_at' => $this->timestamp()

@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\models\ProductCustom;
 use common\models\ProductItem;
 use common\models\UserAddress;
 use Yii;
@@ -44,6 +45,17 @@ class RestDataController extends Controller
             'class' => Response::className(),
             'format' => Response::FORMAT_JSON,
             'data' => $productItems
+        ]);
+    }
+
+    public function actionGetProductCustom($no)
+    {
+        $model = ProductCustom::find()->where(['no' => $no])->asArray->one();
+
+        return Yii::createObject([
+            'class' => Response::className(),
+            'format' => Response::FORMAT_JSON,
+            'data' => $model
         ]);
     }
 }

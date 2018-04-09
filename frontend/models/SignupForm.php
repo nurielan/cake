@@ -115,6 +115,7 @@ class SignupForm extends Model
         $userAddress->no = Yii::$app->myLibrary->getAutoNoUserAddress();
         $userAddress->user_no = $user->no;
         $userAddress->title = 'Alamat 1';
+        $userAddress->name = $userDetail->fullname;
         $userAddress->address = $this->uAAddress;
         $userAddress->subdistrict = $this->uASubdistrict;
         $userAddress->district = $this->uADistrict;

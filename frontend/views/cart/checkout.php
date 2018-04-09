@@ -11,18 +11,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <section class="checkout-cake">
     <div class="container">
-        <div class="product-tittle">
-            <img alt="Cake-Purple" src="<?= Url::to('@web/cake/images/cake-purple.png') ?>">
-            <h2>
-                <?= $this->title ?>
-            </h2>
-        </div>
         <div class="row" style="margin-bottom: 100px;">
             <div class="col-md-12">
 
                 <table align="center">
                     <tr>
-                        <td><h1 align="center"><?= Yii::t('common', 'Detail Order') ?></h1></td>
+                        <td><h1 align="center"><?= Yii::t('common', $this->title) ?></h1></td>
                     </tr>
                     <tr><hr></tr>
                     <tr>

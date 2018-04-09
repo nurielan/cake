@@ -13,7 +13,6 @@ use common\models\CakeOurTeam;
 
 $this->title = Yii::t('common', 'Home');
 
-$cakeIntroText = CakeIntroText::find()->all();
 $productItem = ProductItem::find()->orderBy('created_at DESC')->limit(6)->all();
 $blogItem = BlogItem::find()->orderBy('created_at DESC')->limit(6)->all();
 $cakeWhatWeCan = CakeWhatWeCan::find()->all();
@@ -28,12 +27,6 @@ $cakeOurTeam = CakeOurTeam::find()->all();
         <h2 class="hide">
             &nbsp;
         </h2>
-        <div class="about-content">
-            <img alt="Cake-White" src="<?= Url::to('@web/cake/images/cake-white.png') ?>">
-            <p>
-                <?= $cakeIntroText[0]->description ?>
-            </p>
-        </div>
     </div>
 </section>
 <!-- End About Cake --><!-- Start Product Cake -->
@@ -86,12 +79,6 @@ $cakeOurTeam = CakeOurTeam::find()->all();
                     <?= Html::endForm() ?>
                 </div>
                 <?php endforeach; ?>
-                <!-- Column Tittle -->
-                <div class="col-sm-12">
-                    <p class="text-content text-center">
-                        <?= $cakeIntroText[1]->description ?>
-                    </p>
-                </div>
             </div>
         </div>
     </div>
@@ -239,6 +226,12 @@ $cakeOurTeam = CakeOurTeam::find()->all();
                 </div>
             </div>
             <?php endforeach; ?>
+        </div>
+        <div class="container mar-top-20">
+            <div class="col-md-12" style="text-align: center;">
+                <h2 style="color: #fff;"><?= Yii::t('common', 'Do you want to request custom cake?') ?></h2>
+                <a class="btn btn-pink-cake btn-lg" href="<?= Url::toRoute(['product-custom/index']) ?>"><?= Yii::t('common', 'Click here') ?></a>
+            </div>
         </div>
     </div>
     <div class="triangle-top-no-animate">

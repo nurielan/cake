@@ -2,7 +2,13 @@
 
 namespace common\libraries;
 
+use common\models\BlogCategory;
+use common\models\BlogItem;
+use common\models\BlogTag;
+use common\models\OrderList;
 use common\models\ProductBrand;
+use common\models\ProductCategory;
+use common\models\ProductCustom;
 use common\models\ProductItem;
 use common\models\ProductPackage;
 use common\models\User;
@@ -136,6 +142,17 @@ class MyLibrary {
         return $path;
     }
 
+    public function getProductCustomImage($imagee = null) {
+        if (!$imagee) {
+            $path = Url::to('@web/adminlte/dist/img/no_image.png');
+        } else {
+            $path = Url::to('@web/img/product_custom/thumb/' . $imagee);
+        }
+
+        return $path;
+    }
+
+
     public function getAutoNoUser() {
         $no = User::find()->max('no');
 
@@ -260,7 +277,7 @@ class MyLibrary {
     }
 
     public function getAutoNoProductCategory() {
-        $no = ProductPackage::find()->max('no');
+        $no = ProductCategory::find()->max('no');
 
         if (!$no) {
             $newNo = 'PRDCTCTGRY0000000000001';
@@ -342,7 +359,7 @@ class MyLibrary {
     }
 
     public function getAutoNoProductPackage() {
-        $no = UserAddress::find()->max('no');
+        $no = ProductPackage::find()->max('no');
 
         if (!$no) {
             $newNo = 'PRDCTPKG0000000000001';
@@ -383,7 +400,7 @@ class MyLibrary {
     }
 
     public function getAutoNoBlogCategory() {
-        $no = UserAddress::find()->max('no');
+        $no = BlogCategory::find()->max('no');
 
         if (!$no) {
             $newNo = 'BLGCTGRY0000000000001';
@@ -424,7 +441,7 @@ class MyLibrary {
     }
 
     public function getAutoNoBlogTag() {
-        $no = UserAddress::find()->max('no');
+        $no = BlogTag::find()->max('no');
 
         if (!$no) {
             $newNo = 'BLGTAG0000000000001';
@@ -465,7 +482,7 @@ class MyLibrary {
     }
 
     public function getAutoNoBlogItem() {
-        $no = UserAddress::find()->max('no');
+        $no = BlogItem::find()->max('no');
 
         if (!$no) {
             $newNo = 'BLGITM0000000000001';
@@ -506,7 +523,7 @@ class MyLibrary {
     }
 
     public function getAutoNoOrderList() {
-        $no = ProductBrand::find()->max('no');
+        $no = OrderList::find()->max('no');
         $date = date('d/m/Y');
 
         if (!$no) {
@@ -541,6 +558,47 @@ class MyLibrary {
                 $newNo = 'ORDRCKE/'. $date .'/0' . $addNo;
             } elseif ($addNo < 10000000000000) {
                 $newNo = 'ORDRCKE/'. $date .'/' . $addNo;
+            }
+        }
+
+        return $newNo;
+    }
+
+    public function getAutoNoProductCustom() {
+        $no = ProductCustom::find()->max('no');
+
+        if (!$no) {
+            $newNo = 'PROCUS0000000000001';
+        } else {
+            $oldNo = (int) substr($no, 7, strlen($no));
+            $addNo = $oldNo + 1;
+
+            if ($addNo < 10) {
+                $newNo = 'PROCUS000000000000' . $addNo;
+            } elseif ($addNo < 100) {
+                $newNo = 'PROCUS00000000000' . $addNo;
+            } elseif ($addNo < 1000) {
+                $newNo = 'PROCUS0000000000' . $addNo;
+            } elseif ($addNo < 10000) {
+                $newNo = 'PROCUS000000000' . $addNo;
+            } elseif ($addNo < 100000) {
+                $newNo = 'PROCUS00000000' . $addNo;
+            } elseif ($addNo < 1000000) {
+                $newNo = 'PROCUS0000000' . $addNo;
+            } elseif ($addNo < 10000000) {
+                $newNo = 'PROCUS000000' . $addNo;
+            } elseif ($addNo < 100000000) {
+                $newNo = 'PROCUS00000' . $addNo;
+            } elseif ($addNo < 1000000000) {
+                $newNo = 'PROCUS0000' . $addNo;
+            } elseif ($addNo < 10000000000) {
+                $newNo = 'PROCUS000' . $addNo;
+            } elseif ($addNo < 100000000000) {
+                $newNo = 'PROCUS00' . $addNo;
+            } elseif ($addNo < 1000000000000) {
+                $newNo = 'PROCUS0' . $addNo;
+            } elseif ($addNo < 10000000000000) {
+                $newNo = 'PROCUS' . $addNo;
             }
         }
 

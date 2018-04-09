@@ -21,7 +21,7 @@ $this->title = Yii::t('common', 'Product');
             </h2>
         </div>
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-12">
                 <?php $formSearch = ActiveForm::begin() ?>
                 <div class="form-group">
                     <?= $formSearch->field($search, 'product_name')->widget(Typeahead::className(), [
@@ -66,7 +66,7 @@ $this->title = Yii::t('common', 'Product');
             </div>
         </div>
         <div class="row" style="margin-bottom: 15px;">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-12">
                 <?= Html::beginForm(['product/index']) ?>
                 <div class="row">
                     <div class="col-md-3">
@@ -89,9 +89,8 @@ $this->title = Yii::t('common', 'Product');
                     <div class="col-md-2">
                         <?= Html::input('number', 'price_max', 0, ['class' => 'form-control', 'min' => 0]) ?>
                     </div>
-                    <div class="col-md-1">
-                        <button class="btn btn-pink-cake" type="submit"><i
-                                    class="glyphicon glyphicon-search"></i> <?= Yii::t('common', 'Search') ?>
+                    <div class="col-md-2">
+                        <button class="btn btn-pink-cake btn-block" type="submit"><?= Yii::t('common', 'Search') ?>
                         </button>
                     </div>
                 </div>
