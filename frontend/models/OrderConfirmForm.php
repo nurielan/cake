@@ -14,7 +14,7 @@ class OrderConfirmForm extends Model
         return [
             [['order_list_no', 'via', 'amount', 'bank', 'account_number', 'account_name'], 'required'],
             [['amount', 'account_number'], 'integer'],
-            ['amount', 'validateAmount']
+            //['amount', 'validateAmount']
         ];
     }
 
@@ -24,7 +24,7 @@ class OrderConfirmForm extends Model
             'order_list_no' => Yii::t('common', 'No. Order'),
             'amount' => Yii::t('common', 'Amount'),
             'account_number' => Yii::t('common', 'Account Number'),
-            'account_number' => Yii::t('common', 'Account Name'),
+            'account_name' => Yii::t('common', 'Account Name'),
         ];
     }
 

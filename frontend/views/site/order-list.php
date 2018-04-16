@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Url;
 
-$this->title = Yii::t('common', 'Order List');
+$this->title = Yii::t('common', 'Order');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -19,9 +19,9 @@ $this->params['breadcrumbs'][] = $this->title;
             </h2>
         </div-->
 
-        <?= $this->render('user-menu') ?>
+        <?= $this->render('@frontend/views/layouts/user-menu') ?>
 
-        <div class="row" style="margin-bottom: 100px;">
+        <div class="row">
             <div class="col-md-12">
                 <div class="table-responsive">
                     <table class="table table-condensed table-striped table-hover">

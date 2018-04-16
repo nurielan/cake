@@ -52,5 +52,5 @@ return [
     'params' => $params,
     'language' => 'id-ID',
     //'sourceLanguage' => "en-US",
-    'name' => 'Cake & Bread'
+    'name' => 'Cake Away'
 ];

@@ -5,24 +5,21 @@ use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 
 $this->title = Yii::t('common', 'Product Detail');
+$this->params['breadcrumbs'][] = $this->title;
 
 ?>
 
-<div class="purple-arrow">
-    &nbsp;
-</div>
 <div class="chart-cake">
     <div class="container">
         <?= Html::beginForm(['cart/put']) ?>
-        <div class="row" style="margin-bottom: 100px;">
-            <div class="col-sm-6">
+        <div class="row" style="margin-top: 15px; margin-bottom: 100px;">
+            <div class="col-sm-4">
                 <img alt="<?= $productItem->name ?>"
-                     src="<?= Yii::$app->myLibrary->getProductItemImage($productItem->image1) ?>" width="324"
-                     height="324">
+                     src="<?= Yii::$app->myLibrary->getProductItemImage($productItem->image1) ?>" width="100%">
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-8">
                 <div class="shop-back">
-                    <a href="<?= Url::toRoute(['product/index']) ?>">&lt;-- <?= Yii::t('common', 'Continue Shopping') ?></a>
+                    <a class="btn btn-pink-cake btn-xs" href="<?= Url::toRoute(['product/index']) ?>" style="color: #fff;">< <?= Yii::t('common', 'Back to Product') ?></a>
                 </div>
                 <div class="tittle-chart-cake">
                     <h1 class="pink-color">

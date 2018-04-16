@@ -55,9 +55,16 @@ $this->params['breadcrumbs'][] = $this->title;
                     //'tax_price',
                     'weight',
                     'price:currency',
-                    'user_no',
-                    'user_username',
-                    'user_email:email',
+                    //'user_no',
+                    [
+                        'class' => 'yii\grid\DataColumn',
+                        'attribute' => 'user_username',
+                        'label' => Yii::t('common', 'Customer'),
+                        'content' => function ($model) {
+                            return $model->user_username;
+                        }
+                    ],
+                    //'user_email:email',
                     [
                         'class' => 'yii\grid\DataColumn',
                         'attribute' => 'status',
@@ -79,6 +86,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                     'created_at:datetime',
                     'updated_at:datetime',
+
+                    [
+                        'class' => 'yii\grid\DataColumn',
+                        'label' => Yii::t('common', 'Action'),
+                        'content' => function () {
+                            return '<a class="btn btn-xs"></a>';
+                        }
+                    ],
 
                     ['class' => 'yii\grid\ActionColumn'],
                 ],

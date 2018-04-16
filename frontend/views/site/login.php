@@ -19,9 +19,9 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="col-md-6 col-md-offset-3">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <h1><?= Html::encode($this->title) ?></h1>
+                        <h1 align="center"><?= Html::encode($this->title) ?></h1>
 
-                        <p><?= Yii::t('common', 'Please fill out the following fields to login') ?>:</p>
+                        <p align="center"><?= Yii::t('common', 'Please fill out the following fields to login') ?>:</p>
 
                         <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
 

@@ -5,12 +5,10 @@ use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 
 $this->title = Yii::t('common', 'Cart');
+$this->params['breadcrumbs'][] = $this->title;
 
 ?>
 
-<div class="purple-arrow">
-    &nbsp;
-</div>
 <div class="chart-cake">
     <div class="container">
         <?php
@@ -22,8 +20,8 @@ $this->title = Yii::t('common', 'Cart');
             echo '</ul></div>';
         }
         ?>
-        <?= Html::beginForm(['cart/update']) ?>
-        <table class="table table-bordered table-hover hidden-xs" style="margin-bottom: 100px;">
+        <?= Html::beginForm() ?>
+        <table class="table table-bordered table-hover hidden-xs">
             <thead>
             <tr>
                 <th>
@@ -57,7 +55,7 @@ $this->title = Yii::t('common', 'Cart');
                         <td align="center">
                             <?= $i++ ?>
                         </td>
-                        <td>
+                        <td align="center">
                             <img alt="<?= $value->getProduct()->name ?>" class="img-100px"
                                  src="<?= Yii::$app->myLibrary->getProductItemImage($value->getProduct()->image1) ?>">
                         </td>
@@ -101,12 +99,12 @@ $this->title = Yii::t('common', 'Cart');
                             <?php if (!Yii::$app->user->isGuest): ?>
                                 <div class="form-group">
                                     <?= Html::label(Yii::t('common', 'Send to'), 'user_address') ?>
-                                    <?= Html::dropDownList('user_address[]', $value->user_address_no ? $value->user_address_no : null, ArrayHelper::map($userAddress, 'no', 'title'), ['class' => 'form-control', 'prompt' => Yii::t('common', 'Select one'), 'required' => true]) ?>
+                                    <?= Html::dropDownList('user_address[]', $value->user_address_no ? $value->user_address_no : null, ArrayHelper::map($userAddress, 'no', 'title'), ['class' => 'form-control inpt-user_address-1', 'prompt' => Yii::t('common', 'Select one'), 'required' => true, 'data-position' => $key]) ?>
                                 </div>
                             <?php endif; ?>
                         </td>
                         <td align="center">
-                            <?= Html::input('number', 'qty[]', $value->getQuantity(), ['min' => 0, 'class' => 'form-control']) ?>
+                            <?= Html::input('number', 'qty[]', $value->getQuantity(), ['min' => 0, 'class' => 'form-control inpt-qty-1', 'data-position' => $key]) ?>
                         </td>
                         <td align="right">
                             Rp. <?= number_format($value->getProduct()->price, 0, '.', ',') ?>
@@ -130,23 +128,25 @@ $this->title = Yii::t('common', 'Cart');
                 <tr>
                     <td colspan="7">
                         <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <a href="<?= Url::toRoute(['product/index']) ?>" class="btn btn-pink-cake btn-block"><i
                                             class="fa fa-cubes"></i> <?= Yii::t('common', 'Back to Product') ?></a>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <a href="<?= Url::toRoute(['cart/remove-all']) ?>" class="btn btn-pink-cake btn-block"
                                    data-method="post"
                                    data-confirm="<?= Yii::t('common', 'Are you sure you want to remove all items?') ?>"><i
                                             class="fa fa-trash"></i> <?= Yii::t('common', 'Remove all items') ?></a>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <button class="btn btn-pink-cake btn-block" type="submit"><i
                                             class="fa fa-cart-arrow-down"></i> <?= Yii::t('common', 'Update Cart') ?>
                                 </button>
                             </div>
-                            <div class="col-md-3">
-                                <a href="<?= Url::toRoute(['cart/checkout']) ?>" class="btn btn-pink-cake btn-block"><i
+                        </div>
+                        <div class="row" style="margin-top: 15px; margin-bottom: 15px;">
+                            <div class="col-md-12">
+                                <a href="<?= Url::toRoute(['cart/checkout']) ?>" class="btn btn-pink-cake btn-block btn-checkout"><i
                                             class="fa fa-check"></i> <?= Yii::t('common', 'Checkout') ?></a>
                             </div>
                         </div>
@@ -168,8 +168,8 @@ $this->title = Yii::t('common', 'Cart');
             </tbody>
         </table>
         <?= Html::endForm() ?>
-        <?= Html::beginForm(['cart/update']) ?>
-        <div class="visible-xs" style="margin-bottom: 100px;">
+        <?= Html::beginForm(['cart/update'], 'post', ['id' => 'frm-cart-update']) ?>
+        <div class="visible-xs">
             <?php if ($productItem): ?>
                 <?php $i = 1; ?>
                 <?php foreach ($productItem as $key => $value): ?>
@@ -215,14 +215,20 @@ $this->title = Yii::t('common', 'Cart');
                             <p>
                                 <?= Yii::$app->myLibrary->getFirstParagraph($value->getProduct()->description, true) ?>
                             </p>
+                            <?php if (!Yii::$app->user->isGuest): ?>
+                                <div class="form-group">
+                                    <?= Html::label(Yii::t('common', 'Send to'), 'user_address') ?>
+                                    <?= Html::dropDownList('user_address[]', $value->user_address_no ? $value->user_address_no : null, ArrayHelper::map($userAddress, 'no', 'title'), ['class' => 'form-control inpt-user_address-2', 'prompt' => Yii::t('common', 'Select one'), 'required' => true, 'data-position' => $key]) ?>
+                                </div>
+                            <?php endif; ?>
                         </div>
-                        <div class="top-cake-img">
+                        <div class="top-cake-img" align="center">
                             <img alt="<?= $value->getProduct()->name ?>" class="img-150px"
                                  src="<?= Yii::$app->myLibrary->getProductItemImage($value->getProduct()->image1) ?>">
                         </div>
                         <div class="top-cake-no">
                             <?= Html::label(Yii::t('common', 'Quantity'), 'number') ?> :
-                            <?= Html::input('number', 'qty[]', $value->getQuantity(), ['min' => 0, 'class' => 'form-control']) ?>
+                            <?= Html::input('number', 'qty[]', $value->getQuantity(), ['min' => 0, 'class' => 'form-control inpt-qty-2', 'data-position' => $key]) ?>
                         </div>
                         <div class="top-cake-no">
                             <?= Html::label(Yii::t('common', 'Price')) ?> :
@@ -233,15 +239,12 @@ $this->title = Yii::t('common', 'Cart');
                             Rp. <?= number_format($value->getCost(), 0, '.', ',') ?>
                         </div>
                         <div class="top-cake-no" align="center">
-                            <?= Html::beginForm(['cart/remove']) ?>
-                            <?= Html::hiddenInput('cart_position', $key) ?>
-                            <button class="btn btn-pink-cake mar-right-10" type="submit"
-                                    data-confirm="<?= Yii::t('common', 'Are you sure you want to remove this item?') ?>">
+                            <a class="btn btn-pink-cake mar-right-10" href="<?= Url::toRoute(['cart/remove', 'cart_id' => $key]) ?>" data-confirm="<?= Yii::t('common', 'Are you sure you want to remove this item?') ?>" data-method="post">
                                 &times;
-                            </button>
-                            <?= Html::endForm() ?>
+                            </a>
                         </div>
                     </div>
+                    <?= Html::hiddenInput('cart_position[]', $key) ?>
                 <?php endforeach; ?>
                 <div class="top-cake-button text-center">
                     <!--button class="btn btn-pink-cake mar-right-10">Checkout</button-->
@@ -255,7 +258,7 @@ $this->title = Yii::t('common', 'Cart');
                         <button class="btn btn-pink-cake btn-block" type="submit"><i
                                     class="fa fa-cart-arrow-down"></i> <?= Yii::t('common', 'Update Cart') ?>
                         </button>
-                        <a href="<?= Url::toRoute(['cart/checkout']) ?>" class="btn btn-pink-cake btn-block"><i
+                        <a href="<?= Url::toRoute(['cart/checkout']) ?>" class="btn btn-pink-cake btn-block btn-checkout"><i
                                     class="fa fa-check"></i> <?= Yii::t('common', 'Checkout') ?></a>
                     </div>
                 </div>

@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <div class="row">
                 <div class="col-md-12">
-                    <div class="pagination-wrap pull-right">
+                    <div class="pagination-wrap" align="center">
                         <?= Yii::$app->myLibrary->linkPager($pagination) ?>
                     </div>
                 </div>

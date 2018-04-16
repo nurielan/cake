@@ -6,9 +6,14 @@ use backend\models\ProfileAddressForm;
 use backend\models\ProfileConfigAddressForm;
 use backend\models\ProfilePasswordForm;
 use backend\models\ProfileSettingsForm;
+use common\models\CakeOurTeam;
+use common\models\CakeProductItemHighlight;
+use common\models\CakeWhatWeCan;
 use common\models\OrderConfirm;
 use common\models\OrderItem;
 use common\models\OrderList;
+use common\models\ProductItem;
+use common\models\ProductPackage;
 use common\models\UserAddress;
 use frontend\models\OrderConfirmForm;
 use Yii;
@@ -29,6 +34,13 @@ use yii\web\UploadedFile;
  */
 class SiteController extends Controller
 {
+    public function init()
+    {
+        parent::init();
+
+        $this->layout = 'main-0';
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -83,7 +95,15 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $data['title'] = Yii::t('common', 'Index');
+        $data['productItemHighlight'] = CakeProductItemHighlight::find()->orderBy('created_at DESC')->all();
+        $data['productItem'] = ProductItem::find()->orderBy('created_at DESC')->limit(6)->all();
+        $data['whatWeCan'] = CakeWhatWeCan::find()->all();
+        $data['productPackage'] = ProductPackage::find()->orderBy('created_at DESC')->limit(4)->all();
+        $data['ourTeam'] = CakeOurTeam::find()->all();
+        $data['cartCount'] = Yii::$app->cart->getCount();
+
+        return $this->renderPartial('index-0', $data);
     }
 
     /**
@@ -376,7 +396,7 @@ class SiteController extends Controller
         $model = new OrderConfirmForm;
         $model->order_list_no = $orderConfirm->orderList->no;
         $model->via = $orderConfirm->via;
-        $model->amount = number_format($orderConfirm->orderList->price, 0);
+        //$model->amount = number_format($orderConfirm->orderList->price);
         $model->bank = $orderConfirm->bank;
         $model->account_name = $orderConfirm->account_name;
         $model->account_number = $orderConfirm->account_number;
@@ -385,9 +405,10 @@ class SiteController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $orderConfirm->amount = $model->amount;
+            $orderConfirm->account_name = $model->account_name;
             $orderConfirm->account_number = $model->account_number;
             $orderConfirm->status = 1;
-            $orderConfirm->update();
+            $orderConfirm->update(false);
 
             Yii::$app->session->setFlash('order-confirm', Yii::t('common', 'Saved'));
 

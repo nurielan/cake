@@ -642,7 +642,7 @@ class MyLibrary {
 
     function linkPager($pagination) {
         return LinkPager::widget([
-            'pagination' => $pagination
+            'pagination' => $pagination,
         ]);
     }
 }

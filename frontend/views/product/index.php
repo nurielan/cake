@@ -8,19 +8,13 @@ use yii\bootstrap\ActiveForm;
 use yii\helpers\ArrayHelper;
 
 $this->title = Yii::t('common', 'Product');
+$this->params['breadcrumbs'][] = $this->title;
 
 ?>
 
 <section class="product-cake">
     <div class="container">
-        <!-- Product Tittle -->
-        <div class="product-tittle">
-            <img alt="Cake-Purple" src="<?= Url::to('@web/cake/images/cake-purple.png') ?>">
-            <h2>
-                <?= Yii::t('common', 'Product') ?>
-            </h2>
-        </div>
-        <div class="row">
+        <div class="row" style="margin-top: 15px;">
             <div class="col-md-12">
                 <?php $formSearch = ActiveForm::begin() ?>
                 <div class="form-group">
@@ -130,7 +124,7 @@ $this->title = Yii::t('common', 'Product');
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="wrap-bottom-cake">
+                                        <div class="wrap-bottom-cake" style="height: 128px; overflow: hidden;">
                                             <p>
                                                 <?= Yii::$app->myLibrary->getFirstParagraph($pIItem->description, true) ?>
                                             </p>

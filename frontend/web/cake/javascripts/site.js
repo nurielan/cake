@@ -119,4 +119,44 @@ $(document).ready(function () {
     };
 
     $('.bootstrap-textarea').wysihtml5();
+
+    inptUserAddress1 = $('.inpt-user_address-1');
+    inptUserAddress2 = $('.inpt-user_address-2');
+    inptQty1 = $('.inpt-qty-1');
+    inptQty2 = $('.inpt-qty-2');
+
+    inptUserAddress1.change(function () {
+        $('.inpt-user_address-2[data-position="' + $(this).data('position') + '"]').val($(this).val());
+
+        //swal($('.inpt-user_address-2[data-position="' + $(this).data('position') + '"]').val());
+    });
+
+    inptQty1.change(function () {
+        $('.inpt-qty-2[data-position="' + $(this).data('position') + '"]').val($(this).val());
+
+        //swal($('.inpt-qty-2[data-position="' + $(this).data('position') + '"]').val());
+    });
+
+    $('.btn-checkout').click(function () {
+        burlCheckout = baseUrl + '/cart/checkout';
+        burlCartUpdate = baseUrl + '/cart/update';
+        frmCartUpdate = $('#frm-cart-update');
+
+        $.ajax({
+            url: burlCartUpdate,
+            type: 'post',
+            data: frmCartUpdate.serialize(),
+            beforeSend: function () {
+                swal('Please wait...');
+            },
+            success: function (result) {
+                window.location = burlCheckout;
+            },
+            error: function (xhr) {
+                swal(xhr + ' ' + xhr.statusText);
+            },
+        });
+
+        return false;
+    });
 });
