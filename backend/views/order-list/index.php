@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\OrderListSearch */
@@ -79,6 +80,23 @@ $this->params['breadcrumbs'][] = $this->title;
                                 $status = '<label class="label label-info">' . Yii::t('common', 'Sending Order') . '</label>';
                             } elseif ($model->status == 4) {
                                 $status = '<label class="label label-success">' . Yii::t('common', 'Order Sent') . '</label>';
+                            } elseif ($model->status == 10) {
+                                $status = '<label class="label label-danger">' . Yii::t('common', 'Order Rejected') . '</label>';
+                            }
+
+                            return $status;
+                        }
+                    ],
+                    [
+                        'class' => 'yii\grid\DataColumn',
+                        'label' => Yii::t('common', 'Already Paid'),
+                        'content' => function ($model) {
+                            if ($model->orderConfirm->status == 0) {
+                                $status = '<label class="label label-danger">' . Yii::t('common', 'No') . '</label>';
+                            } elseif ($model->orderConfirm->status == 1) {
+                                $status = '<label class="label label-warning">' . Yii::t('common', 'Check') . '</label>';
+                            } elseif ($model->orderConfirm->status == 2) {
+                                $status = '<label class="label label-success">' . Yii::t('common', 'Yes') . '</label>';
                             }
 
                             return $status;
@@ -90,12 +108,22 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'class' => 'yii\grid\DataColumn',
                         'label' => Yii::t('common', 'Action'),
-                        'content' => function () {
-                            return '<a class="btn btn-xs"></a>';
+                        'content' => function ($model) {
+                            if ($model->status == 10) {
+                                $url = '<a href="' . Url::toRoute(['order-list/status', 'no' => str_replace('/', '-', $model->no), 'action' => 'unban']) . '"><i class="fa fa-thumbs-up"></i></a>';
+                            } elseif ($model->status == 0) {
+                                $url = '<a href="' . Url::toRoute(['order-list/status', 'no' => str_replace('/', '-', $model->no), 'action' => 'up']) . '"><i class="fa fa-arrow-circle-up"></i></a>&nbsp;<a href="' . Url::toRoute(['order-list/status', 'no' => str_replace('/', '-', $model->no), 'action' => 'ban']) . '"><i class="fa fa-ban"></i></a>';
+                            } elseif ($model->status == 4) {
+                                $url = '<a href="' . Url::toRoute(['order-list/status', 'no' => str_replace('/', '-', $model->no), 'action' => 'down']) . '"><i class="fa fa-arrow-circle-down"></i></a>&nbsp;<a href="' . Url::toRoute(['order-list/status', 'no' => str_replace('/', '-', $model->no), 'action' => 'ban']) . '"><i class="fa fa-ban"></i></a>';
+                            } else {
+                                $url = '<a href="' . Url::toRoute(['order-list/status', 'no' => str_replace('/', '-', $model->no), 'action' => 'down']) . '"><i class="fa fa-arrow-circle-down"></i></a>&nbsp;<a href="' . Url::toRoute(['order-list/status', 'no' => str_replace('/', '-', $model->no), 'action' => 'up']) . '"><i class="fa fa-arrow-circle-up"></i></a>&nbsp;<a href="' . Url::toRoute(['order-list/status', 'no' => str_replace('/', '-', $model->no), 'action' => 'ban']) . '"><i class="fa fa-ban"></i></a>';
+                            }
+
+                            return $url;
                         }
                     ],
 
-                    ['class' => 'yii\grid\ActionColumn'],
+                    ['class' => 'yii\grid\ActionColumn', 'visibleButtons' => ['view', 'delete']],
                 ],
                 'tableOptions' => [
                     'class' => 'table table-striped table-bordered table-condensed table-hover'

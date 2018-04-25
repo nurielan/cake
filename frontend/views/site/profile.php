@@ -9,12 +9,8 @@ $this->title = Yii::t('common', 'Profile');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<section class="about-cake">
+<section class="profile-cake">
     <div class="container">
-        <h2 class="hide">
-            &nbsp;
-        </h2>
-
         <?= $this->render('@frontend/views/layouts/user-menu') ?>
 
         <div class="row">
@@ -74,6 +70,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <li><a href="#password" data-toggle="tab"><?= Yii::t('common', 'Password') ?></a></li>
                                 <li><a href="#address" data-toggle="tab"><?= Yii::t('common', 'Address') ?></a></li>
                             </ul>
+                            <br>
                             <div class="tab-content">
                                 <div class="tab-pane active" id="settings">
                                     <?php

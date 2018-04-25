@@ -17,6 +17,7 @@ class m180330_200111_create_order_confirm_table extends Migration
             'via' => $this->string()->notNull(),
             'amount' => $this->integer()->defaultValue(0),
             'bank' => $this->string()->notNull(),
+            'bank_id' => 'INT UNSIGNED',
             'account_name' => $this->string()->notNull(),
             'account_number' => $this->string(),
             'status' => 'TINYINT(1) DEFAULT 0',

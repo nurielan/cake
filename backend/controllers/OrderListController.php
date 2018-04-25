@@ -2,10 +2,13 @@
 
 namespace backend\controllers;
 
+use Barryvdh\DomPDF\ServiceProvider;
+use common\models\Bank;
 use common\models\User;
 use Yii;
 use common\models\OrderList;
 use common\models\OrderListSearch;
+use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -63,8 +66,11 @@ class OrderListController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'bank' => Bank::findOne($model->orderConfirm->bank_id)
         ]);
     }
 
@@ -113,10 +119,50 @@ class OrderListController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = OrderList::findOne($id)) !== null) {
+        if (($model = OrderList::find()->where(['or', ['id' => $id], ['no' => $id]])->one()) !== null) {
             return $model;
         }
 
         throw new NotFoundHttpException(Yii::t('common', 'The requested page does not exist.'));
+    }
+
+    public function actionStatus($no, $action)
+    {
+        $noo = str_replace('-', '/', $no);
+        $model = OrderList::findOne(['no' => $noo]);
+        $orderConfirm = $model->orderConfirm;
+
+        if ($model->status == -1) {
+            $model->status == 0;
+        } elseif ($model->status == 5) {
+            $model->status == 4;
+        }
+
+        $status_old = $model->status;
+
+        if ($model) {
+            switch ($action) {
+                case 'up' : $status_new = $model->status + 1; $orderConfirm->status = 2; $orderConfirm->update(false); break;
+                case 'down' : $status_new = $model->status - 1; break;
+                case 'ban' : $status_new = 10; break;
+                case 'unban' : $status_new = 0; break;
+                default : $status_new = $model->status; break;
+            }
+
+            $model->status = $status_new;
+            $model->update(false);
+        }
+
+        return $this->redirect(['order-list/index']);
+    }
+
+    public function actionPrint($id)
+    {
+        $no = str_replace('-', '/', $id);
+        $model = $this->findModel($no);
+        $bank = Bank::findOne($model->orderConfirm->bank_id);
+
+        return $this->renderPartial('invoice', ['model' => $model, 'bank' => $bank]);
+        //print_r($model);
     }
 }

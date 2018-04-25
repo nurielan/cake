@@ -35,8 +35,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                 </p>
                             </td>
                             <td style="vertical-align: middle;">
-                                <input type="radio" name="bank_name"
-                                       value="<?= $item->name ?>" <?= $key == 0 ? 'checked' : '' ?>>
+                                <input type="radio" name="bank_id"
+                                       value="<?= $item->id ?>" <?= $key == 0 ? 'checked' : '' ?>>
                             </td>
                         </tr>
                     <?php endforeach; ?>

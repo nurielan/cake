@@ -96,7 +96,7 @@ class SignupForm extends Model
         $user->username = $this->username;
         $user->email = $this->email;
         $user->setPassword($this->password);
-        $user->role = 3;
+        $user->role = 6;
         $user->status = 11;
         $user->generateAuthKey();
         $user->created_at = date('Y-m-d h:i:s');

@@ -30,7 +30,8 @@ return [
             'profil' => 'profile',
             'barang-pesanan/<order_list_no>' => 'order-item',
             'konfirmasi-pesanan/<order_list_no>' => 'order-confirm',
-            'konfirmasi-pesanan' => 'order-confirm'
+            'konfirmasi-pesanan' => 'order-confirm',
+            'cetak/<id>' => 'print'
         ]
     ],
     'gallery' => [

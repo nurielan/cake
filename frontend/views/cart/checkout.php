@@ -76,7 +76,6 @@ $this->params['breadcrumbs'][] = $this->title;
                                             <td colspan="4"><b>Total</b></td>
                                             <td align="right">
                                                 Rp. <?= number_format(Yii::$app->cart->getCost(), 0, '.', ',') ?></td>
-                                            <td></td>
                                         </tr>
                                         </tbody>
                                     </table>

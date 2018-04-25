@@ -160,13 +160,15 @@ class CartController extends Controller
         }
 
         $data['bank'] = Bank::find()->all();
+        $bank = Bank::findOne(['id' => Yii::$app->request->post('bank_id')]);
 
         if (Yii::$app->request->isPost) {
             # Order Confirm
             $orderConfirm = new OrderConfirm;
             $orderConfirm->via = 'Bank Transfer';
             $orderConfirm->amount = 0;
-            $orderConfirm->bank = Yii::$app->request->post('bank_name');
+            $orderConfirm->bank = $bank->name;
+            $orderConfirm->bank_id = $bank->id;
             $orderConfirm->account_number = null;
             $orderConfirm->status = 0;
             $orderConfirm->created_at = date('Y-m-d h:i:s');
@@ -236,6 +238,11 @@ class CartController extends Controller
             Yii::$app->session->remove('order_list_no');
             Yii::$app->session->remove('quantities');
             Yii::$app->cart->removeAll();
+
+            Yii::$app->mailer->compose('payment', [
+                'bank' => $bank,
+                'orderList' => $orderList,
+            ])->setFrom('no-reply@cakeaway.id')->setTo(Yii::$app->user->identity->email)->setSubject(Yii::$app->name . ': ' . Yii::t('common', 'Payment'))->send();
 
             return $this->redirect(['site/order-list']);
         }

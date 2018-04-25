@@ -65,6 +65,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                             echo '<label class="label label-info">' . Yii::t('common', 'Sending Order') . '</label>';
                                         } elseif ($value->status == 4) {
                                             echo '<label class="label label-success">' . Yii::t('common', 'Order Sent') . '</label>';
+                                        } elseif ($value->status == 10) {
+                                            echo '<label class="label label-danger">' . Yii::t('common', 'Order Rejected') . '</label>';
                                         }
                                         ?>
                                     </td>

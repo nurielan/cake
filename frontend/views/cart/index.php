@@ -13,14 +13,16 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="container">
         <?php
         if (Yii::$app->session->hasFlash('no_user_address')) {
-            echo '<div class="alert alert-info"><ul>' . Yii::t('common', 'Product below has no address yet') . ':';
+            echo '<div class="alert alert-warning">';
+            echo Yii::t('common', 'Product below has no address yet') . ':<br>.';
+            echo '<ol type="1">';
             foreach (Yii::$app->session->getFlash('no_user_address') as $flash) {
-                echo '<li>' . $flash . '</li>';
+                echo '<li><strong>' . $flash . '</strong></li>';
             }
-            echo '</ul></div>';
+            echo '</ol></div>';
         }
         ?>
-        <?= Html::beginForm() ?>
+        <?= Html::beginForm(['cart/update'], 'post', ['id' => 'frm-cart-update']) ?>
         <table class="table table-bordered table-hover hidden-xs">
             <thead>
             <tr>

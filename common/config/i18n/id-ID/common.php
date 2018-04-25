@@ -92,6 +92,7 @@ return [
     'Processing Order' => 'Pemrosesan Pesanan',
     'Sending Order' => 'Pengiriman Pesanan',
     'Order Sent' => 'Pesanan Terkirim',
+    'Order Rejected' => 'Pesanan Ditolak',
     'Cashier' => 'Kasir',
     'Quantity' => 'Jumlah',
     'Create Order List' => 'Buat Daftar Pesanan',
@@ -168,5 +169,19 @@ return [
     'No Product Custom' => 'Tidak ada Produk Kustom',
     'You should select at least one Product' => 'Anda harus memilih setidaknya satu Produk',
     'Back to Product' => 'Kembali ke Produk',
-    'Action' => 'Aksi'
+    'Action' => 'Aksi',
+    'Note' => 'Catatan',
+    'This page has been enhanced for printing. Click the print button at the bottom of the invoice to test.' => 'Halaman ini telah ditingkatkan untuk pencetakan. Klik tombol cetak di bagian bawah faktur untuk menguji.',
+    'Date' => 'Tanggal',
+    'From' => 'Dari',
+    'To' => 'Ke',
+    'Please make payment by transfer to account below' => 'Mohon segera lakukan pembayaran dengan mentransfer ke rekening di bawah ini',
+    'Already Paid' => 'Sudah Bayar',
+    'No' => 'Tidak',
+    'Check' => 'Cek',
+    'Yes' => 'Ya',
+    'Welcome to Cake Away. You can directly login by clicking the button below.' => 'Selamat datang di Cake Away. Anda bisa langsung melakukan login dengan meng-klik tombol di bawah ini.',
+    'Account' => 'Akun',
+    'Amount Due' => 'Jumlah Terutang',
+    'Print' => 'Cetak'
 ];

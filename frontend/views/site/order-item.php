@@ -76,7 +76,6 @@ $this->params['breadcrumbs'][] = $this->title;
                                             <td colspan="4"><b>Total</b></td>
                                             <td align="right">
                                                 Rp. <?= number_format($orderList->price, 0, '.', ',') ?></td>
-                                            <td></td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -108,8 +107,13 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12" align="center">
+            <div class="col-md-6" align="left">
                 <?= Html::a(Yii::t('common', 'Order List'), ['site/order-list'], ['class' => 'btn btn-pink-cake']) ?>
+            </div>
+
+            <div class="col-md-6" align="right">
+                <?= Html::a(Yii::t('common', 'Print'), ['site/print', 'id' => str_replace('/', '-', $orderList->no)], ['class' => 'btn btn-pink-cake', 'target' => '_blank']) ?>
+            </div>
         </div>
     </div>
 </section>

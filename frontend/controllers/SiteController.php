@@ -6,6 +6,7 @@ use backend\models\ProfileAddressForm;
 use backend\models\ProfileConfigAddressForm;
 use backend\models\ProfilePasswordForm;
 use backend\models\ProfileSettingsForm;
+use common\models\Bank;
 use common\models\CakeOurTeam;
 use common\models\CakeProductItemHighlight;
 use common\models\CakeWhatWeCan;
@@ -86,6 +87,15 @@ class SiteController extends Controller
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
         ];
+    }
+
+    public function actionTest()
+    {
+        $orderList = OrderList::find()->asArray()->one();
+        $user = \common\models\User::findOne(3);
+
+        //Yii::$app->mailer->compose('payment', $orderList)->setFrom('no-reply@cakeaway.id')->setTo('customer.test@cakeaway.id')->setSubject('E-Mail Testing')->send();
+        Yii::$app->mailer->compose('signup', ['user' => $user])->setFrom('no-reply@cakeaway.id')->setTo($user->email)->setSubject(Yii::$app->name . ': ' . Yii::t('common', 'Signup'))->send();
     }
 
     /**
@@ -184,6 +194,8 @@ class SiteController extends Controller
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
+                Yii::$app->mailer->compose('signup', ['user' => $user])->setFrom('no-reply@cakeaway.id')->setTo($user->email)->setSubject(Yii::$app->name . ': ' . Yii::t('common', 'Signup'))->send();
+
                 if (Yii::$app->getUser()->login($user)) {
                     return $this->goBack();
                 }
@@ -416,5 +428,15 @@ class SiteController extends Controller
         }
 
         return $this->render('order-confirm', $data);
+    }
+
+    public function actionPrint($id)
+    {
+        $no = str_replace('-', '/', $id);
+        $model = OrderList::findOne(['no' => $no]);
+        $bank = Bank::findOne($model->orderConfirm->bank_id);
+
+        return $this->renderPartial('invoice', ['model' => $model, 'bank' => $bank]);
+        //print_r($model);
     }
 }

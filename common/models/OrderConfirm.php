@@ -34,10 +34,10 @@ class OrderConfirm extends \yii\db\ActiveRecord
     {
         return [
             [['via', 'bank', 'account_name', 'account_number'], 'required'],
-            [['amount'], 'integer'],
+            [['amount', 'bank_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['via', 'bank', 'account_name', 'account_number'], 'string', 'max' => 255],
-            [['status'], 'string', 'max' => 1],
+            [['status', 'removeImage'], 'string', 'max' => 1],
         ];
     }
 
@@ -56,6 +56,7 @@ class OrderConfirm extends \yii\db\ActiveRecord
             'status' => Yii::t('common', 'Status'),
             'created_at' => Yii::t('common', 'Created At'),
             'updated_at' => Yii::t('common', 'Updated At'),
+            'bank_id' => Yii::t('common', 'Bank ID'),
         ];
     }
 

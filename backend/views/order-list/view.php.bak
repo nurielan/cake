@@ -1,0 +1,97 @@
+<?php
+
+use yii\helpers\Html;
+use yii\widgets\DetailView;
+
+/* @var $this yii\web\View */
+/* @var $model common\models\OrderList */
+
+$this->title = $model->id;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('common', 'Order Lists'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
+?>
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            <?= Html::encode($this->title) ?>
+        </h1>
+        <?= $this->render('@backend/views/layouts/breadcrumb.php') ?>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="order-list-view">
+
+            <p>
+                <?= Html::a(Yii::t('common', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+                <?= Html::a(Yii::t('common', 'Delete'), ['delete', 'id' => $model->id], [
+                    'class' => 'btn btn-danger',
+                    'data' => [
+                        'confirm' => Yii::t('common', 'Are you sure you want to delete this item?'),
+                        'method' => 'post',
+                    ],
+                ]) ?>
+            </p>
+
+            <?= DetailView::widget([
+                'model' => $model,
+                'attributes' => [
+                    'id',
+                    'no',
+                    [
+                        'attribute' => 'cashier',
+                        /*'value' => function ($model) {
+                            if ($model->user) {
+                                $userFullname = $model->user->userDetail->fullname;
+                            } else {
+                                $userFullname = Yii::t('common', 'No User');
+                            }
+
+                            return $userFullname;
+                        }*/
+                        'value' => Yii::t('common', 'Cashier')
+                    ],
+                    'quantity',
+                    'discount',
+                    'discount_price:currency',
+                    'tax',
+                    'tax_price:currency',
+                    'weight',
+                    'price:currency',
+                    'user_no',
+                    'user_username',
+                    'user_email:email',
+                    'user_image',
+                    'user_role',
+                    [
+                        'attribute' => 'status',
+                        'value' => function ($model) {
+                            if ($model->status == 0) {
+                                $status = Yii::t('common', 'Ordered');
+                            } elseif ($model->status == 1) {
+                                $status = Yii::t('common', 'Checking Order');
+                            } elseif ($model->status == 2) {
+                                $status = Yii::t('common', 'Processing Order');
+                            } elseif ($model->status == 3) {
+                                $status = Yii::t('common', 'Sending Order');
+                            } elseif ($model->status == 4) {
+                                $status = Yii::t('common', 'Order Sent');
+                            }  elseif ($model->status == 10) {
+                                $status = Yii::t('common', 'Order Rejected');
+                            }
+
+                            return $status;
+                        }
+                    ],
+                    'created_at:datetime',
+                    'updated_at:datetime',
+                ],
+            ]) ?>
+
+        </div>
+    </section>
+    <!-- /.content -->
+</div>

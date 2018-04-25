@@ -3,7 +3,7 @@ use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
-$this->title = Yii::t('common', 'Create Product Custom');
+$this->title = Yii::t('common', 'Product Custom');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
