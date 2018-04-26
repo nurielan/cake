@@ -23,7 +23,7 @@ return [
         ],
         'session' => [
             // this is the name of the session cookie used for login on the backend
-            'class' => 'yii\web\DbSession',
+            'class' => 'yii\web\Session',
             'name' => 'advanced-backend-cake',
         ],
         'log' => [

@@ -91,4 +91,30 @@ $(document).ready(function () {
     $('#input_image').change(function () {
         filePreview(this);
     });
+
+    function imagePreviews(input, no) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#image_thumb' + no).attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $('.input_images').change(function () {
+        imagePreviews(this, $(this).data('no'));
+    });
+
+    yii.confirm = function (message, ok, cancel) {
+        swal({
+            title: message,
+            type: 'warning',
+            showCancelButton: true,
+            closeOnConfirm: true,
+            allowOutsideClick: false,
+        }, ok);
+    };
+
+    $('.bootstrap-textarea').wysihtml5();
 });

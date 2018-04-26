@@ -26,7 +26,7 @@ class m180303_092017_create_product_package_image_table extends Migration
             'updated_at' => $this->timestamp()
         ]);
 
-        $this->createIndex('i-product_package_image-product_package_no', 'product_item_image', 'product_package_no', false);
+        $this->createIndex('i-product_package_image-product_package_no', 'product_package_image', 'product_package_no', false);
     }
 
     /**

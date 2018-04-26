@@ -6,22 +6,38 @@
 /* @var $exception Exception */
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 $this->title = $name;
 ?>
-<div class="site-error">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <div class="alert alert-danger">
-        <?= nl2br(Html::encode($message)) ?>
+<!-- Start 404 Page -->
+<section class="404">
+    <div class="container">
+        <div class="content-404" style="margin-bottom: 100px;">
+            <ul>
+                <li>
+                    4
+                </li>
+                <li>
+                    <?= Html::img('@web/cake/images/404.png', ['alt' => '404']) ?>
+                </li>
+                <li>
+                    4
+                </li>
+            </ul>
+            <div class="page-header text-center">
+                <h3 class="text-center">
+                    <?= Html::encode($this->title) ?>
+                </h3>
+                <p>
+                    <?= nl2br(Html::encode($message)) ?>
+                </p>
+                <form action="<?= Url::toRoute(['site/index']) ?>">
+                    <button class="btn btn-orange-cake mar-right-10" type="submit"><?= Yii::t('common', 'Back to Home') ?></button>
+                </form>
+            </div>
+        </div>
     </div>
-
-    <p>
-        The above error occurred while the Web server was processing your request.
-    </p>
-    <p>
-        Please contact us if you think this is a server error. Thank you.
-    </p>
-
-</div>
+</section>
+<!-- End 404 Page -->

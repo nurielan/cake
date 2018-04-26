@@ -23,4 +23,17 @@ return [
             'user-address/<noid>' => 'user-address'
         ]
     ],
+    'order-list' => [
+        'class' => GUR::className(),
+        'prefix' => 'daftar-pesanan',
+        'routePrefix' => 'order-list',
+        'rules' => [
+            '' => 'index',
+            'lihat/<id>' => 'view',
+            'ubah/<id>' => 'update',
+            'hapus/<id>' => 'delete',
+            'status/no/<no>/aksi/<action>' => 'status',
+            'cetak/<id>' => 'print'
+        ]
+    ]
 ];

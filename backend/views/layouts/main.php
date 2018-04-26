@@ -21,7 +21,7 @@ AdminLteAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
-<body class="hold-transition skin-blue layout-boxed sidebar-mini">
+<body class="hold-transition skin-purple-light layout-boxed sidebar-mini">
 <?php $this->beginBody() ?>
 
 <!-- Site wrapper -->

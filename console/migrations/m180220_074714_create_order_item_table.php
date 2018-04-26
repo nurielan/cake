@@ -46,7 +46,7 @@ class m180220_074714_create_order_item_table extends Migration
             'user_address_province' => $this->string(64)->notNull(),
             'user_address_province_no' => $this->string(24),
             'user_address_postal_code' => $this->string(24)->notNull(),
-            'user_address_phone_number' => $this->string(24)->notNull()->unique(),
+            'user_address_phone_number' => $this->string(24)->notNull(),
             'created_at' => $this->dateTime(),
             'updated_at' => $this->timestamp()
         ]);

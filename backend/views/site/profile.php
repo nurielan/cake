@@ -112,7 +112,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             ], [
                                     'prompt' => Yii::t('common', 'Select one')
                             ]) ?>
-                            <?= $form->field($modelPSF, 'description')->textarea(['placeholder' => Yii::t('common', 'Description')]) ?>
+                            <?= $form->field($modelPSF, 'description')->textarea(['placeholder' => Yii::t('common', 'Description'), 'class' => 'form-control bootstrap-textarea', 'width' => '100%']) ?>
 
                             <div class="form-group">
                                 <?= Html::submitButton(Yii::t('common', 'Update'), ['class' => 'btn btn-danger']) ?>
@@ -166,7 +166,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                             <?php $form3 = ActiveForm::begin(['class' => "form-horizontal"]); ?>
                             <?= $form3->field($modelPAF, 'editable_form')->checkbox(['id' => "editable_form"]) ?>
-                            <?= $form3->field($modelPAF, 'no')->hiddenInput(['placeholder' => Yii::t('common', 'No'), 'id' => 'noo']) ?>
+                            <?= $form3->field($modelPAF, 'no')->hiddenInput(['placeholder' => Yii::t('common', 'No'), 'id' => 'noo'])->label(false) ?>
                             <?= $form3->field($modelPAF, 'title')->textInput(['placeholder' => Yii::t('common', 'Title'), 'id' => 'title']) ?>
                             <?= $form3->field($modelPAF, 'name')->textInput(['placeholder' => Yii::t('common', 'Name'), 'id' => 'name']) ?>
                             <?= $form3->field($modelPAF, 'address')->textInput(['placeholder' => Yii::t('common', 'Address'), 'id' => 'addresss']) ?>

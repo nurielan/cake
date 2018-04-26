@@ -24,10 +24,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <!-- Main content -->
     <section class="content">
-        <div class="error-page">
+        <div>
             <h2 class="headline text-yellow"> <?= nl2br(Html::encode($status)) ?></h2>
 
-            <div class="error-content">
+            <div>
                 <h3><i class="fa fa-warning text-yellow"></i> Oops! <?= nl2br(Html::encode($message)) ?>.</h3>
 
                 <p>
