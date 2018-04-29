@@ -41,6 +41,7 @@ class ProductCustomController extends Controller
         $model->updated_at = date('Y-m-d h:i:s');
 
         $productCustom = ProductCustom::find()->where(['user_no' => Yii::$app->user->identity->no])->all();
+        $cartPc = Yii::$app->cartPc->getPositions();
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $model->imageTemp1 = UploadedFile::getInstance($model, 'image1');
@@ -55,7 +56,7 @@ class ProductCustomController extends Controller
             return $this->redirect(['product-custom/index'], 301);
         }
 
-        return $this->render('index', ['model' => $model, 'productCustom' => $productCustom]);
+        return $this->render('index', ['model' => $model, 'productCustom' => $productCustom, 'cartPc' => $cartPc]);
     }
 
     public function actionRemove($no)

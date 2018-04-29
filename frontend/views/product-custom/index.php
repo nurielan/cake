@@ -42,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 </td>
                                 <td><?= $value->name ?></td>
                                 <td><?= date('d-m-Y', strtotime($value->created_at)) ?></td>
-                                <td align="right">
+                                <td>
                                     <a class="btn btn-pink-cake btn-xs" href="<?= Url::toRoute(['product-custom/remove', 'no' => $value->no]) ?>" data-confirm="<?= Yii::t('common', 'Are you sure you want to remove this item?') ?>">&times;</a>
                                 </td>
                             </tr>
@@ -58,6 +58,60 @@ $this->params['breadcrumbs'][] = $this->title;
                                         <h2 align="center"><?= Yii::t('common', 'No Product Custom') ?></h2>
                                     </td>
                                 </tr>
+                            <?php endif; ?>
+                            </tbody>
+                        </table>
+                        <?= Html::endForm() ?>
+                    </div>
+                </div>
+
+                <div class="panel-heading">
+                    <h1 class="panel-title"><?= Yii::t('common', 'Product Custom Cart') ?></h1>
+                </div>
+                <div class="panel-body">
+                    <?php
+                    if (Yii::$app->session->hasFlash('cartPc')) {
+                        echo '<div class="alert alert-info">'. Yii::$app->session->getFlash('cartPc') .'</div>';
+                    }
+                    ?>
+                    <div class="table-responsive">
+                        <?= Html::beginForm(['product-custom/order']) ?>
+                        <table class="table table-condensed table-striped table-hover">
+                            <thead>
+                            <tr>
+                                <th>
+                                    No.
+                                </th>
+                                <th>
+                                    <?= Yii::t('common', 'Product') ?>
+                                </th>
+                                <th>
+                                    <?= Yii::t('common', 'Quantity') ?>
+                                </th>
+                                <th>
+                                    <?= Yii::t('common', 'Price') ?>
+                                </th>
+                                <th>
+                                    <?= Yii::t('common', 'Subtotal') ?>
+                                </th>
+                                <th>
+
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php if ($cartPc): ?>
+                            <?php foreach ($cartPc as $key => $item): ?>
+                            <tr>
+                                <td><?= $key + 1 ?></td>
+                            </tr>
+                            <?php endforeach; ?>
+                            <?php else: ?>
+                            <tr>
+                                <td colspan="5" valign="middle" align="center">
+                                    <strong><?= Yii::t('common', 'No Product') ?></strong>
+                                </td>
+                            </tr>
                             <?php endif; ?>
                             </tbody>
                         </table>

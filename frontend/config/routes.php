@@ -19,8 +19,8 @@ return [
         'rules' => [
             'kesalahan' => 'error',
             'beranda' => 'index',
-            'log-masuk' => 'login',
-            'log-keluar' => 'logout',
+            'login' => 'login',
+            'logout' => 'logout',
             'kontak' => 'contact',
             'tentang' => 'about',
             'mendaftar' => 'signup',
