@@ -114,6 +114,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <!--<th>Item</th>-->
                                     <th>Status</th>
                                     <!--<th>Popularity</th>-->
+                                    <th>Date</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -147,6 +148,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63
                                                 </div>
                                             </td>-->
+                                            <td><?= date('d M Y', strtotime($item->created_at)) ?></td>
                                         </tr>
                                     <?php endforeach; ?>
                                 <?php endif; ?>
