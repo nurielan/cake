@@ -5,6 +5,9 @@ use backend\models\ProfileAddressForm;
 use backend\models\ProfileConfigAddressForm;
 use backend\models\ProfilePasswordForm;
 use backend\models\ProfileSettingsForm;
+use common\models\OrderList;
+use common\models\ProductItem;
+use common\models\User;
 use common\models\UserAddress;
 use Yii;
 use yii\web\Controller;
@@ -66,7 +69,30 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $data['orderList'] = OrderList::find()->orderBy('created_at DESC')->limit(10)->all();
+        $data['user'] = User::find()->where('role = 6')->orderBy('created_at DESC')->limit(8)->all();
+        $data['productItem'] = ProductItem::find()->where('status = 1')->limit(4)->orderBy('created_at DESC')->all();
+
+        $ol11 = [];
+        $ol22 = [];
+        $ol33 = [];
+
+        foreach (OrderList::find()->all() as $oL1) {
+            $ol11[] = $oL1->price;
+        }
+        foreach (OrderList::find()->where('created_at LIKE "'. date('Y-m', strtotime(date('Y-m'))) .'%"')->all() as $oL2) {
+            $ol22[] = $oL2->price;
+        }
+        foreach (OrderList::find()->where('created_at LIKE "'. date('Y-m-d', strtotime(date('Y-m-d'))) .'%"')->all() as $oL3) {
+            $ol33[] = $oL3->price;
+        }
+
+        $data['oL1'] = array_sum($ol11);
+        $data['oL2'] = array_sum($ol22);
+        $data['oL3'] = array_sum($ol33);
+        $data['u'] = User::find()->where('role = 6')->count();
+
+        return $this->render('index', $data);
     }
 
     /**

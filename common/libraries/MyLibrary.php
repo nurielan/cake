@@ -6,6 +6,7 @@ use common\models\BlogCategory;
 use common\models\BlogItem;
 use common\models\BlogTag;
 use common\models\OrderList;
+use common\models\PcOrderList;
 use common\models\ProductBrand;
 use common\models\ProductCategory;
 use common\models\ProductCustom;
@@ -599,6 +600,90 @@ class MyLibrary {
                 $newNo = 'PROCUS0' . $addNo;
             } elseif ($addNo < 10000000000000) {
                 $newNo = 'PROCUS' . $addNo;
+            }
+        }
+
+        return $newNo;
+    }
+
+    public function getAutoNoPcOrderList() {
+        $no = PcOrderList::find()->max('no');
+        $date = date('d/m/Y');
+
+        if (!$no) {
+            $newNo = 'ORDRCSTM/'. $date .'/0000000000001';
+        } else {
+            $oldNo = (int) substr($no, 21, strlen($no));
+            $addNo = $oldNo + 1;
+
+            if ($addNo < 10) {
+                $newNo = 'ORDRCSTM/'. $date .'/000000000000' . $addNo;
+            } elseif ($addNo < 100) {
+                $newNo = 'ORDRCSTM/'. $date .'/00000000000' . $addNo;
+            } elseif ($addNo < 1000) {
+                $newNo = 'ORDRCSTM/'. $date .'/0000000000' . $addNo;
+            } elseif ($addNo < 10000) {
+                $newNo = 'ORDRCSTM/'. $date .'/000000000' . $addNo;
+            } elseif ($addNo < 100000) {
+                $newNo = 'ORDRCSTM/'. $date .'/00000000' . $addNo;
+            } elseif ($addNo < 1000000) {
+                $newNo = 'ORDRCSTM/'. $date .'/0000000' . $addNo;
+            } elseif ($addNo < 10000000) {
+                $newNo = 'ORDRCSTM/'. $date .'/000000' . $addNo;
+            } elseif ($addNo < 100000000) {
+                $newNo = 'ORDRCSTM/'. $date .'/00000' . $addNo;
+            } elseif ($addNo < 1000000000) {
+                $newNo = 'ORDRCSTM/'. $date .'/0000' . $addNo;
+            } elseif ($addNo < 10000000000) {
+                $newNo = 'ORDRCSTM/'. $date .'/000' . $addNo;
+            } elseif ($addNo < 100000000000) {
+                $newNo = 'ORDRCSTM/'. $date .'/00' . $addNo;
+            } elseif ($addNo < 1000000000000) {
+                $newNo = 'ORDRCSTM/'. $date .'/0' . $addNo;
+            } elseif ($addNo < 10000000000000) {
+                $newNo = 'ORDRCSTM/'. $date .'/' . $addNo;
+            }
+        }
+
+        return $newNo;
+    }
+
+    public function getAutoNoPpOrderList() {
+        $no = OrderList::find()->max('no');
+        $date = date('d/m/Y');
+
+        if (!$no) {
+            $newNo = 'ORDRPKG/'. $date .'/0000000000001';
+        } else {
+            $oldNo = (int) substr($no, 20, strlen($no));
+            $addNo = $oldNo + 1;
+
+            if ($addNo < 10) {
+                $newNo = 'ORDRPKG/'. $date .'/000000000000' . $addNo;
+            } elseif ($addNo < 100) {
+                $newNo = 'ORDRPKG/'. $date .'/00000000000' . $addNo;
+            } elseif ($addNo < 1000) {
+                $newNo = 'ORDRPKG/'. $date .'/0000000000' . $addNo;
+            } elseif ($addNo < 10000) {
+                $newNo = 'ORDRPKG/'. $date .'/000000000' . $addNo;
+            } elseif ($addNo < 100000) {
+                $newNo = 'ORDRPKG/'. $date .'/00000000' . $addNo;
+            } elseif ($addNo < 1000000) {
+                $newNo = 'ORDRPKG/'. $date .'/0000000' . $addNo;
+            } elseif ($addNo < 10000000) {
+                $newNo = 'ORDRPKG/'. $date .'/000000' . $addNo;
+            } elseif ($addNo < 100000000) {
+                $newNo = 'ORDRPKG/'. $date .'/00000' . $addNo;
+            } elseif ($addNo < 1000000000) {
+                $newNo = 'ORDRPKG/'. $date .'/0000' . $addNo;
+            } elseif ($addNo < 10000000000) {
+                $newNo = 'ORDRPKG/'. $date .'/000' . $addNo;
+            } elseif ($addNo < 100000000000) {
+                $newNo = 'ORDRPKG/'. $date .'/00' . $addNo;
+            } elseif ($addNo < 1000000000000) {
+                $newNo = 'ORDRPKG/'. $date .'/0' . $addNo;
+            } elseif ($addNo < 10000000000000) {
+                $newNo = 'ORDRPKG/'. $date .'/' . $addNo;
             }
         }
 

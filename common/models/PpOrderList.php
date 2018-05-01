@@ -5,9 +5,9 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "pc_order_list".
+ * This is the model class for table "pp_order_list".
  *
- * @property int $id
+ * @property string $id
  * @property string $no
  * @property string $cashier
  * @property int $quantity
@@ -22,19 +22,19 @@ use Yii;
  * @property string $user_email
  * @property string $user_image
  * @property int $user_role
- * @property int $transfer_confirmation
+ * @property string $transfer_confirmation
  * @property int $status
  * @property string $created_at
  * @property string $updated_at
  */
-class PcOrderList extends \yii\db\ActiveRecord
+class PpOrderList extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'pc_order_list';
+        return 'pp_order_list';
     }
 
     /**
@@ -83,11 +83,11 @@ class PcOrderList extends \yii\db\ActiveRecord
 
     public function getOrderItem()
     {
-        return $this->hasMany(PcOrderItem::className(), ['pc_order_list_no' => 'no']);
+        return $this->hasMany(PpOrderItem::className(), ['pp_order_list_no' => 'no']);
     }
 
     public function getOrderConfirm()
     {
-        return $this->hasOne(PcOrderConfirm::className(), ['id' => 'transfer_confirmation']);
+        return $this->hasOne(PpOrderConfirm::className(), ['id' => 'transfer_confirmation']);
     }
 }

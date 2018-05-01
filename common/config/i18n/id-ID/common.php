@@ -184,5 +184,8 @@ return [
     'Account' => 'Akun',
     'Amount Due' => 'Jumlah Terutang',
     'Print' => 'Cetak',
-    'Product Custom Cart' => 'Keranjang Produk Kustom'
+    'Product Custom Cart' => 'Keranjang Produk Kustom',
+    'Add to Cart' => 'Tambah ke Keranjang',
+    'Save Order' => 'Simpan Pesanan',
+    'Product Custom Order List' => 'Daftar Pesanan Produk Kustom'
 ];

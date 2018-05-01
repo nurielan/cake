@@ -30,6 +30,8 @@ class m180425_091725_create_pp_order_list_table extends Migration
             'user_role' => 'TINYINT(1) DEFAULT 0',
             'transfer_confirmation' => 'INT UNSIGNED',
             'status' => 'TINYINT(1) DEFAULT 0',
+            'created_at' => $this->dateTime(),
+            'updated_at' => $this->timestamp()
         ]);
 
         $this->createIndex('i-pp_order_list-transfer_confirmation', 'pp_order_list', 'transfer_confirmation', false);

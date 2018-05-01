@@ -280,6 +280,12 @@ $bank = Bank::find()->all();
                                     <a href="<?= Url::toRoute(['product/index']) ?>"><?= Yii::t('common', 'Product') ?></a>
                                 </li>
                                 <li>
+                                    <a href="<?= Url::toRoute(['product-custom/index']) ?>"><?= Yii::t('common', 'Product Custom') ?></a>
+                                </li>
+                                <li>
+                                    <a href="<?= Url::toRoute(['product-package/index']) ?>"><?= Yii::t('common', 'Product Package') ?></a>
+                                </li>
+                                <li>
                                     <a href="<?= Url::toRoute(['gallery/index']) ?>"><?= Yii::t('common', 'Gallery') ?></a>
                                 </li>
                                 <?php if (Yii::$app->user->isGuest): ?>

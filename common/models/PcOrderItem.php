@@ -115,4 +115,9 @@ class PcOrderItem extends \yii\db\ActiveRecord
             'updated_at' => Yii::t('common', 'Updated At'),
         ];
     }
+
+    public function getOrderList()
+    {
+        return $this->hasOne(PcOrderList::className(), ['no' => 'pc_order_list_no']);
+    }
 }

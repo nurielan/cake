@@ -382,9 +382,13 @@ $this->title = $title;
                                                     </li>
                                                 <?php endif; ?>
                                             </ul>
+                                            <?= Html::beginForm(['cart-pp/put']) ?>
                                             <div class="price-btn price-purple-btn">
-                                                <a href="<?= Url::toRoute(['cart/add']) ?>"><?= Yii::t('common', 'Order') ?></a>
+                                                <?= Html::hiddenInput('product_package_no[]', $pPItem->no) ?>
+                                                <?= Html::hiddenInput('qty['. $pPItem->no .']', 1) ?>
+                                                <?= Html::submitButton(Yii::t('common', 'Buy'), ['class' => 'btn btn-pink-cake']) ?>
                                             </div>
+                                            <?= Html::endForm(); ?>
                                         </div>
                                     </div>
                                 </div>

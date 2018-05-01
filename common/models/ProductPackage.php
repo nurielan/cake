@@ -5,6 +5,7 @@ namespace common\models;
 use Yii;
 use yii\behaviors\SluggableBehavior;
 use Intervention\Image\ImageManagerStatic as Image;
+use yz\shoppingcart\CartPositionProviderInterface;
 
 /**
  * This is the model class for table "product_package".
@@ -41,7 +42,7 @@ use Intervention\Image\ImageManagerStatic as Image;
  * @property string $created_at
  * @property string $updated_at
  */
-class ProductPackage extends \yii\db\ActiveRecord
+class ProductPackage extends \yii\db\ActiveRecord implements CartPositionProviderInterface
 {
     public $imageName1, $imageName2, $imageName3;
     public $imageTemp1, $imageTemp2, $imageTemp3;
@@ -221,5 +222,16 @@ class ProductPackage extends \yii\db\ActiveRecord
     public function getProductItem10()
     {
         return $this->hasOne(ProductItem::className(), ['no' => 'product_item_10']);
+    }
+
+    public function getCartPosition($params = [])
+    {
+        // TODO: Implement getCartPosition() method.
+        return Yii::createObject([
+            'class' => ProductPackageCartPosition::className(),
+            'no' => $this->no,
+            'price' => $this->price,
+            'weight' => $this->weight
+        ]);
     }
 }

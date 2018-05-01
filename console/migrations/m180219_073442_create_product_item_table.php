@@ -30,7 +30,7 @@ class m180219_073442_create_product_item_table extends Migration
             'type' => 'TINYINT(1) DEFAULT 1',
             'in_stock' => $this->integer()->defaultValue(0),
             'out_stock' => $this->integer()->defaultValue(0),
-            'price' => $this->money(18, 2),
+            'price' => $this->money(18, 2)->defaultValue(0),
             'weight' => $this->integer()->defaultValue(0),
             'created_at' => $this->dateTime(),
             'updated_at' => $this->timestamp()

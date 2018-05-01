@@ -94,7 +94,55 @@ return [
         'rules' => [
             'kesalahan' => 'error',
             '/' => 'index',
-            'hapus/<no>' => 'remove'
+            'hapus/<no>' => 'remove',
+            'barang-pesanan/<order_list_no>' => 'order-item',
+            'konfirmasi-pesanan/<order_list_no>' => 'order-confirm',
+            'konfirmasi-pesanan' => 'order-confirm',
+            'cetak/<id>' => 'print'
+        ]
+    ],
+    'cart-pc' => [
+        'class' => GUR::className(),
+        'prefix' => 'keranjang-kustom',
+        'routePrefix' => 'cart-pc',
+        'rules' => [
+            'kesalahan' => 'error',
+            '/' => 'index',
+            'taruh' => 'put',
+            'ubah' => 'update',
+            'buang/<cart_id>' => 'remove',
+            'buang-semua' => 'remove-all',
+            'checkout' => "checkout",
+            'metode-pembayaran' => "payment-method"
+        ]
+    ],
+    'product-package' => [
+        'class' => GUR::className(),
+        'prefix' => 'produk-paket',
+        'routePrefix' => 'product-package',
+        'rules' => [
+            'kesalahan' => 'error',
+            '/' => 'index',
+            'hapus/<no>' => 'remove',
+            'barang-pesanan/<order_list_no>' => 'order-item',
+            'konfirmasi-pesanan/<order_list_no>' => 'order-confirm',
+            'konfirmasi-pesanan' => 'order-confirm',
+            'cetak/<id>' => 'print'
+        ]
+    ],
+    'cart-pp' => [
+        'class' => GUR::className(),
+        'prefix' => 'keranjang-paket',
+        'routePrefix' => 'cart-pp',
+        'rules' => [
+            'kesalahan' => 'error',
+            '/' => 'index',
+            'taruh' => 'put',
+            'ubah' => 'update',
+            'buang/<cart_id>' => 'remove',
+            'buang-semua' => 'remove-all',
+            'checkout' => "checkout",
+            'metode-pembayaran' => "payment-method"
         ]
     ],
 ];

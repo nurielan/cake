@@ -29,7 +29,7 @@ class m180219_203710_create_product_package_table extends Migration
             'type' => 'TINYINT(1) DEFAULT 1',
             'in_stock' => $this->integer()->defaultValue(0),
             'out_stock' => $this->integer()->defaultValue(0),
-            'price' => $this->money(18, 2),
+            'price' => $this->money(18, 2)->defaultValue(0),
             'weight' => $this->integer()->defaultValue(0),
             'product_item_1' => $this->string(64),
             'product_item_2' => $this->string(64),
