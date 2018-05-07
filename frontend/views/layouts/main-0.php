@@ -195,11 +195,11 @@ $bank = Bank::find()->all();
                     </div>
                     <div class="top-footer">
                         <div class="row">
-                            <div class="col-sm-6">
+                            <!--div class="col-sm-6">
                                 <img alt="Logo-White" class="img-cake-center-res mar-btm-20"
                                      src="<?= Url::to('@web/cake/images/logo-white.png') ?>">
-                            </div>
-                            <div class="col-sm-6 text-right">
+                            </div-->
+                            <div class="col-sm-6 text-right col-sm-offset-6">
                                 <ul class="sosmed-cake">
                                     <li>
                                         <div class="center-sosmed">
@@ -278,6 +278,12 @@ $bank = Bank::find()->all();
                                 </li>
                                 <li>
                                     <a href="<?= Url::toRoute(['product/index']) ?>"><?= Yii::t('common', 'Product') ?></a>
+                                </li>
+                                <li>
+                                    <a href="<?= Url::toRoute(['product-custom/index']) ?>"><?= Yii::t('common', 'Product Custom') ?></a>
+                                </li>
+                                <li>
+                                    <a href="<?= Url::toRoute(['product-package/index']) ?>"><?= Yii::t('common', 'Product Package') ?></a>
                                 </li>
                                 <li>
                                     <a href="<?= Url::toRoute(['gallery/index']) ?>"><?= Yii::t('common', 'Gallery') ?></a>

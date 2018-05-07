@@ -5,6 +5,7 @@ namespace common\models;
 use Yii;
 use Intervention\Image\ImageManagerStatic as Image;
 use yii\behaviors\SluggableBehavior;
+use yz\shoppingcart\CartPositionProviderInterface;
 
 /**
  * This is the model class for table "product_custom".
@@ -29,7 +30,7 @@ use yii\behaviors\SluggableBehavior;
  * @property string $created_at
  * @property string $updated_at
  */
-class ProductCustom extends \yii\db\ActiveRecord
+class ProductCustom extends \yii\db\ActiveRecord implements CartPositionProviderInterface
 {
     public $imageName1, $imageName2, $imageName3;
     public $imageTemp1, $imageTemp2, $imageTemp3;
@@ -148,5 +149,16 @@ class ProductCustom extends \yii\db\ActiveRecord
         }
 
         return false;
+    }
+
+    public function getCartPosition($params = [])
+    {
+        // TODO: Implement getCartPosition() method.
+        return Yii::createObject([
+            'class' => ProductCustomCartPosition::className(),
+            'no' => $this->no,
+            'price' => $this->price,
+            'weight' => $this->weight
+        ]);
     }
 }

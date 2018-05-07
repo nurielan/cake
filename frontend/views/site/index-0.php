@@ -164,19 +164,28 @@ $this->title = $title;
                             </h1>
                         </div>
                     </div>
-                    <div class="slider-cake">
-                        <div class="container pad-md-100">
-                            <div class="center">
-                                <?php foreach ($productItemHighlight as $pIH): ?>
-                                    <div>
-                                        <img alt="<?= $pIH->productItem->name ?>"
-                                             src="<?= Yii::$app->myLibrary->getProductItemImage($pIH->productItem->image1) ?>"
-                                             width="324" height="324">
+
+                    <?php if ($productItemHighlight): ?>
+                        <div>
+                            <div>
+                                <div>
+                                    <div class="owl-carousel">
+                                        <?php foreach ($productItemHighlight as $pIH): ?>
+                                            <div class="owl-theme">
+                                                <img class="owl-lazy" alt="<?= $pIH->productItem->name ?>"
+                                                     src="<?= Yii::$app->myLibrary->getProductItemImage($pIH->productItem->image1) ?>"
+                                                     data-src="<?= Yii::$app->myLibrary->getProductItemImage($pIH->productItem->image1) ?>"
+                                                     data-src-retina="<?= Yii::$app->myLibrary->getProductItemImage($pIH->productItem->image1) ?>">
+                                                <!--h3 align="center"
+                                                    style="color: #fff;"><?= $pIH->productItem->name ?></h3-->
+                                            </div>
+                                        <?php endforeach; ?>
                                     </div>
-                                <?php endforeach; ?>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    <?php endif; ?>
+
                     <div class="green-table mar-to-top">
                         &nbsp;
                     </div>
@@ -186,7 +195,7 @@ $this->title = $title;
                 </header>
             </section>
             <!-- End Header Cake --><!-- Start Product Cake -->
-            <?php if ($productItemHighlight): ?>
+            <?php if ($productItem): ?>
                 <section class="product-cake">
                     <div class="container">
                         <!-- Product Tittle -->
@@ -382,9 +391,13 @@ $this->title = $title;
                                                     </li>
                                                 <?php endif; ?>
                                             </ul>
+                                            <?= Html::beginForm(['cart-pp/put']) ?>
                                             <div class="price-btn price-purple-btn">
-                                                <a href="<?= Url::toRoute(['cart/add']) ?>"><?= Yii::t('common', 'Order') ?></a>
+                                                <?= Html::hiddenInput('product_package_no[]', $pPItem->no) ?>
+                                                <?= Html::hiddenInput('qty[' . $pPItem->no . ']', 1) ?>
+                                                <?= Html::submitButton(Yii::t('common', 'Buy'), ['class' => 'btn btn-pink-cake']) ?>
                                             </div>
+                                            <?= Html::endForm(); ?>
                                         </div>
                                     </div>
                                 </div>
@@ -447,11 +460,11 @@ $this->title = $title;
                     </div>
                     <div class="top-footer">
                         <div class="row">
-                            <div class="col-sm-6">
+                            <!--div class="col-sm-6">
                                 <img alt="Logo-White" class="img-cake-center-res mar-btm-20"
                                      src="<?= Url::to('@web/cake/images/logo-white.png') ?>">
-                            </div>
-                            <div class="col-sm-6 text-right">
+                            </div-->
+                            <div class="col-sm-6 text-right col-sm-offset-6">
                                 <ul class="sosmed-cake">
                                     <li>
                                         <div class="center-sosmed">
@@ -501,26 +514,28 @@ $this->title = $title;
                             <h4>
                                 <?= Yii::$app->name ?>
                             </h4>
-                            <!--p class="mar-btm-20">
+                            <p class="mar-btm-20">
                                 Cookie apple pie donut gingerbread <br>sweet roll pudding topping <br>marshmallow.<br>
-                            </p-->
+                            </p>
                         </div>
                         <!-- Column -->
                         <div class="col-sm-4 hidden-xs">
-                            <ul class="list-picture-footer">
-                                <?php for ($i = 1; $i <= 8; $i++): ?>
-                                    <li>
-                                        <a class="fancybox" data-fancybox-group="contentgallery"
-                                           href="<?= Url::to('@web/cake/images/tag-' . $i . '.jpg') ?>"><img
-                                                    alt="Img-sm-picture" class="img-100"
-                                                    src="<?= Url::to('@web/cake/images/tag-' . $i . '.jpg') ?>"></a>
-                                    </li>
-                                <?php endfor; ?>
-                            </ul>
-                            <div class="clear"></div>
-                            <!--p>
+                            <?php if ($bank): ?>
+                                <ul class="list-picture-footer">
+                                    <?php foreach ($bank as $item): ?>
+                                        <li>
+                                            <a class="fancybox" data-fancybox-group="contentgallery"
+                                               href="<?= Yii::$app->myLibrary->getBankImage($item->image) ?>"><img
+                                                        alt="Img-sm-picture" class="img-100"
+                                                        src="<?= Yii::$app->myLibrary->getBankImage($item->image) ?>"></a>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            <?php endif; ?>
+                            <div class="clearfix"></div>
+                            <p>
                                 Cookie apple pie donut gingerbread <br>sweet roll pudding topping
-                            </p-->
+                            </p>
                         </div>
                         <!-- Column -->
                         <div class="col-sm-4">
@@ -530,6 +545,12 @@ $this->title = $title;
                                 </li>
                                 <li>
                                     <a href="<?= Url::toRoute(['product/index']) ?>"><?= Yii::t('common', 'Product') ?></a>
+                                </li>
+                                <li>
+                                    <a href="<?= Url::toRoute(['product-package/index']) ?>"><?= Yii::t('common', 'Product Package') ?></a>
+                                </li>
+                                <li>
+                                    <a href="<?= Url::toRoute(['product-custom/index']) ?>"><?= Yii::t('common', 'Product Custom') ?></a>
                                 </li>
                                 <li>
                                     <a href="<?= Url::toRoute(['gallery/index']) ?>"><?= Yii::t('common', 'Gallery') ?></a>

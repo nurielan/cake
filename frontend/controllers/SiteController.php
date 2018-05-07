@@ -112,6 +112,7 @@ class SiteController extends Controller
         $data['productPackage'] = ProductPackage::find()->orderBy('created_at DESC')->limit(4)->all();
         $data['ourTeam'] = CakeOurTeam::find()->all();
         $data['cartCount'] = Yii::$app->cart->getCount();
+        $data['bank'] = Bank::find()->all();
 
         return $this->renderPartial('index-0', $data);
     }

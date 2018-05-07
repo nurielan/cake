@@ -2,7 +2,13 @@
 
 namespace frontend\controllers;
 
+use common\models\Bank;
+use common\models\PcOrderConfirm;
+use common\models\PcOrderItem;
+use common\models\PcOrderList;
 use common\models\ProductCustom;
+use frontend\models\OrderConfirmForm;
+use Mpdf\Tag\B;
 use Yii;
 use yii\web\Controller;
 use yii\filters\AccessControl;
@@ -41,6 +47,9 @@ class ProductCustomController extends Controller
         $model->updated_at = date('Y-m-d h:i:s');
 
         $productCustom = ProductCustom::find()->where(['user_no' => Yii::$app->user->identity->no])->all();
+        $cartPc = Yii::$app->cartPc->getPositions();
+        $userAddress = Yii::$app->user->identity->userAddress;
+        $orderList = PcOrderList::find()->where(['user_no' => Yii::$app->user->identity->no])->orderBy(['status' => 'ASC', 'created_at' => 'DESC'])->all();
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $model->imageTemp1 = UploadedFile::getInstance($model, 'image1');
@@ -55,7 +64,7 @@ class ProductCustomController extends Controller
             return $this->redirect(['product-custom/index'], 301);
         }
 
-        return $this->render('index', ['model' => $model, 'productCustom' => $productCustom]);
+        return $this->render('index', ['model' => $model, 'productCustom' => $productCustom, 'cartPc' => $cartPc, 'userAddress' => $userAddress, 'orderList' => $orderList]);
     }
 
     public function actionRemove($no)
@@ -72,7 +81,7 @@ class ProductCustomController extends Controller
         return $this->redirect(['product-custom/index'], 301);
     }
 
-    public function actionOrder()
+    /*public function actionOrder()
     {
         if (Yii::$app->request->isPost) {
             $pc = Yii::$app->request->post('product_custom_no');
@@ -87,5 +96,54 @@ class ProductCustomController extends Controller
         }
 
         return $this->redirect(['product-custom/index']);
+    }*/
+
+    public function actionOrderItem($order_list_no)
+    {
+        $order_list_no = str_replace('-', '/', $order_list_no);
+        $data['orderList'] = PcOrderList::findOne(['no' => $order_list_no]);
+        $data['orderItem'] = PcOrderItem::find()->joinWith('orderList')->where(['pc_order_list_no' => $order_list_no])->all();
+        $data['userAddress'] = Yii::$app->user->identity->userAddress;
+
+        return $this->render('order-item', $data);
+    }
+
+    public function actionOrderConfirm($order_list_no)
+    {
+        $order_list_no = str_replace('-', '/', $order_list_no);
+        $orderConfirm = PcOrderConfirm::find()->joinWith('orderList')->where(['pc_order_list.no' => $order_list_no])->one();
+        $model = new OrderConfirmForm;
+        $model->order_list_no = $orderConfirm->orderList->no;
+        $model->via = $orderConfirm->via;
+        //$model->amount = number_format($orderConfirm->orderList->price);
+        $model->bank = $orderConfirm->bank;
+        $model->account_name = $orderConfirm->account_name;
+        $model->account_number = $orderConfirm->account_number;
+        $data['model'] = $model;
+        $data['orderConfirm'] = $orderConfirm;
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $orderConfirm->amount = $model->amount;
+            $orderConfirm->account_name = $model->account_name;
+            $orderConfirm->account_number = $model->account_number;
+            $orderConfirm->status = 1;
+            $orderConfirm->update(false);
+
+            Yii::$app->session->setFlash('order-confirm', Yii::t('common', 'Saved'));
+
+            return $this->redirect(['product-custom/index']);
+        }
+
+        return $this->render('order-confirm', $data);
+    }
+
+    public function actionPrint($id)
+    {
+        $no = str_replace('-', '/', $id);
+        $model = PcOrderList::findOne(['no' => $no]);
+        $bank = Bank::findOne($model->orderConfirm->bank_id);
+
+        return $this->renderPartial('invoice', ['model' => $model, 'bank' => $bank]);
+        //print_r($model);
     }
 }

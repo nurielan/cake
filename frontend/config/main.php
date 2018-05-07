@@ -47,6 +47,14 @@ return [
         'cart' => [
             'class' => 'yz\shoppingcart\ShoppingCart',
             'cartId' => 'cart_cake_frontend'
+        ],
+        'cartPc' => [
+            'class' => 'yz\shoppingcart\ShoppingCart',
+            'cartId' => 'cart-pc_cake_frontend'
+        ],
+        'cartPp' => [
+            'class' => 'yz\shoppingcart\ShoppingCart',
+            'cartId' => 'cart-pp_cake_frontend'
         ]
     ],
     'params' => $params,

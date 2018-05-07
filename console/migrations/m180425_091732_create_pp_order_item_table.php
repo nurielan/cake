@@ -57,10 +57,12 @@ class m180425_091732_create_pp_order_item_table extends Migration
             'user_address_province_no' => $this->string(24),
             'user_address_postal_code' => $this->string(24)->notNull(),
             'user_address_phone_number' => $this->string(24)->notNull(),
+            'created_at' => $this->dateTime(),
+            'updated_at' => $this->timestamp()
         ]);
 
         $this->createIndex('i-pp_order_item-pp_order_list_no', 'pp_order_item', 'pp_order_list_no', false);
-        $this->createIndex('i-pp_order_item-product_custom_no', 'pp_order_item', 'product_custom_no', false);
+        $this->createIndex('i-pp_order_item-product_package_no', 'pp_order_item', 'product_package_no', false);
     }
 
     /**

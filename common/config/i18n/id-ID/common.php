@@ -183,5 +183,9 @@ return [
     'Welcome to Cake Away. You can directly login by clicking the button below.' => 'Selamat datang di Cake Away. Anda bisa langsung melakukan login dengan meng-klik tombol di bawah ini.',
     'Account' => 'Akun',
     'Amount Due' => 'Jumlah Terutang',
-    'Print' => 'Cetak'
+    'Print' => 'Cetak',
+    'Product Custom Cart' => 'Keranjang Produk Kustom',
+    'Add to Cart' => 'Tambah ke Keranjang',
+    'Save Order' => 'Simpan Pesanan',
+    'Product Custom Order List' => 'Daftar Pesanan Produk Kustom'
 ];
