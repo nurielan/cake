@@ -195,11 +195,11 @@ $bank = Bank::find()->all();
                     </div>
                     <div class="top-footer">
                         <div class="row">
-                            <div class="col-sm-6">
+                            <!--div class="col-sm-6">
                                 <img alt="Logo-White" class="img-cake-center-res mar-btm-20"
                                      src="<?= Url::to('@web/cake/images/logo-white.png') ?>">
-                            </div>
-                            <div class="col-sm-6 text-right">
+                            </div-->
+                            <div class="col-sm-6 text-right col-sm-offset-6">
                                 <ul class="sosmed-cake">
                                     <li>
                                         <div class="center-sosmed">

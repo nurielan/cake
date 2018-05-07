@@ -225,7 +225,7 @@ $cartCount = Yii::$app->cart->getCount();
                                  src="<?= Url::to('@web/cake/images/logo-white.png') ?>">
                         </div>
                         <div class="col-sm-6 text-right">
-                            <!--ul class="sosmed-cake">
+                            <ul class="sosmed-cake">
                                 <li>
                                     <div class="center-sosmed">
                                         <p class="icon icon-facebook">
@@ -261,7 +261,7 @@ $cartCount = Yii::$app->cart->getCount();
                                         </p>
                                     </div>
                                 </li>
-                            </ul-->
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -272,7 +272,7 @@ $cartCount = Yii::$app->cart->getCount();
                     <!-- Column -->
                     <div class="col-sm-4">
                         <h4>
-                            Cake's Dream
+                            <?= Yii::$app->name ?>
                         </h4>
                         <p class="mar-btm-20">
                             Cookie apple pie donut gingerbread <br>sweet roll pudding topping <br>marshmallow.<br>
@@ -280,18 +280,22 @@ $cartCount = Yii::$app->cart->getCount();
                     </div>
                     <!-- Column -->
                     <div class="col-sm-4 hidden-xs">
-                        <!--ul class="list-picture-footer">
-                            <?php for ($i = 1; $i <= 8; $i++): ?>
-                            <li>
-                                <a class="fancybox" data-fancybox-group="contentgallery" href="<?= Url::to('@web/cake/images/tag-' . $i . '.jpg') ?>"><img
-                                            alt="Img-sm-picture" class="img-100" src="<?= Url::to('@web/cake/images/tag-' . $i . '.jpg') ?>"></a>
-                            </li>
-                            <?php endfor; ?>
-                        </ul>
-                        <div class="clear"></div>
+                        <?php if ($bank): ?>
+                            <ul class="list-picture-footer">
+                                <?php foreach ($bank as $item): ?>
+                                    <li>
+                                        <a class="fancybox" data-fancybox-group="contentgallery"
+                                           href="<?= Yii::$app->myLibrary->getBankImage($item->image) ?>"><img
+                                                    alt="Img-sm-picture" class="img-100"
+                                                    src="<?= Yii::$app->myLibrary->getBankImage($item->image) ?>"></a>
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
+                        <?php endif; ?>
+                        <div class="clearfix"></div>
                         <p>
                             Cookie apple pie donut gingerbread <br>sweet roll pudding topping
-                        </p-->
+                        </p>
                     </div>
                     <!-- Column -->
                     <div class="col-sm-4">
@@ -301,6 +305,12 @@ $cartCount = Yii::$app->cart->getCount();
                             </li>
                             <li>
                                 <a href="<?= Url::toRoute(['product/index']) ?>"><?= Yii::t('common', 'Product') ?></a>
+                            </li>
+                            <li>
+                                <a href="<?= Url::toRoute(['product-package/index']) ?>"><?= Yii::t('common', 'Product Package') ?></a>
+                            </li>
+                            <li>
+                                <a href="<?= Url::toRoute(['product-custom/index']) ?>"><?= Yii::t('common', 'Product Custom') ?></a>
                             </li>
                             <li>
                                 <a href="<?= Url::toRoute(['gallery/index']) ?>"><?= Yii::t('common', 'Gallery') ?></a>

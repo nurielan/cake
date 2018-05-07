@@ -60,9 +60,12 @@ class ProductItem extends \yii\db\ActiveRecord implements CartPositionProviderIn
             [['no', 'product_category_no', 'name', 'alias', 'image1', 'image2', 'image3', 'imageName1', 'imageName2', 'imageName3'], 'string', 'max' => 64],
             [['status', 'type', 'removeImage1', 'removeImage2', 'removeImage3'], 'string', 'max' => 1],
             [['no'], 'unique'],
-            ['image1', 'image', 'minSize' => 1000, 'maxSize' => 2000000, 'minWidth' => 278, 'minHeight' => 278, 'maxWidth' => 1024, 'maxHeight' => 1024, 'mimeTypes' => ['image/*']],
+            /*['image1', 'image', 'minSize' => 1000, 'maxSize' => 2000000, 'minWidth' => 278, 'minHeight' => 278, 'maxWidth' => 1024, 'maxHeight' => 1024, 'mimeTypes' => ['image/*']],
             ['image2', 'image', 'minSize' => 1000, 'maxSize' => 2000000, 'minWidth' => 285, 'minHeight' => 570, 'maxWidth' => 512, 'maxHeight' => 1024, 'mimeTypes' => ['image/*']],
-            ['image3', 'image', 'minSize' => 1000, 'maxSize' => 2000000, 'minWidth' => 64, 'minHeight' => 64, 'maxWidth' => 128, 'maxHeight' => 128, 'mimeTypes' => ['image/*']]
+            ['image3', 'image', 'minSize' => 1000, 'maxSize' => 2000000, 'minWidth' => 64, 'minHeight' => 64, 'maxWidth' => 128, 'maxHeight' => 128, 'mimeTypes' => ['image/*']]*/
+            ['image1', 'image', 'minSize' => 1000, 'maxSize' => 2000000, 'minWidth' => 278, 'minHeight' => 278, 'maxWidth' => 2048, 'maxHeight' => 2048, 'mimeTypes' => ['image/*']],
+            ['image2', 'image', 'minSize' => 1000, 'maxSize' => 2000000, 'minWidth' => 285, 'minHeight' => 570, 'maxWidth' => 2048, 'maxHeight' => 2048, 'mimeTypes' => ['image/*']],
+            ['image3', 'image', 'minSize' => 1000, 'maxSize' => 2000000, 'minWidth' => 64, 'minHeight' => 64, 'maxWidth' => 2048, 'maxHeight' => 2048, 'mimeTypes' => ['image/*']]
         ];
     }
 

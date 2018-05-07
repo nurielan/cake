@@ -30,7 +30,9 @@ class CakeAsset extends AssetBundle
         'stylesheets/css/effect2.css',
         'javascripts/fancybox/jquery.fancybox.css',
         'stylesheets/css/sweetalert.min.css',
-        'javascripts/jquery-ui-1.12.1.custom/jquery-ui.min.css'
+        'javascripts/jquery-ui-1.12.1.custom/jquery-ui.min.css',
+        'owl-carousel/assets/owl.carousel.min.css',
+        'owl-carousel/assets/owl.theme.default.min.css'
     ];
     public $js = [
         [
@@ -56,6 +58,7 @@ class CakeAsset extends AssetBundle
         'javascripts/classie.js',
         'javascripts/pathLoader.js',
         'javascripts/main.js',
+        'owl-carousel/owl.carousel.min.js',
         'javascripts/site.js'
     ];
     public $depends = [
